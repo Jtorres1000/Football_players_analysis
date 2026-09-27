@@ -21,7 +21,7 @@ Esta investigación se enfocará  en la línea de tiempo biológica y profesiona
    activos y segmentando la estructura de compensación por posición y
    grupo de edad. 
    
- - Contrastar la edad en la que tienen mayor puntaje de habilidad con la
+ - Comparar la edad en la que tienen mayor puntaje de habilidad con la
    edad en la que alcanzan su pico salarial para cada posición, con el fin de identificar
    si existe un desfase temporal entre el mejor momento deportivo de un
    jugador y el punto máximo de su valoración económica.

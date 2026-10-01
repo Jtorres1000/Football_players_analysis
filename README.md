@@ -25,3 +25,4 @@ Esta investigación se enfocará  en la línea de tiempo biológica y profesiona
    edad en la que alcanzan su pico salarial para cada posición, con el fin de identificar
    si existe un desfase temporal entre el mejor momento deportivo de un
    jugador y el punto máximo de su valoración económica.
+

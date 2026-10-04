@@ -10,8 +10,10 @@ La finalidad de esta investigación es determinar si existe una correlación ent
   
  - Comparar las trayectorias de envejecimiento entre las posiciones en el campo para identificar qué roles tienen la mayor longevidad.
    
- -Estudiar el crecimiento salarial de los futbolistas en el periodo 2022-2026 calculando el salario promedio basado en sus contratos, clasificándolos en grupos etarios de 15-21, 22-26, 27-31, 32-38 y su posición.
+ - Estudiar el crecimiento salarial de los futbolistas en el periodo 2022-2026 calculando el salario promedio basado en sus contratos, clasificándolos en grupos etarios de 15-21, 22-26, 27-31, 32-38 y su posición.
 
--Comparar la relación entre el mayor puntaje de habilidad con la edad que alcanza su pico salarial, 
+- Comparar la relación entre el mayor puntaje de habilidad con la edad que alcanza su pico salarial, 
 para identificar si existe una convergencia entre el mejor momento deportivo y su ingreso máximo según la posición.
+
+- Calcular el coeficiente de relacion de el puntaje de habilidad con el ingreso salarial dentro de cada categoría y posición para medir el impacto financiero del rendimiento deportivo
 

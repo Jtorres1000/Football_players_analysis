@@ -11,6 +11,7 @@ La falta de caracterización de estos análisis genera que la estructura salaria
 A nivel institucional, este fenómeno induce a una ineficiencia sistemática en la toma de decisiones. Asumir altos costos salariales por jugadores que ya han superado su pico de rendimiento en su posición específica compromete el presupuesto y la competitividad deportiva del equipo. Ante la necesidad de optimizar los recursos en el mercado actual, surge la siguiente interrogante:
 
 **Objetivo General:**
+
 Analizar el ciclo de vida profesional de los futbolistas en las distintas posiciones a lo largo del periodo 2022-2026, mediante la evaluación del desarrollo profesional de los deportistas con el propósito de determinar las edades de mayor rendimiento y la relación con su ingreso salarial. 
 
 **Objetivos Específicos:**
@@ -21,8 +22,7 @@ Analizar el ciclo de vida profesional de los futbolistas en las distintas posici
  
  - Estudiar el crecimiento salarial de los futbolistas en el periodo 2022-2026 calculando el salario promedio basado en sus contratos, clasificándolos en grupos etarios de 15-21, 22-26, 27-31, 32-38 y su posición.
  
- - Comparar la relación entre el mayor puntaje de habilidad con la edad que alcanza su pico salarial, 
-para identificar si existe una convergencia entre el mejor momento deportivo y su ingreso máximo según la posición.
+ - Comparar la relación entre el mayor puntaje de habilidad con la edad que alcanza su pico salarial, para identificar si existe una convergencia entre el mejor momento deportivo y su ingreso máximo según la posición.
 
-- Calcular el coeficiente de relacion de el puntaje de habilidad con el ingreso salarial dentro de cada categoría y posición para medir el impacto financiero del rendimiento deportivo
+- Calcular el coeficiente de correlacion del puntaje de habilidad con el ingreso salarial dentro de cada categoría y posición para medir el impacto financiero del rendimiento deportivo
 

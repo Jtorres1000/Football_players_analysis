@@ -11,7 +11,6 @@ La falta de caracterización de estos análisis genera que la estructura salaria
 A nivel institucional, este fenómeno induce a una ineficiencia sistemática en la toma de decisiones. Asumir altos costos salariales por jugadores que ya han superado su pico de rendimiento en su posición específica compromete el presupuesto y la competitividad deportiva del equipo. Ante la necesidad de optimizar los recursos en el mercado actual, surge la siguiente interrogante:
 
 **Objetivo General:**
-
 Analizar el ciclo de vida profesional de los futbolistas en las distintas posiciones a lo largo del periodo 2022-2026, mediante la evaluación del desarrollo profesional de los deportistas con el propósito de determinar las edades de mayor rendimiento y la relación con su ingreso salarial. 
 
 **Objetivos Específicos:**

@@ -21,6 +21,7 @@ Analizar el ciclo de vida profesional de los futbolistas en las distintas posici
  
  - Estudiar el crecimiento salarial de los futbolistas en el periodo 2022-2026 calculando el salario promedio basado en sus contratos, clasificándolos en grupos etarios de 15-21, 22-26, 27-31, 32-38 y su posición.
  
- - Comparar la relación entre el mayor puntaje de habilidad con la edad que alcanza su pico salarial, 
-para identificar si existe una convergencia entre el mejor momento deportivo y su ingreso máximo según la posición.
+ - Comparar la relación entre el mayor puntaje de habilidad con la edad que alcanza su pico salarial, para identificar si existe una convergencia entre el mejor momento deportivo y su ingreso máximo según la posición.
+
+- Calcular el coeficiente de correlacion del puntaje de habilidad con el ingreso salarial dentro de cada categoría y posición para medir el impacto financiero del rendimiento deportivo
 

@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: stg_football_data__PLAYERS_RAW
+    description: "Modelo staging estandarizado para la tabla de jugadores"
+    columns:
+      - name: player_id
+        description: "Clave primaria del jugador"
+        tests:
+          - unique
+          - not_null
+
+      - name: name
+        description: "Nombre completo del jugador"
+        tests:
+          - unique
+          - not_null
+
+      - name: primary_category
+        description: "Rol general del jugador en el campo"
+        tests:
+          - accepted_values:
+              values: ['GOALKEEPER', 'DEFENDER', 'MIDFIELDER', 'ATTACKER']
+
+      - name: height_cm
+        description: "Altura del jugador en centímetros"
+        tests:
+          - not_null
+
+      - name: weight_kg
+        description: "Peso del jugador en kilogramos"
+        tests:
+          - not_null
+
+      - name: is_eu_national
+        description: "Indica si el jugador tiene nacionalidad de la Unión Europea"
+        tests:
+          - not_null
+
+  - name: stg_football_data__PLAYER_SEASONS_RAW
+    description: "Modelo staging para las métricas de jugadores por temporada"
+    columns:
+      - name: player_season_id
+        tests:
+          - not_null
+          - unique
+
+      - name: player_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_football_data__PLAYERS_RAW')
+              field: player_id
+
+      - name: season_id
+        tests:
+          - not_null
+
+      - name: club_id
+        description: "ID del club del jugador en esa temporada"
+
+      - name: age
+        tests:
+          - not_null
+
+      - name: mins
+        tests:
+          - not_null
+
+      - name: starts
+        tests:
+          - not_null
+
+      - name: sub_appearances
+        tests:
+          - not_null
+
+      - name: ability_score
+        tests:
+          - not_null

@@ -183,6 +183,21 @@ models:
       - name: division_strength
         description: "Fuerza relativa de la división"
 
+  - name: stg_football_data__POSITIONS_RAW
+    description: "Modelo staging para las posiciones en el campo"
+    columns:
+      - name: position_id
+        description: "ID de la posición"
+        data_tests:
+          - unique
+          - not_null
+      - name: role_code
+        description: "Código del rol de la posición"
+        data_tests:
+          - not_null
+      - name: side_code
+        description: "Código del lado en el campo"
+
   - name: stg_football_data__AGENTS_RAW
     description: "Modelo staging para los agentes de jugadores"
     columns:

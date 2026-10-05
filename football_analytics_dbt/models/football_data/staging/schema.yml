@@ -152,6 +152,21 @@ models:
               arguments:
                 values: ['Permanent', 'Loan', 'Free']
 
+  - name: stg_football_data__CLUBS_RAW
+    description: "Modelo staging para los clubes de fútbol"
+    columns:
+      - name: club_id
+        description: "ID del club"
+        data_tests:
+          - unique
+          - not_null
+      - name: club_name
+        description: "Nombre del club"
+        data_tests:
+          - not_null
+      - name: division_id
+        description: "ID de la división a la que pertenece el club"
+
   - name: stg_football_data__AGENTS_RAW
     description: "Modelo staging para los agentes de jugadores"
     columns:

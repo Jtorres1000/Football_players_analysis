@@ -99,3 +99,18 @@ models:
 
       - name: is_fabricated
         description: "Indica si la temporada es fabricada o real"
+
+  - name: stg_football_data__AGENTS_RAW
+    description: "Modelo staging para los agentes de jugadores"
+    columns:
+      - name: agent_id
+        description: "ID del agente"
+        data_tests:
+          - unique
+          - not_null
+      - name: agent_name
+        description: "Nombre del agente"
+        data_tests:
+          - not_null
+      - name: agency_name
+        description: "Nombre de la agencia"

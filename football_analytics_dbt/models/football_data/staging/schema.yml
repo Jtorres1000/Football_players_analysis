@@ -197,3 +197,36 @@ models:
           - not_null
       - name: agency_name
         description: "Nombre de la agencia"
+
+  - name: stg_football_data__CONTRACTS_RAW
+    description: "Modelo staging para los contratos de jugadores"
+    columns:
+      - name: contract_id
+        description: "ID del contrato"
+        data_tests:
+          - unique
+          - not_null
+      - name: player_id
+        description: "ID del jugador"
+        data_tests:
+          - not_null
+      - name: club_id
+        description: "ID del club"
+        data_tests:
+          - not_null
+      - name: start_date
+        description: "Fecha de inicio del contrato"
+        data_tests:
+          - not_null
+      - name: end_date
+        description: "Fecha de fin del contrato"
+        data_tests:
+          - not_null
+      - name: weekly_wage_eur
+        description: "Salario semanal en euros"
+        data_tests:
+          - not_null
+      - name: contract_value_eur
+        description: "Valor total del contrato en euros"
+        data_tests:
+          - not_null

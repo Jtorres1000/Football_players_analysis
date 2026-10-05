@@ -116,6 +116,42 @@ models:
         data_tests:
           - not_null
 
+  - name: stg_football_data__TRANSFERS_RAW
+    description: "Modelo staging para las transferencias de jugadores"
+    columns:
+      - name: transfer_id
+        description: "ID de la transferencia"
+        data_tests:
+          - unique
+          - not_null
+      - name: player_id
+        description: "ID del jugador transferido"
+        data_tests:
+          - not_null
+      - name: from_club_id
+        description: "ID del club de origen"
+      - name: to_club_id
+        description: "ID del club de destino"
+        data_tests:
+          - not_null
+      - name: season_id
+        description: "ID de la temporada en que ocurrió la transferencia"
+        data_tests:
+          - not_null
+      - name: transfer_date
+        description: "Fecha de la transferencia"
+        data_tests:
+          - not_null
+      - name: transfer_fee_eur
+        description: "Monto de la transferencia en euros"
+      - name: transfer_type
+        description: "Tipo de transferencia"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Permanent', 'Loan', 'Free']
+
   - name: stg_football_data__AGENTS_RAW
     description: "Modelo staging para los agentes de jugadores"
     columns:

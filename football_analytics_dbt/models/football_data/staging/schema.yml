@@ -100,6 +100,22 @@ models:
       - name: is_fabricated
         description: "Indica si la temporada es fabricada o real"
 
+  - name: stg_football_data__PLAYER_POSITIONS_RAW
+    description: "Modelo staging para la relación entre jugadores y posiciones"
+    columns:
+      - name: player_id
+        description: "ID del jugador"
+        data_tests:
+          - not_null
+      - name: position_id
+        description: "ID de la posición"
+        data_tests:
+          - not_null
+      - name: position_rank
+        description: "Rango de la posición, 1 es la principal"
+        data_tests:
+          - not_null
+
   - name: stg_football_data__AGENTS_RAW
     description: "Modelo staging para los agentes de jugadores"
     columns:

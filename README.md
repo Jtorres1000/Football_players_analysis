@@ -8,7 +8,14 @@ En el fútbol profesional, las decisiones estratégicas se basan cada vez más e
 
 La falta de caracterización de estos análisis genera que la estructura salarial y negociaciones de traspaso no se ajusten a la habilidad real en la cancha, donde el contrato del deportista pase a estar fundamentada no solo en el rendimiento en el campo, sino además, depender en exceso a factores como su reputación mediática, su impacto comercial o como es percibido por la fama obtenida. Esto crea un desfase temporal entre el verdadero pico de habilidad deportiva del atleta y el momento en el que alcanza su tope salarial.
 
-A nivel institucional, este fenómeno induce a una ineficiencia sistemática en la toma de decisiones. Asumir altos costos salariales por jugadores que ya han superado su pico de rendimiento en su posición específica compromete el presupuesto y la competitividad deportiva del equipo. Ante la necesidad de optimizar los recursos en el mercado actual, surge la siguiente interrogante:
+A nivel institucional, este fenómeno induce a una ineficiencia sistemática en la toma de decisiones. Asumir altos costos salariales por jugadores que ya han superado su pico de rendimiento en su posición específica compromete el presupuesto y la competitividad deportiva del equipo. Ante la necesidad de optimizar los recursos en el mercado actual, surge la siguiente interrogante: ¿Cómo varía el rendimiento, medido por el puntaje de habilidad, entre los grupos de edad según la posición de juego, y en qué medida coincide la edad de mayor rendimiento con la de mayor ingreso salarial en los futbolistas registrados en la base de datos del proyecto durante el periodo 2022-2026?
+
+En base a lo anterior se plantean las siguientes preguntas de investigación
+
+1. ¿Cuál es el puntaje de habilidad promedio de cada grupo etario (15-21, 22-26, 27-31 y 32-38 años) y cómo varía a lo largo del periodo 2022-2026?
+2. ¿Qué posición de juego presenta mayor longevidad, entendida como la mayor proporción de jugadores en el grupo de 32 a 38 años y la menor disminución del puntaje de habilidad con la edad?
+3. ¿Cómo varía el salario semanal promedio según el grupo etario y la posición de juego a lo largo del periodo 2022-2026?
+4. ¿En qué grupo etario alcanza cada posición  su mayor puntaje de habilidad y su mayor salario semanal, y coinciden ambos momentos?
 
 ## Objetivo General
 
@@ -25,17 +32,6 @@ Analizar el ciclo de vida profesional de los futbolistas en las distintas posici
 - Comparar la relación entre el mayor puntaje de habilidad con la edad que alcanza su pico salarial, para identificar si existe una convergencia entre el mejor momento deportivo y su ingreso máximo según la posición.
 
 - Calcular el coeficiente de correlacion del puntaje de habilidad con el ingreso salarial dentro de cada categoría y posición para medir el impacto financiero del rendimiento deportivo.
-
-### Pregunta general
-
-¿Cómo varía el rendimiento, medido por el puntaje de habilidad, entre los grupos de edad según la posición de juego, y en qué medida coincide la edad de mayor rendimiento con la de mayor ingreso salarial en los futbolistas registrados en la base de datos del proyecto durante el periodo 2022-2026?
-
-### Preguntas específicas
-
-1. ¿Cuál es el puntaje de habilidad promedio de cada grupo etario (15-21, 22-26, 27-31 y 32-38 años) y cómo varía a lo largo del periodo 2022-2026?
-2. ¿Qué posición de juego presenta mayor longevidad, entendida como la mayor proporción de jugadores en el grupo de 32 a 38 años y la menor disminución del puntaje de habilidad con la edad?
-3. ¿Cómo varía el salario semanal promedio según el grupo etario y la posición de juego a lo largo del periodo 2022-2026?
-4. ¿En qué grupo etario alcanza cada posición  su mayor puntaje de habilidad y su mayor salario semanal, y coinciden ambos momentos?
 
 ## Justificación
 

@@ -167,6 +167,22 @@ models:
       - name: division_id
         description: "ID de la división a la que pertenece el club"
 
+  - name: stg_football_data__DIVISIONS_RAW
+    description: "Modelo staging para las divisiones de las ligas"
+    columns:
+      - name: division_id
+        description: "ID de la división"
+        data_tests:
+          - unique
+          - not_null
+      - name: division_name
+        description: "Nombre de la división"
+        data_tests:
+          - unique
+          - not_null
+      - name: division_strength
+        description: "Fuerza relativa de la división"
+
   - name: stg_football_data__AGENTS_RAW
     description: "Modelo staging para los agentes de jugadores"
     columns:

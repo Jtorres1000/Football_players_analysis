@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: football_data 
+    database: TF_COMPU_II
+    schema: FOOTBALL_ANALYSIS 
+    tables:
+      - name: AGENTS_RAW
+      - name: CLUBS_RAW
+      - name: CONTRACTS_RAW
+      - name: DIVISIONS_RAW
+      - name: INJURIES_RAW
+      - name: NATIONS_RAW
+      - name: PLAYER_POSITIONS_RAW
+      - name: PLAYER_SEASONS_RAW
+      - name: PLAYER_STATS_ATTACKING_RAW
+      - name: PLAYER_STATS_DEFENDING_RAW
+      - name: PLAYER_STATS_GENERAL_RAW
+      - name: PLAYER_STATS_GOALKEEPING_RAW
+      - name: PLAYER_STATS_PASSING_RAW
+      - name: PLAYERS_RAW
+      - name: POSITIONS_RAW
+      - name: SEASONS_RAW
+      - name: TRANSFERS_RAW

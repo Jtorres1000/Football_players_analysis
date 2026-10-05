@@ -1,0 +1,263 @@
+version: 2
+
+models:
+  - name: stg_football_data__PLAYERS_RAW
+    description: "Modelo staging estandarizado para la tabla de jugadores"
+    columns:
+      - name: player_id
+        description: "Clave primaria del jugador"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: name
+        description: "Nombre completo del jugador"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: primary_category
+        description: "Rol general del jugador en el campo"
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['GOALKEEPER', 'DEFENDER', 'MIDFIELDER', 'ATTACKER']
+
+      - name: height_cm
+        description: "Altura del jugador en centímetros"
+        data_tests:
+          - not_null
+
+      - name: weight_kg
+        description: "Peso del jugador en kilogramos"
+        data_tests:
+          - not_null
+
+      - name: is_eu_national
+        description: "Indica si el jugador tiene nacionalidad de la Unión Europea"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__PLAYER_SEASONS_RAW
+    description: "Modelo staging para las métricas de jugadores por temporada"
+    columns:
+      - name: player_season_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: player_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYERS_RAW')
+                field: player_id
+
+      - name: season_id
+        data_tests:
+          - not_null
+
+      - name: club_id
+        description: "ID del club del jugador en esa temporada"
+
+      - name: age
+        data_tests:
+          - not_null
+
+      - name: mins
+        data_tests:
+          - not_null
+
+      - name: starts
+        data_tests:
+          - not_null
+
+      - name: sub_appearances
+        data_tests:
+          - not_null
+
+      - name: ability_score
+        data_tests:
+          - not_null
+  
+  - name: stg_football_data__SEASONS_RAW
+    description: "Modelo staging para las temporadas de fútbol"
+    columns:
+      - name: season_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: season_label
+        data_tests:
+          - not_null
+
+      - name: season_order
+        data_tests:
+          - not_null
+
+      - name: is_fabricated
+        description: "Indica si la temporada es fabricada o real"
+
+  - name: stg_football_data__PLAYER_POSITIONS_RAW
+    description: "Modelo staging para la relación entre jugadores y posiciones"
+    columns:
+      - name: player_id
+        description: "ID del jugador"
+        data_tests:
+          - not_null
+      - name: position_id
+        description: "ID de la posición"
+        data_tests:
+          - not_null
+      - name: position_rank
+        description: "Rango de la posición, 1 es la principal"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__TRANSFERS_RAW
+    description: "Modelo staging para las transferencias de jugadores"
+    columns:
+      - name: transfer_id
+        description: "ID de la transferencia"
+        data_tests:
+          - unique
+          - not_null
+      - name: player_id
+        description: "ID del jugador transferido"
+        data_tests:
+          - not_null
+      - name: from_club_id
+        description: "ID del club de origen"
+      - name: to_club_id
+        description: "ID del club de destino"
+        data_tests:
+          - not_null
+      - name: season_id
+        description: "ID de la temporada en que ocurrió la transferencia"
+        data_tests:
+          - not_null
+      - name: transfer_date
+        description: "Fecha de la transferencia"
+        data_tests:
+          - not_null
+      - name: transfer_fee_eur
+        description: "Monto de la transferencia en euros"
+      - name: transfer_type
+        description: "Tipo de transferencia"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Permanent', 'Loan', 'Free']
+
+  - name: stg_football_data__CLUBS_RAW
+    description: "Modelo staging para los clubes de fútbol"
+    columns:
+      - name: club_id
+        description: "ID del club"
+        data_tests:
+          - unique
+          - not_null
+      - name: club_name
+        description: "Nombre del club"
+        data_tests:
+          - not_null
+      - name: division_id
+        description: "ID de la división a la que pertenece el club"
+
+  - name: stg_football_data__DIVISIONS_RAW
+    description: "Modelo staging para las divisiones de las ligas"
+    columns:
+      - name: division_id
+        description: "ID de la división"
+        data_tests:
+          - unique
+          - not_null
+      - name: division_name
+        description: "Nombre de la división"
+        data_tests:
+          - unique
+          - not_null
+      - name: division_strength
+        description: "Fuerza relativa de la división"
+
+  - name: stg_football_data__POSITIONS_RAW
+    description: "Modelo staging para las posiciones en el campo"
+    columns:
+      - name: position_id
+        description: "ID de la posición"
+        data_tests:
+          - unique
+          - not_null
+      - name: role_code
+        description: "Código del rol de la posición"
+        data_tests:
+          - not_null
+      - name: side_code
+        description: "Código del lado en el campo"
+
+  - name: stg_football_data__NATIONS_RAW
+    description: "Modelo staging para las nacionalidades"
+    columns:
+      - name: nation_id
+        description: "ID de la nación"
+        data_tests:
+          - unique
+          - not_null
+      - name: nation_code
+        description: "Código de la nación"
+        data_tests:
+          - unique
+          - not_null
+      - name: nation_name
+        description: "Nombre de la nación"
+
+  - name: stg_football_data__AGENTS_RAW
+    description: "Modelo staging para los agentes de jugadores"
+    columns:
+      - name: agent_id
+        description: "ID del agente"
+        data_tests:
+          - unique
+          - not_null
+      - name: agent_name
+        description: "Nombre del agente"
+        data_tests:
+          - not_null
+      - name: agency_name
+        description: "Nombre de la agencia"
+
+  - name: stg_football_data__CONTRACTS_RAW
+    description: "Modelo staging para los contratos de jugadores"
+    columns:
+      - name: contract_id
+        description: "ID del contrato"
+        data_tests:
+          - unique
+          - not_null
+      - name: player_id
+        description: "ID del jugador"
+        data_tests:
+          - not_null
+      - name: club_id
+        description: "ID del club"
+        data_tests:
+          - not_null
+      - name: start_date
+        description: "Fecha de inicio del contrato"
+        data_tests:
+          - not_null
+      - name: end_date
+        description: "Fecha de fin del contrato"
+        data_tests:
+          - not_null
+      - name: weekly_wage_eur
+        description: "Salario semanal en euros"
+        data_tests:
+          - not_null
+      - name: contract_value_eur
+        description: "Valor total del contrato en euros"
+        data_tests:
+          - not_null

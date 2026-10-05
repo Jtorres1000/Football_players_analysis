@@ -1,2 +1,5 @@
 app/app_streamlit 
 __pycache__/
+*.sqlite
+*.parquet
+/logs

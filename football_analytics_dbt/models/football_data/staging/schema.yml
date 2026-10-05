@@ -198,6 +198,22 @@ models:
       - name: side_code
         description: "Código del lado en el campo"
 
+  - name: stg_football_data__NATIONS_RAW
+    description: "Modelo staging para las nacionalidades"
+    columns:
+      - name: nation_id
+        description: "ID de la nación"
+        data_tests:
+          - unique
+          - not_null
+      - name: nation_code
+        description: "Código de la nación"
+        data_tests:
+          - unique
+          - not_null
+      - name: nation_name
+        description: "Nombre de la nación"
+
   - name: stg_football_data__AGENTS_RAW
     description: "Modelo staging para los agentes de jugadores"
     columns:

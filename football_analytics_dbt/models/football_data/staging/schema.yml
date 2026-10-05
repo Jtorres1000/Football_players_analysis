@@ -6,75 +6,96 @@ models:
     columns:
       - name: player_id
         description: "Clave primaria del jugador"
-        tests:
+        data_tests:
           - unique
           - not_null
 
       - name: name
         description: "Nombre completo del jugador"
-        tests:
+        data_tests:
           - unique
           - not_null
 
       - name: primary_category
         description: "Rol general del jugador en el campo"
-        tests:
+        data_tests:
           - accepted_values:
-              values: ['GOALKEEPER', 'DEFENDER', 'MIDFIELDER', 'ATTACKER']
+              arguments:
+                values: ['GOALKEEPER', 'DEFENDER', 'MIDFIELDER', 'ATTACKER']
 
       - name: height_cm
         description: "Altura del jugador en centímetros"
-        tests:
+        data_tests:
           - not_null
 
       - name: weight_kg
         description: "Peso del jugador en kilogramos"
-        tests:
+        data_tests:
           - not_null
 
       - name: is_eu_national
         description: "Indica si el jugador tiene nacionalidad de la Unión Europea"
-        tests:
+        data_tests:
           - not_null
 
   - name: stg_football_data__PLAYER_SEASONS_RAW
     description: "Modelo staging para las métricas de jugadores por temporada"
     columns:
       - name: player_season_id
-        tests:
+        data_tests:
           - not_null
           - unique
 
       - name: player_id
-        tests:
+        data_tests:
           - not_null
           - relationships:
-              to: ref('stg_football_data__PLAYERS_RAW')
-              field: player_id
+              arguments:
+                to: ref('stg_football_data__PLAYERS_RAW')
+                field: player_id
 
       - name: season_id
-        tests:
+        data_tests:
           - not_null
 
       - name: club_id
         description: "ID del club del jugador en esa temporada"
 
       - name: age
-        tests:
+        data_tests:
           - not_null
 
       - name: mins
-        tests:
+        data_tests:
           - not_null
 
       - name: starts
-        tests:
+        data_tests:
           - not_null
 
       - name: sub_appearances
-        tests:
+        data_tests:
           - not_null
 
       - name: ability_score
-        tests:
+        data_tests:
           - not_null
+  
+  - name: stg_football_data__SEASONS_RAW
+    description: "Modelo staging para las temporadas de fútbol"
+    columns:
+      - name: season_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: season_label
+        data_tests:
+          - not_null
+
+      - name: season_order
+        data_tests:
+          - not_null
+
+      - name: is_fabricated
+        description: "Indica si la temporada es fabricada o real"

@@ -1,7 +1,6 @@
 import streamlit as st
 
-
-def p_inicio():
+def p_infomd():
     st.markdown(
         """
         <div style="
@@ -22,7 +21,11 @@ def p_inicio():
                 font-size: 45px;
                 font-weight: 900;
                 letter-spacing: -0.015em;
-            ">Análisis del ciclo de vida futbolístico según la posición con base en el rendimiento, la longevidad y el impacto de estos en el ingreso salarial en el periodo 2022-2026</h1>
+            ">Finalidad del trabajo</h1>
+            <p style="color: #FFFFFF; font-size:20px; margin-top: 8px;">
+                <span style="color: #04f5ff; font-weight: bold;">> · 
+</span>La finalidad de esta investigación es determinar si existe una correlación entre las variables de rendimiento y longevidad en el desarrollo del ciclo de vida futbolístico y como este afecta al ingreso salarial.
+            </p>
         </div>
         """,
         unsafe_allow_html=True,

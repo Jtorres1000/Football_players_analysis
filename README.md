@@ -14,9 +14,9 @@ En base a lo anterior se plantean las siguientes preguntas de investigación:
 
 1. ¿Cuál es el puntaje de habilidad promedio de cada grupo etario (15-21, 22-26, 27-31 y 32-38 años) y cómo varía a lo largo del periodo 2022-2026?
 2. ¿Qué posición de juego presenta mayor longevidad, entendida como la mayor proporción de jugadores en el grupo de 32 a 38 años y la menor disminución del puntaje de habilidad con la edad?
-3. ¿Cómo varía el salario semanal promedio según el grupo etario y la posición de juego a lo largo del periodo 2022-2026?
-4. ¿En qué grupo etario alcanza cada posición  su mayor puntaje de habilidad y su mayor salario semanal, y coinciden ambos momentos?
-5. ¿Qué grado de correlación existe entre el puntaje de habilidad y el salario semanal dentro de cada grupo etario y posición de juego?
+3. ¿Cómo varía el salario anual promedio según el grupo etario y la posición de juego a lo largo del periodo 2022-2026?
+4. ¿En qué grupo etario alcanza cada posición  su mayor puntaje de habilidad y su mayor salario anual, y coinciden ambos momentos?
+5. ¿Qué grado de correlación existe entre el puntaje de habilidad y el salario anual dentro de cada grupo etario y posición de juego?
 
 ## Objetivo General
 

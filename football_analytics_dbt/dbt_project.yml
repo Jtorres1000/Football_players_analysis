@@ -34,3 +34,5 @@ models:
     football_data:
       staging:
         +materialized: view
+      marts:
+        +materialized: table

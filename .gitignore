@@ -3,3 +3,4 @@ __pycache__/
 *.sqlite
 *.parquet
 /logs
+app/.streamlit/secrets.toml

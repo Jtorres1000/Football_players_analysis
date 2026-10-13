@@ -1,0 +1,15 @@
+[server]
+runOnSave = true
+
+[theme]
+base = "dark"
+primaryColor = "#04f5ff"
+secondaryColor = "#ffb1c4"
+backgroundColor = "#26042a"
+secondaryBackgroundColor = "#1d0220"
+textColor = "#fbfaff"
+
+font = "'Plus Jakarta Sans':https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap, sans-serif"
+headingFont = "'Outfit':https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&display=swap, sans-serif"
+
+

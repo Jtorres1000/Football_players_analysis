@@ -7,7 +7,7 @@ st.set_page_config(page_title="Fútbol Análisis.", layout="wide", page_icon="�
 # Páginas del dashboard
 
 p_inicio = st.Page(p_inicio, title="Inicio", icon="🏠")
-p_infomd = st.Page(p_infomd, title="Información", icon="ℹ️")
+p_infomd = st.Page(p_infomd, title="Trabajo investigativo", icon="ℹ️")
 
 
 # Creación del menú de navegación

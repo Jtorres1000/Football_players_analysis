@@ -1,6 +1,11 @@
 # Análisis del ciclo de vida futbolístico según la posición con base en el rendimiento, la longevidad y el impacto de estos en el ingreso salarial en el periodo 2022-2026
 
-La finalidad de esta investigación es determinar si existe una correlación entre las variables de rendimiento y longevidad en el desarrollo del ciclo de vida futbolístico y como este afecta al ingreso salarial.
+## Introducción
+
+En el ámbito del fútbol profesional actual, el uso de la analítica de datos ha transformado tanto la administración deportiva como la económica, comprender el ciclo de vida de los futbolistas, su rendimiento pico, longevidad por posición y tasa de declive. Es fundamental para optimizar la toma de decisiones y la inversión en plantillas.
+
+No obstante, a menudo hay una falta de conexión entre el desempeño en el campo y la compensación económica. Esta investigación analiza el ciclo de vida profesional de los futbolistas durante el periodo 2022–2026. A través del análisis de sus habilidades, longevidad posicional y salarios activos, este estudio evalúa si la valoración económica del mercado refleja el rendimiento real o responde a distorsiones históricas del fútbol profesional. 
+
 
 ## Planteamiento del problema
 
@@ -37,3 +42,19 @@ Analizar el ciclo de vida profesional de los futbolistas en las distintas posici
 ## Justificación
 
 Esta investigación es fundamental para entender cómo ha cambiado la gestión deportiva tanto operativa como financieramente frente a la creciente profesionalización de la analítica de datos en el deporte. Desde el punto de vista del mercado, establecer o no la existencia de un desfase temporal entre el máximo nivel de habilidad atlética y el salario más alto permitirá a directivos, representantes y marcas deportivas ajustar sus tácticas de contratación, renovación y gestión de activos de acuerdo a los verdaderos ciclos de vida de los deportistas. Desde un enfoque estadístico, el análisis se respalda al incluir un estudio a lo largo del periodo 2022-2026 que desafía la percepción común: mostrar si el valor monetario de un atleta está vinculado de manera lineal a su rendimiento actual o si está influenciado por reputaciones y contratos del pasado. Adicionalmente, al analizar estos datos según la posición y grupos de edad, el estudio aportará valor al identificar si las demandas táctico-físicas influyen en la durabilidad en el deporte o si existen distorsiones salariales a lo largo de toda la estructura del fútbol profesional.
+
+## Herramientas Tecnológicas Utilizadas
+
+- Python: Lenguaje de programación para la limpieza, transformación y análisis estadístico de los datos.
+
+- SQLite: Base de datos relacional ligera utilizada para el almacenamiento y la gestión local de la información.
+
+- DuckDB: Motor SQL analítico de alto rendimiento optimizado para el procesamiento rápido de datos en local.
+
+- Snowflake: Plataforma de datos en la nube para el almacenamiento centralizado y el procesamiento de consultas analíticas.
+
+- DBT Core: Herramienta para la transformación de datos y modelado de ingeniería analítica dentro del almacén de datos.
+
+- Power BI: Herramienta de Business Intelligence utilizada para diseñar dashboards interactivos y visualizar las tendencias del estudio.
+
+- Streamlit: Framework para el desarrollo rápido de aplicaciones web interactivas centradas en la visualización de datos.

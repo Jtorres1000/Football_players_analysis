@@ -1,6 +1,11 @@
 # Análisis del ciclo de vida futbolístico según la posición con base en el rendimiento, la longevidad y el impacto de estos en el ingreso salarial en el periodo 2022-2026
 
-La finalidad de esta investigación es determinar si existe una correlación entre las variables de rendimiento y longevidad en el desarrollo del ciclo de vida futbolístico y como este afecta al ingreso salarial.
+## Introducción
+
+En el ámbito del fútbol profesional actual, el uso de la analítica de datos ha transformado tanto la administración deportiva como la económica, comprender el ciclo de vida de los futbolistas, su rendimiento pico, longevidad por posición y tasa de declive. Es fundamental para optimizar la toma de decisiones y la inversión en plantillas.
+
+No obstante, a menudo hay una falta de conexión entre el desempeño en el campo y la compensación económica. Esta investigación analiza el ciclo de vida profesional de los futbolistas durante el periodo 2022–2026. A través del análisis de sus habilidades, longevidad posicional y salarios activos, este estudio evalúa si la valoración económica del mercado refleja el rendimiento real o responde a distorsiones históricas del fútbol profesional. 
+
 
 ## Planteamiento del problema
 

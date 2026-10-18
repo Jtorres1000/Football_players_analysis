@@ -1,8 +1,12 @@
 import streamlit as st
 
+from components import sidebar
 from pages import p_inicio, p_infomd
 
 st.set_page_config(page_title="Fútbol Análisis.", layout="wide", page_icon="⚽")
+
+# Barra lateral con filtros
+filtros = sidebar()
 
 # Páginas del dashboard
 

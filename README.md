@@ -112,3 +112,23 @@ Las relaciones del diagrama presentan patrones claros de Uno a Muchos (1:N) y co
 **dim_player → fact_season_stats (1:N)**: Un jugador puede captar estadísticas de su desempeño en una o más temporadas, pero cada registro de estadísticas de una temporada se vincula a un único jugador. 
 
 **dim_player_season → fact_season_stats (1:N)**: Una temporada especifica de un jugador puede agrupar múltiples métricas o registros de estadísticas de rendimiento,  sin embargo, cada registro estadístico referido a la temporada se asocia a una exclusiva combinación de jugador y temporada (player_season_key).
+
+## Colaboradores del Proyecto 
+
+| Integrante | Rol en el Proyecto | Contribuciones Principales |
+| :--- | :--- | :--- |
+| **Jorge Torres** | Tech Lead & Data Engineer | Arquitectura de datos, pipelines (SQL/Snowflake), modelado en dbt, gestión de PRs y roles.
+| **Noryen Haringhton** | SME & Data App Developer | Lógica de negocio (Fútbol), desarrollo de componentes y diseño de frontend en Streamlit.
+| **Angel Pastrano** | BI Developer | Desarrollo integral del dashboard en Power BI, creación de métricas y visualizaciones.
+| **Johan Infante** | Data Analyst | Desarrollo de queries SQL para objetivos de negocio y configuración de Streamlit.|
+| **Gabriel Ugas** | BI Analyst & Tech Writer | Ejecución de tareas en Power BI y desarrollo de la documentación del repositorio.
+| **Stephannie Labrador** | Technical Writer & UI/UX Lead | Documentación teórica del proyecto y aportes en el diseño de la aplicación.
+
+## Estructura del Repositorio
+
+- [📁 **app/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/app): Contiene la aplicación web interactiva desarrollada con *Streamlit*. Incluye las vistas de navegación ([`pages/`](https://github.com/Jtorres1000/Football_players_analysis/tree/main/app/pages)), componentes visuales ([`components/`](https://github.com/Jtorres1000/Football_players_analysis/tree/main/app/components)), estilos y el punto de entrada principal ([`app.py`](https://github.com/Jtorres1000/Football_players_analysis/blob/main/app/app.py)) para explorar y visualizar los datos analizados.
+- [📁 **assets/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/assets): Almacena recursos gráficos y diagramas explicativos del proyecto, tales como el Diagrama Entidad-Relación ([`DER.png`](https://github.com/Jtorres1000/Football_players_analysis/blob/main/assets/DER.png)) y el esquema de denormalización de datos ([`DENORMALIZACION.png`](https://github.com/Jtorres1000/Football_players_analysis/blob/main/assets/DENORMALIZACION.png)).
+- [📁 **data/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/data): Directorio destinado a la organización, almacenamiento y control de los conjuntos de datos en sus diferentes fases de procesamiento (por ejemplo, datos limpios en [`clean/`](https://github.com/Jtorres1000/Football_players_analysis/tree/main/data/clean)).
+- [📁 **football_analytics_dbt/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/football_analytics_dbt): Proyecto de ingeniería de analítica con *dbt Core*. Contiene los modelos SQL modulares organizados en capas (*staging* y *marts*), macros, tests de calidad de datos y configuraciones para transformar datos dentro del Data Warehouse.
+- [📁 **power_bi/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/power_bi): Espacio reservado para los tableros de control, plantillas y reportes interactivos de *Power BI* enfocados en la inteligencia de negocios y presentación ejecutiva de las métricas.
+- [📁 **scripts/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/scripts): Scripts utilitarios en Python para tareas de automatización, ingesta y transformación de datos, como la conversión de tablas SQLite a archivos Parquet de alto rendimiento mediante *DuckDB* ([`raw_parquets.py`](https://github.com/Jtorres1000/Football_players_analysis/blob/main/scripts/raw_parquets.py)).

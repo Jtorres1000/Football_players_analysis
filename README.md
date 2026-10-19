@@ -45,16 +45,70 @@ Esta investigación es fundamental para entender cómo ha cambiado la gestión d
 
 ## Herramientas Tecnológicas Utilizadas
 
-- Python: Lenguaje de programación para la limpieza, transformación y análisis estadístico de los datos.
+- Python, SQLite, DuckDB, Snowflake, DBT Core, Power BI, Streamlit.
 
-- SQLite: Base de datos relacional ligera utilizada para el almacenamiento y la gestión local de la información.
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=black)](https://duckdb.org/)
+[![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white)](https://www.snowflake.com/)
+[![dbt](https://img.shields.io/badge/dbt_Core-FF694B?style=for-the-badge&logo=dbt&logoColor=white)](https://docs.getdbt.com/)
+[![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 
-- DuckDB: Motor SQL analítico de alto rendimiento optimizado para el procesamiento rápido de datos en local.
+## Bosquejo del Modelo de Datos Desnormalizado 
 
-- Snowflake: Plataforma de datos en la nube para el almacenamiento centralizado y el procesamiento de consultas analíticas.
+Para facilitar el procesamiento analítico, la evaluación del rendimiento por posición y el estudio de la longevidad deportiva y su impacto en el ingreso salarial durante el periodo 2022-2026, los datos se estructuran conceptualmente bajo un esquema Snowflake.
 
-- DBT Core: Herramienta para la transformación de datos y modelado de ingeniería analítica dentro del almacén de datos.
+Este esquema centraliza las métricas contractuales y estadísticas de rendimiento en tablas de hechos (fact_contracts, fact_season_stats) rodeadas por tablas de dimensiones clave (dim_player, dim_player_season), permitiendo responder directamente a los objetivos de investigación del ciclo de vida futbolístico sin necesidad de realizar combinaciones complejas en tiempo de ejecución.
 
-- Power BI: Herramienta de Business Intelligence utilizada para diseñar dashboards interactivos y visualizar las tendencias del estudio.
+## Diagrama de Entidad-Relación (DER)
 
-- Streamlit: Framework para el desarrollo rápido de aplicaciones web interactivas centradas en la visualización de datos.
+```mermaid
+erDiagram
+    fact_contracts {
+        string contract_key PK "Surrogate key (unique, not_null)"
+        string player_key FK "Player surrogate key (not_null)"
+        int contract_id "Natural contract ID (not_null)"
+        int player_id "Natural player ID (not_null)"
+        decimal weekly_wage_eur "Weekly wage in EUR (not_null)"
+        decimal annual_wage_eur "Annual wage in EUR - weekly * 52 (not_null)"
+    }
+
+    fact_season_stats {
+        string player_season_key PK "Player-season surrogate key, FK (unique, not_null)"
+        string player_key FK "Player surrogate key (not_null)"
+        string season_key "Season surrogate key (not_null)"
+        decimal ability_score "Season ability score (not_null)"
+    }
+
+    dim_player {
+        string player_key PK "Surrogate key (unique, not_null)"
+        int player_id "Natural primary key (not_null)"
+        string name "Full name (not_null)"
+        string primary_category "Role - GOALKEEPER, DEFENDER, MIDFIELDER, ATTACKER"
+    }
+
+    dim_player_season {
+        string player_season_key PK "Surrogate key (unique, not_null)"
+        int season_id "Season ID (not_null)"
+        int player_season_id "Player season record ID (not_null)"
+        string season_label "Season label (not_null)"
+        int age "Player age during season (not_null)"
+        string age_group "Age group - 15-21, 22-26, 27-31, 32-38 (not_null)"
+        string all_positions_str "Comma-separated positions played (not_null)"
+    }
+
+    dim_player ||--o{ fact_contracts : player_key
+    dim_player ||--o{ fact_season_stats : player_key
+    dim_player_season ||--|| fact_season_stats : player_season_key
+```
+
+## Cardinalidad y Relaciones entre Entidades
+
+Las relaciones del diagrama presentan patrones claros de Uno a Muchos (1:N) y conexiones estructurales entre las dimensiones y las tablas de hechos, basándose en el modelo de datos ilustrado: 
+
+**dim_player → fact_contracts (1:N)**: Un jugador registrado puede tener uno o varios contratos durante su trayecto deportivo, aunque cada registro de contrato se relaciona con un solo jugador.
+
+**dim_player → fact_season_stats (1:N)**: Un jugador puede captar estadísticas de su desempeño en una o más temporadas, pero cada registro de estadísticas de una temporada se vincula a un único jugador. 
+
+**dim_player_season → fact_season_stats (1:N)**: Una temporada especifica de un jugador puede agrupar múltiples métricas o registros de estadísticas de rendimiento,  sin embargo, cada registro estadístico referido a la temporada se asocia a una exclusiva combinación de jugador y temporada (player_season_key).

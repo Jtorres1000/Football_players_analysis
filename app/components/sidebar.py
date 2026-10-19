@@ -129,7 +129,7 @@ def sidebar() -> dict:
         st.button(
             label="Restablecer Filtros",
             key="btn_reset_filters",
-            use_container_width=True,
+            width="stretch",
             on_click=_reset_filters,
         )
 

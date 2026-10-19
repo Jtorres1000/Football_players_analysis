@@ -57,61 +57,60 @@ Esta investigación es fundamental para entender cómo ha cambiado la gestión d
 
 ## Bosquejo del Modelo de Datos Desnormalizado 
 
-Para facilitar el procesamiento analítico, la evaluación del rendimiento por posición y el estudio de la longevidad deportiva y su impacto en el ingreso salarial durante el periodo 2022-2026, los datos se estructuran conceptualmente bajo un esquema Snowflake.
+Para facilitar el procesamiento analítico, la evaluación del rendimiento por posición y el estudio de la longevidad deportiva y su impacto en el ingreso salarial durante el periodo 2022-2026, los datos se estructuran bajo un modelo dimensional en esquema de estrella.
 
-Este esquema centraliza las métricas contractuales y estadísticas de rendimiento en tablas de hechos (fact_contracts, fact_season_stats) rodeadas por tablas de dimensiones clave (dim_player, dim_player_season), permitiendo responder directamente a los objetivos de investigación del ciclo de vida futbolístico sin necesidad de realizar combinaciones complejas en tiempo de ejecución.
+Este esquema centraliza las métricas deportivas, las variaciones interanuales de nivel y los ingresos salariales en una tabla de hechos periódica (`fact_player_season`), conectada directamente a tres dimensiones conformadas: datos del jugador y su rol táctico (`dim_player`), temporalidad del estudio (`dim_season`) y segmentación etaria (`dim_age_bracket`). Esta estructura optimizada permite responder de forma directa a los objetivos de investigación del ciclo de vida futbolístico, garantizando consultas analíticas de alto rendimiento sin combinaciones complejas en tiempo de ejecución.
 
 ## Diagrama de Entidad-Relación (DER)
 
 ```mermaid
 erDiagram
-    fact_contracts {
-        string contract_key PK "Surrogate key (unique, not_null)"
-        string player_key FK "Player surrogate key (not_null)"
-        int contract_id "Natural contract ID (not_null)"
-        int player_id "Natural player ID (not_null)"
-        decimal weekly_wage_eur "Weekly wage in EUR (not_null)"
-        decimal annual_wage_eur "Annual wage in EUR - weekly * 52 (not_null)"
-    }
-
-    fact_season_stats {
-        string player_season_key PK "Player-season surrogate key, FK (unique, not_null)"
-        string player_key FK "Player surrogate key (not_null)"
-        string season_key "Season surrogate key (not_null)"
-        decimal ability_score "Season ability score (not_null)"
-    }
+    dim_player ||--o{ fact_player_season : "player_key"
+    dim_season ||--o{ fact_player_season : "season_key"
+    dim_age_bracket ||--o{ fact_player_season : "age_key"
 
     dim_player {
-        string player_key PK "Surrogate key (unique, not_null)"
-        int player_id "Natural primary key (not_null)"
-        string name "Full name (not_null)"
-        string primary_category "Role - GOALKEEPER, DEFENDER, MIDFIELDER, ATTACKER"
+        varchar player_key PK "Clave surrogate única"
+        int player_id UK "Clave natural del jugador"
+        varchar name "Nombre completo"
+        varchar primary_category "Categoría posicional (ATT, MID, DEF, GK)"
+        varchar primary_role_code "Rol táctico principal"
+        varchar primary_side_code "Banda o perfil principal"
     }
 
-    dim_player_season {
-        string player_season_key PK "Surrogate key (unique, not_null)"
-        int season_id "Season ID (not_null)"
-        int player_season_id "Player season record ID (not_null)"
-        string season_label "Season label (not_null)"
-        int age "Player age during season (not_null)"
-        string age_group "Age group - 15-21, 22-26, 27-31, 32-38 (not_null)"
-        string all_positions_str "Comma-separated positions played (not_null)"
+    dim_season {
+        varchar season_key PK "Clave surrogate única"
+        int season_id UK "Clave natural de la temporada"
+        varchar season_label "Etiqueta descriptiva (ej. 2025/26)"
     }
 
-    dim_player ||--o{ fact_contracts : player_key
-    dim_player ||--o{ fact_season_stats : player_key
-    dim_player_season ||--|| fact_season_stats : player_season_key
+    dim_age_bracket {
+        varchar age_key PK "Clave surrogate única"
+        int age UK "Edad exacta cumplida (15-38)"
+        varchar age_group "Grupo etario (15-21, 22-26, etc.)"
+    }
+
+    fact_player_season {
+        varchar player_season_key PK "Clave surrogate del registro"
+        varchar player_key FK "Referencia a dim_player"
+        varchar season_key FK "Referencia a dim_season"
+        varchar age_key FK "Referencia a dim_age_bracket"
+        float ability_score "Puntaje de habilidad"
+        float ability_score_delta "Variación anual de habilidad"
+        float weekly_wage_eur "Salario semanal en EUR"
+        float annual_wage_eur "Salario anualizado en EUR"
+    }
 ```
 
 ## Cardinalidad y Relaciones entre Entidades
 
-Las relaciones del diagrama presentan patrones claros de Uno a Muchos (1:N) y conexiones estructurales entre las dimensiones y las tablas de hechos, basándose en el modelo de datos ilustrado: 
+Las relaciones del diagrama configuran un esquema en estrella con patrones estrictos de Uno a Muchos (1:N) entre las dimensiones conformadas y la tabla de hechos central:
 
-**dim_player → fact_contracts (1:N)**: Un jugador registrado puede tener uno o varios contratos durante su trayecto deportivo, aunque cada registro de contrato se relaciona con un solo jugador.
+* **dim_player → fact_player_season (1:N)**: Un jugador único registrado en la dimensión puede tener múltiples registros en la tabla de hechos, uno por cada temporada en la que participó entre 2022 y 2026. Cada registro de hecho corresponde exclusivamente a un único jugador identificado mediante `player_key`.
 
-**dim_player → fact_season_stats (1:N)**: Un jugador puede captar estadísticas de su desempeño en una o más temporadas, pero cada registro de estadísticas de una temporada se vincula a un único jugador. 
+* **dim_season → fact_player_season (1:N)**: Una temporada deportiva de estudio (`2022/23`, `2023/24`, `2024/25`, `2025/26`) agrupa los hechos y rendimientos de miles de futbolistas activos durante dicho periodo. Sin embargo, cada fila de la tabla de hechos pertenece a una única temporada vinculada por `season_key`.
 
-**dim_player_season → fact_season_stats (1:N)**: Una temporada especifica de un jugador puede agrupar múltiples métricas o registros de estadísticas de rendimiento,  sin embargo, cada registro estadístico referido a la temporada se asocia a una exclusiva combinación de jugador y temporada (player_season_key).
+* **dim_age_bracket → fact_player_season (1:N)**: Una edad exacta o grupo etario de estudio se asocia a múltiples observaciones anuales de jugadores que tenían esa edad en una temporada dada. Cada hecho anual del jugador se mapea a una única edad y rango etario mediante `age_key`.
 
 ## Colaboradores del Proyecto 
 

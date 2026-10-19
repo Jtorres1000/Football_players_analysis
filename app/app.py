@@ -2,6 +2,7 @@ import streamlit as st
 
 from components import sidebar
 from pages import p_inicio, p_infomd, p_exploratorio
+from utils import warm_up_connection
 
 st.set_page_config(page_title="Fútbol Análisis.", layout="wide", page_icon="⚽")
 
@@ -19,3 +20,5 @@ p_exploratorio = st.Page(p_exploratorio, title="Análisis exploratorio", icon="�
 pg = st.navigation([p_inicio, p_infomd, p_exploratorio], position="top")
 pg.run()
 
+# Inicia la conexión a Snowflake y precarga el modelo dimensional en segundo plano
+warm_up_connection()

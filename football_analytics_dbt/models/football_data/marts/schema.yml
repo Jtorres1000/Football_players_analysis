@@ -3,16 +3,17 @@ version: 2
 models:
 
   - name: dim_player
-    description: "Dimensión de jugadores con clave surrogate generada a partir del ID original"
+    description: "Dimensión de jugadores con su categoría general y rol táctico principal en el campo"
     columns:
       - name: player_key
-        description: "Clave surrogate del jugador"
+        description: "Clave surrogate del jugador generada a partir de player_id"
         data_tests:
           - unique
           - not_null
       - name: player_id
         description: "Clave primaria natural del jugador"
         data_tests:
+          - unique
           - not_null
           - relationships:
               arguments:
@@ -23,106 +24,109 @@ models:
         data_tests:
           - not_null
       - name: primary_category
-        description: "Rol principal del jugador"
+        description: "Categoría posicional general del jugador en el campo"
         data_tests:
+          - not_null
           - accepted_values:
               arguments:
                 values: ['GOALKEEPER', 'DEFENDER', 'MIDFIELDER', 'ATTACKER']
+      - name: primary_role_code
+        description: "Código del rol táctico principal del jugador"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__POSITIONS_RAW')
+                field: role_code
+      - name: primary_side_code
+        description: "Código del perfil o banda principal en el campo asociada al rol táctico primario"
 
-  - name: dim_player_season
-    description: "Dimensión que combina jugadores, temporadas y posiciones con cálculo de grupo etario"
+  - name: dim_season
+    description: "Dimensión conformada de temporadas de estudio (2022-2026)"
     columns:
-      - name: player_season_key
-        description: "Clave surrogate del registro de jugador-temporada"
+      - name: season_key
+        description: "Clave surrogate de la temporada generada a partir de season_id"
         data_tests:
           - unique
           - not_null
       - name: season_id
-        description: "ID de la temporada"
+        description: "Clave primaria natural de la temporada"
         data_tests:
+          - unique
           - not_null
           - relationships:
               arguments:
                 to: ref('stg_football_data__SEASONS_RAW')
                 field: season_id
-      - name: player_season_id
-        description: "ID del registro de jugador por temporada"
+      - name: season_label
+        description: "Etiqueta descriptiva del periodo de la temporada"
         data_tests:
           - not_null
-          - relationships:
-              arguments:
-                to: ref('stg_football_data__PLAYER_SEASONS_RAW')
-                field: player_season_id
-      - name: season_label
-        description: "Etiqueta de la temporada"
+
+  - name: dim_age_bracket
+    description: "Dimensión conformada de edades y rangos etarios para el análisis del ciclo de vida deportivo"
+    columns:
+      - name: age_key
+        description: "Clave surrogate de la edad generada a partir del valor de age"
         data_tests:
+          - unique
           - not_null
       - name: age
-        description: "Edad del jugador durante esa temporada"
+        description: "Edad exacta del jugador en años cumplidos durante la temporada"
         data_tests:
+          - unique
           - not_null
       - name: age_group
-        description: "Grupo etario del jugador: '15-20', '21', '22-25', '26-31', '32-38'"
+        description: "Rango o grupo etario de estudio: '15-21', '22-26', '27-31', '32-38'"
         data_tests:
           - not_null
           - accepted_values:
               arguments:
                 values: ['15-21', '22-26', '27-31', '32-38']
-      - name: all_positions_str
-        description: "Cadena que representa todas las posiciones jugadas por el jugador en esa temporada, separadas por comas"
-        data_tests:
-          - not_null
 
-  - name: fact_contracts
-    description: "Tabla de hechos con la información de contratos y salarios de los jugadores"
+  - name: fact_player_season
+    description: "Tabla de hechos periódica por jugador y temporada que integra rendimiento deportivo, variación anual de habilidad e ingreso salarial"
     columns:
-      - name: contract_key
-        description: "Clave surrogate del contrato"
+      - name: player_season_key
+        description: "Clave surrogate única del registro de jugador por temporada"
         data_tests:
           - unique
           - not_null
       - name: player_key
-        description: "Clave surrogate del jugador"
-        data_tests:
-          - not_null
-      - name: contract_id
-        description: "ID natural del contrato"
+        description: "Clave foránea surrogate hacia la dimensión dim_player"
         data_tests:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_football_data__CONTRACTS_RAW')
-                field: contract_id
-      - name: player_id
-        description: "ID natural del jugador"
+                to: ref('dim_player')
+                field: player_key
+      - name: season_key
+        description: "Clave foránea surrogate hacia la dimensión dim_season"
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_season')
+                field: season_key
+      - name: age_key
+        description: "Clave foránea surrogate hacia la dimensión dim_age_bracket"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_age_bracket')
+                field: age_key
+      - name: ability_score
+        description: "Puntaje de habilidad deportiva del jugador registrado en la temporada"
+        data_tests:
+          - not_null
+      - name: ability_score_delta
+        description: "Variación anual del puntaje de habilidad respecto a la temporada anterior del jugador para medir la tasa de deterioro o crecimiento"
       - name: weekly_wage_eur
-        description: "Salario semanal del jugador en euros"
+        description: "Salario semanal del contracto vigente del jugador en euros durante la temporada"
         data_tests:
           - not_null
       - name: annual_wage_eur
-        description: "Salario anual calculado en euros weekly_wage_eur × 52"
-        data_tests:
-          - not_null
-
-  - name: fact_season_stats
-    description: "Tabla de hechos con las métricas de rendimiento de los jugadores por temporada"
-    columns:
-      - name: player_season_key
-        description: "Clave surrogate del registro jugador-temporada (foreign key hacia dim_player_season)"
-        data_tests:
-          - unique
-          - not_null
-      - name: player_key
-        description: "Clave surrogate del jugador (foreign key hacia dim_player)"
-        data_tests:
-          - not_null
-      - name: season_key
-        description: "Clave surrogate de la temporada"
-        data_tests:
-          - not_null
-      - name: ability_score
-        description: "Puntaje de habilidad del jugador en esa temporada"
+        description: "Salario anualizado del contrato vigente del jugador en euros durante la temporada (weekly_wage_eur × 52)"
         data_tests:
           - not_null

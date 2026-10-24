@@ -29,18 +29,7 @@ def interpretar_objetivo1(datos):
             f"En {temporadas[-1]}, el grupo {mejor['GRUPO_ETARIO']} tiene la habilidad promedio más alta "
             f"({mejor['HABILIDAD_PROMEDIO']}) y el grupo {peor['GRUPO_ETARIO']} la más baja ({peor['HABILIDAD_PROMEDIO']}). "
             f"El grupo con menos jugadores es {menos['GRUPO_ETARIO']} ({menos['JUGADORES']}). "
-        )
-        
-    if len(temporadas) > 1:
-        inicio = datos[datos["TEMPORADA"] == temporadas[0]].set_index("GRUPO_ETARIO")["HABILIDAD_PROMEDIO"]
-        fin = ultima.set_index("GRUPO_ETARIO")["HABILIDAD_PROMEDIO"]
-        cambio = (fin - inicio).dropna()
-        for grupo, valor in cambio.items():
-            if valor > 0:
-                texto += f"Entre {temporadas[0]} y {temporadas[-1]} el grupo {grupo} sube de {inicio[grupo]} a {fin[grupo]}. "
-            elif valor < 0:
-                texto += f"Entre {temporadas[0]} y {temporadas[-1]} el grupo {grupo} baja de {inicio[grupo]} a {fin[grupo]}. "
-                
+        )             
     if mejor["GRUPO_ETARIO"] == "32-38" and len(ultima) > 1:
         texto += (
             "Esto no significa que los jugadores mejoren después de los 32 años: a esa edad solo siguen activos "
@@ -79,7 +68,27 @@ def opciones_objetivo1(datos):
         "yAxis": {"type": "value", "name": "Habilidad promedio", "scale": tipo == "line"},
         "series": series,
     }
-          
+
+#Función para hacer los texto más cortos y visuales
+
+def tarjetas_objetivo1(slot, datos):
+    temporadas = sorted(datos["TEMPORADA"].unique())
+    inicio = datos[datos["TEMPORADA"] == temporadas[0]].set_index("GRUPO_ETARIO")["HABILIDAD_PROMEDIO"]
+    fin = datos[datos["TEMPORADA"] == temporadas[-1]].set_index("GRUPO_ETARIO")["HABILIDAD_PROMEDIO"]
+    
+    columnas = slot.columns(len(fin))
+    for columna, (grupo, valor) in zip(columnas, fin.items()):
+        delta = None
+        if len(temporadas) > 1 and grupo in inicio:
+            delta = round(valor - inicio[grupo], 1)
+        columna.metric(
+            label=f"Grupo {grupo} · {temporadas[-1]}",
+            value=valor,
+            delta=delta,
+            help=f"Cambio entre {temporadas[0]} y {temporadas[-1]}",
+            border=True,
+        )
+
 def p_exploratorio():
     banner(
         title="Análisis Exploratorio",
@@ -92,6 +101,7 @@ def p_exploratorio():
 
     # Interpretación y bosquejo de datos
     st.subheader("Interpretación")
+    metricas_slot = st.container()
     texto_slot = st.container()
 
     st.subheader("Datos utilizados")
@@ -129,4 +139,5 @@ def p_exploratorio():
             "JUGADORES": st.column_config.NumberColumn("Jugadores", format="%d"),
         },
     )
+    tarjetas_objetivo1(metricas_slot, datos)
     texto_slot.markdown(interpretar_objetivo1(datos))

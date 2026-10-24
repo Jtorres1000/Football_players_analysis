@@ -1,11 +1,15 @@
 import streamlit as st
 import plotly.express as px
 
+from components import banner
 from utils import query_filtered_data
 
 
 def p_exploratorio():
-    st.title("Análisis Exploratorio")
+    banner(
+        title="Análisis Exploratorio",
+        subtitle="Rendimiento, longevidad y salario de los futbolistas según grupo etario y posición, periodo 2022-2026", 
+    )
     st.subheader("Objetivo 1: Habilidad promedio por grupo etario, periodo 2022-2026")
 
     # Reservar contenedores para renderizar la interfaz estática antes de cargar datos

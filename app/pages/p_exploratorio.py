@@ -93,5 +93,15 @@ def p_exploratorio():
         markers=True,
     )
     chart_slot.plotly_chart(grafico)
-    table_slot.dataframe(datos, key="exploratorio_datos_df")
+    table_slot.dataframe(
+        datos,
+        key="exploratorio_datos_df",
+        hide_index=True,
+        column_config={
+            "TEMPORADA": st.column_config.TextColumn("Temporada"),
+            "GRUPO_ETARIO": st.column_config.TextColumn("Grupo etario"),
+            "HABILIDAD_PROMEDIO": st.column_config.NumberColumn("Habilidad promedio", format="%.1f"),
+            "JUGADORES": st.column_config.NumberColumn("Jugadores", format="%d"),
+        },
+    )
     texto_slot.markdown(interpretar_objetivo1(datos))

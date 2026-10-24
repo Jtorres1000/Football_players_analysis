@@ -1,5 +1,5 @@
 import streamlit as st
-import plotly.express as px
+import pandas as pd #Ya no usaré plotly para los gráficos, usaré echarts y para eso necesito pandas}
 
 from components import banner
 from utils import query_filtered_data
@@ -56,7 +56,30 @@ def interpretar_objetivo1(datos):
 
     return texto
 
+#Como echarts no recibe un Dataframe como plotly sino un diccionario de opciones armaré ese diccionario a partir de "datos" con esta función
 
+def opciones_objetivo1(datos):
+    temporadas = sorted(datos["TEMPORADA"].unique())
+    tipo = "line" if len(temporadas) > 1 else "bar" #Cuando elegías una sola temporada el gráfico mostraba puntos sueltos en el aire, así que decidí que fueran de barras
+    
+    series = []
+    for grupo, filas in datos.groupby("GRUPO_ETARIO"):
+        valores = filas.set_index("TEMPORADA").reindex(temporadas)["HABILIDAD_PROMEDIO"]
+        series.append({
+            "name": grupo,
+            "type": tipo,
+            "data": [None if pd.isna(v) else float(v) for v in valores],
+            "itemStyle": {"color": COLORES_GRUPO.get(grupo)},
+        })
+        
+    return {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 0},
+        "xAxis": {"type": "category", "data": temporadas, "name": "Temporada"},
+        "yAxis": {"type": "value", "name": "Habilidad promedio", "scale": tipo == "line"},
+        "series": series,
+    }
+          
 def p_exploratorio():
     banner(
         title="Análisis Exploratorio",
@@ -94,15 +117,7 @@ def p_exploratorio():
         )
         return
 
-    grafico = px.line(
-        datos,
-        x="TEMPORADA",
-        y="HABILIDAD_PROMEDIO",
-        color="GRUPO_ETARIO",
-        markers=True,
-        color_discrete_map=COLORES_GRUPO, #Para que cada valor de grupo etario use el color definido en el diccionario de coloers
-    )
-    chart_slot.plotly_chart(grafico)
+    chart_slot.echarts_chart(opciones_objetivo1(datos)) 
     table_slot.dataframe(
         datos,
         key="exploratorio_datos_df",

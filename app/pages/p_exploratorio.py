@@ -4,6 +4,49 @@ import plotly.express as px
 from components import banner
 from utils import query_filtered_data
 
+#Función que arma cada interpretación con los números traiga "datos" en ese momento, así cada temporada sale con su propia interpretación y con cualquier combinación de filtros
+
+def interpretar_objetivo1(datos):
+    temporadas = sorted(datos["TEMPORADA"].unique())
+    ultima = datos[datos["TEMPORADA"] == temporadas[-1]]
+    mejor = ultima.loc[ultima["HABILIDAD_PROMEDIO"].idxmax()]
+    peor = ultima.loc[ultima["HABILIDAD_PROMEDIO"].idxmin()]
+    menos = ultima.loc[ultima["JUGADORES"].idxmin()]
+    
+    if len(ultima) == 1:
+        texto = f"En {temporadas[-1]}, el grupo {mejor['GRUPO_ETARIO']} tiene una habilidad promedio de {mejor['HABILIDAD_PROMEDIO']}. "
+    else:
+        texto = (
+            f"En {temporadas[-1]}, el grupo {mejor['GRUPO_ETARIO']} tiene la habilidad promedio más alta "
+            f"({mejor['HABILIDAD_PROMEDIO']}) y el grupo {peor['GRUPO_ETARIO']} la más baja ({peor['HABILIDAD_PROMEDIO']}). "
+            f"El grupo con menos jugadores es {menos['GRUPO_ETARIO']} ({menos['JUGADORES']}). "
+        )
+        
+    if len(temporadas) > 1:
+        inicio = datos[datos["TEMPORADA"] == temporadas[0]].set_index("GRUPO_ETARIO")["HABILIDAD_PROMEDIO"]
+        fin = ultima.set_index("GRUPO_ETARIO")["HABILIDAD_PROMEDIO"]
+        cambio = (fin - inicio).dropna()
+        for grupo, valor in cambio.items():
+            if valor > 0:
+                texto += f"Entre {temporadas[0]} y {temporadas[-1]} el grupo {grupo} sube de {inicio[grupo]} a {fin[grupo]}. "
+            elif valor < 0:
+                texto += f"Entre {temporadas[0]} y {temporadas[-1]} el grupo {grupo} baja de {inicio[grupo]} a {fin[grupo]}. "
+                
+    if mejor["GRUPO_ETARIO"] == "32-38" and len(ultima) > 1:
+        texto += (
+            "Esto no significa que los jugadores mejoren después de los 32 años: a esa edad solo siguen activos "
+            "los de mayor nivel (sesgo de supervivencia). "
+        )
+        
+    if temporadas == ["2025/26"]:
+        texto += "Esta temporada corresponde a datos reales."
+    elif "2025/26" in temporadas:
+        texto += "Las temporadas 2022/23 a 2024/25 son datos generados; solo 2025/26 corresponde a datos reales."
+    else:
+        texto += "Las temporadas seleccionadas son datos generados, no reales."
+
+    return texto
+
 
 def p_exploratorio():
     banner(
@@ -17,9 +60,7 @@ def p_exploratorio():
 
     # Interpretación y bosquejo de datos
     st.subheader("Interpretación")
-    st.markdown(
-        "En las cuatro temporadas la habilidad promedio aumenta con la edad: el grupo de 15-21 años tiene el valor más bajo (371) y el de 32-38 el más alto (508). Pero esto no significa que los jugadores mejoren después de los 32 años, sino que a esa edad solo siguen activos los de mayor nivel (gracias al sesgo de supervivencia), además de ser el grupo más pequeño (271 en 2022/23). A lo largo del periodo, el grupo de 22-26 sube de 386 a 417 y el de 27-31 baja de 482 a 416, de modo que en 2025/26 quedan casi igualados. Un dato a considerar es que las temporadas 2022/23 a 2024/25 son datos generados, es decir fabricados; y que solo 2025/26 corresponde a datos reales."
-    )
+    texto_slot = st.container()
 
     st.subheader("Datos utilizados")
     st.markdown(
@@ -53,3 +94,4 @@ def p_exploratorio():
     )
     chart_slot.plotly_chart(grafico)
     table_slot.dataframe(datos, key="exploratorio_datos_df")
+    texto_slot.markdown(interpretar_objetivo1(datos))

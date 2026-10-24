@@ -4,6 +4,15 @@ import plotly.express as px
 from components import banner
 from utils import query_filtered_data
 
+#Diseño de una especie de diccionario de colores para alimentar futuros echarts con mayor facilidad, use de referencia DESIGN.md
+
+COLORES_GRUPO = {
+    "15-21": "#00ff87", #Verde claro
+    "22-26": "#04f5ff", #Cian
+    "27-31": "#ffb1c4", #Rosa claro
+    "32-38": "#ff2882", #Magenta
+}
+
 #Función que arma cada interpretación con los números traiga "datos" en ese momento, así cada temporada sale con su propia interpretación y con cualquier combinación de filtros
 
 def interpretar_objetivo1(datos):
@@ -91,6 +100,7 @@ def p_exploratorio():
         y="HABILIDAD_PROMEDIO",
         color="GRUPO_ETARIO",
         markers=True,
+        color_discrete_map=COLORES_GRUPO, #Para que cada valor de grupo etario use el color definido en el diccionario de coloers
     )
     chart_slot.plotly_chart(grafico)
     table_slot.dataframe(

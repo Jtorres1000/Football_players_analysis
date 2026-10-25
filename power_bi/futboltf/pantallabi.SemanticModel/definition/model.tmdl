@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-VE
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DIM_PLAYER","DIM_AGE_BRACKET","DIM_SEASON","FACT_PLAYER_SEASON"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DIM_PLAYER
+ref table DIM_AGE_BRACKET
+ref table DIM_SEASON
+ref table FACT_PLAYER_SEASON
+
+ref cultureInfo en-US
+

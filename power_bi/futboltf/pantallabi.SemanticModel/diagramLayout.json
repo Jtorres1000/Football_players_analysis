@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 6.4000000953674316,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 223.37759125922918,
+            "y": 387.71644388063942
+          },
+          "nodeIndex": "DIM_AGE_BRACKET",
+          "nodeLineageTag": "5211d6d1-77ad-43e7-9e07-b2abef3b1923",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 626.27761697517485,
+            "y": -1.0156820869806324
+          },
+          "nodeIndex": "DIM_PLAYER",
+          "nodeLineageTag": "29250a33-9220-4590-bb7c-0dffbb2e45d3",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 55
+          },
+          "nodeIndex": "DIM_SEASON",
+          "nodeLineageTag": "838ca89e-0f4c-4034-9205-7f520a9586f2",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 336.36077390336305,
+            "y": 65.384948517525459
+          },
+          "nodeIndex": "FACT_PLAYER_SEASON",
+          "nodeLineageTag": "e241d426-a720-42a5-9d96-02b87f45308f",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 4
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

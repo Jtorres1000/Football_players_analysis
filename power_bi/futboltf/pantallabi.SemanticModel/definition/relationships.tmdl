@@ -1,0 +1,12 @@
+relationship AutoDetected_2d0c980a-24f2-456e-8c74-b3c0ab67f9fc
+	fromColumn: FACT_PLAYER_SEASON.PLAYER_KEY
+	toColumn: DIM_PLAYER.PLAYER_KEY
+
+relationship AutoDetected_fd25b167-6235-4240-a610-5013d6501dab
+	fromColumn: FACT_PLAYER_SEASON.AGE_KEY
+	toColumn: DIM_AGE_BRACKET.AGE_KEY
+
+relationship AutoDetected_b0254565-c037-49dc-bfdc-531db1ce2e3d
+	fromColumn: FACT_PLAYER_SEASON.SEASON_KEY
+	toColumn: DIM_SEASON.SEASON_KEY
+

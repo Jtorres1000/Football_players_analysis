@@ -1,0 +1,66 @@
+table DIM_PLAYER
+	lineageTag: 29250a33-9220-4590-bb7c-0dffbb2e45d3
+
+	column PLAYER_KEY
+		dataType: string
+		lineageTag: da917121-ad65-4116-829e-ae12658ff611
+		summarizeBy: none
+		sourceColumn: PLAYER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLAYER_ID
+		dataType: double
+		lineageTag: ac702ab0-07e1-45d5-ac9d-0e7287912680
+		summarizeBy: none
+		sourceColumn: PLAYER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NAME
+		dataType: string
+		lineageTag: cc748d24-e5f8-43f7-89ab-fdf02d72bce5
+		summarizeBy: none
+		sourceColumn: NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARY_CATEGORY
+		dataType: string
+		lineageTag: d983571b-5556-450e-bbda-d5b8399a2c48
+		summarizeBy: none
+		sourceColumn: PRIMARY_CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARY_ROLE_CODE
+		dataType: string
+		lineageTag: 9493aa85-f488-4e13-a0b1-dd3c9eb929e9
+		summarizeBy: none
+		sourceColumn: PRIMARY_ROLE_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARY_SIDE_CODE
+		dataType: string
+		lineageTag: 354be4f5-5db9-470c-a92a-d6aca4beaf75
+		summarizeBy: none
+		sourceColumn: PRIMARY_SIDE_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_PLAYER = m
+		mode: import
+		source =
+				let
+				    Origen = Snowflake.Databases("JPHATXE-AR85340","COMPUTE_POWER_BI_WH",[Implementation="2.0"]),
+				    TF_COMPU_II_Database = Origen{[Name="TF_COMPU_II",Kind="Database"]}[Data],
+				    DBT_JTORRES_Schema = TF_COMPU_II_Database{[Name="DBT_JTORRES",Kind="Schema"]}[Data],
+				    DIM_PLAYER_Table = DBT_JTORRES_Schema{[Name="DIM_PLAYER",Kind="Table"]}[Data]
+				in
+				    DIM_PLAYER_Table
+
+	annotation PBI_ResultType = Table
+

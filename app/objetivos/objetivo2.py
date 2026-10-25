@@ -169,7 +169,13 @@ def objetivo2():
         "Se usa el modelo dimensional:`FACT_PLAYER_SEASON` con `DIM_PLAYER` y `DIM_AGE_BRACKET`. "
         "Los conteos son registros jugador-temporada: un jugador que aparece en varias temporadas cuenta una vez por cada una."
     )
+    st.markdown("**Parte a**")
     tabla_a = st.container()
+    st.markdown(
+        "**Parte b**: se usa `ABILITY_SCORE_DELTA`, la diferencia entre la habilidad de cada jugador "
+        "y la suya en la temporada anterior. La primera temporada de cada jugador no tiene con qué compararse y se excluye."
+    )
+    tabla_b = st.container()
     
     datos = query_filtered_data("""
         SELECT
@@ -218,6 +224,17 @@ def objetivo2():
         chart_b.info("No hay cambios que mostrar con estos filtros. La temporada 2022/23 no tiene una temporada anterior con la cual comparar.")
     else:
         chart_b.echarts_chart(opciones_cambio(cambios))
+        tabla_b.dataframe(
+            cambios.assign(POSICION=cambios["POSICION"].map(NOMBRES_POSICION)),
+            key="objetivo2_tabla_b",
+            hide_index=True,
+            column_config={
+                "POSICION": st.column_config.TextColumn("Posición"),
+                "GRUPO_ETARIO": st.column_config.TextColumn("Grupo etario"),
+                "CAMBIO_PROMEDIO": st.column_config.NumberColumn("Cambio promedio por temporada", format="%.1f"),
+                "REGISTROS": st.column_config.NumberColumn("Registros", format="%d"),
+            },
+        )
     
     tarjetas_objetivo2(tarjetas_slot, datos, cambios)
     texto_slot.markdown(interpretar_objetivo2(datos, cambios))

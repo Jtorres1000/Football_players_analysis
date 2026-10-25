@@ -13,6 +13,13 @@ COLORES_GRUPO = {
     "32-38": "#ff2882", #Magenta
 }
 
+#Función auxiliar
+
+def unir(lista):
+    if len(lista) == 1:
+        return lista[0]
+    return ", ".join(lista[:-1]) + " y " + lista[-1]
+        
 #Función que arma cada interpretación con los números traiga "datos" en ese momento, así cada temporada sale con su propia interpretación y con cualquier combinación de filtros
 
 def interpretar_objetivo1(datos):
@@ -22,10 +29,13 @@ def interpretar_objetivo1(datos):
     peor = ultima.loc[ultima["HABILIDAD_PROMEDIO"].idxmin()]
     menos = ultima.loc[ultima["JUGADORES"].idxmin()]
     
+    texto = ""
+    if len(temporadas) > 1:
+        texto += f"Temporadas seleccionadas: {unir(temporadas)}. Como referencia se toma la más reciente. "
     if len(ultima) == 1:
-        texto = f"En {temporadas[-1]}, el grupo {mejor['GRUPO_ETARIO']} tiene una habilidad promedio de {mejor['HABILIDAD_PROMEDIO']}. "
+        texto += f"En {temporadas[-1]}, el grupo {mejor['GRUPO_ETARIO']} tiene una habilidad promedio de {mejor['HABILIDAD_PROMEDIO']}. "
     else:
-        texto = (
+        texto += (
             f"En {temporadas[-1]}, el grupo {mejor['GRUPO_ETARIO']} tiene la habilidad promedio más alta "
             f"({mejor['HABILIDAD_PROMEDIO']}) y el grupo {peor['GRUPO_ETARIO']} la más baja ({peor['HABILIDAD_PROMEDIO']}). "
             f"El grupo con menos jugadores es {menos['GRUPO_ETARIO']} ({menos['JUGADORES']}). "
@@ -36,13 +46,18 @@ def interpretar_objetivo1(datos):
             "los de mayor nivel (sesgo de supervivencia). "
         )
         
-    if temporadas == ["2025/26"]:
+    generadas = [t for t in temporadas if t != "2025/26"]
+    if not generadas:
         texto += "Esta temporada corresponde a datos reales."
-    elif "2025/26" in temporadas:
-        texto += "Las temporadas 2022/23 a 2024/25 son datos generados; solo 2025/26 corresponde a datos reales."
     else:
-        texto += "Las temporadas seleccionadas son datos generados, no reales."
-
+        if len(generadas) == 1:
+            texto += f"La temporada {generadas[0]} corresponde a datos generados"
+        else:
+            texto += f"Las temporadas {unir(generadas)} corresponden a datos generados"
+        if "2025/26" in temporadas:
+            texto += "; solo 2025/26 corresponde a datos reales."
+        else:
+            texto += ", no reales."
     return texto
 
 #Como echarts no recibe un Dataframe como plotly sino un diccionario de opciones armaré ese diccionario a partir de "datos" con esta función

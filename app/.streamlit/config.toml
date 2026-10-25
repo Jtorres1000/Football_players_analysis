@@ -2,6 +2,9 @@
 runOnSave = true
 
 [theme]
+dataframeHeaderBackgroundColor = "#2e0332"
+dataframeHeaderTextColor = "#c6b5cb"
+dataframeBorderColor = "#521057"
 base = "dark"
 primaryColor = "#04f5ff"
 secondaryColor = "#ffb1c4"

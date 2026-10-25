@@ -1,0 +1,42 @@
+table DIM_SEASON
+	lineageTag: 838ca89e-0f4c-4034-9205-7f520a9586f2
+
+	column SEASON_KEY
+		dataType: string
+		lineageTag: 8874eb66-9855-4624-b17e-f0d2521d882b
+		summarizeBy: none
+		sourceColumn: SEASON_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEASON_ID
+		dataType: double
+		lineageTag: 23fc4cdd-b78b-4cfa-aff8-338739157140
+		summarizeBy: none
+		sourceColumn: SEASON_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SEASON_LABEL
+		dataType: string
+		lineageTag: a5369ff1-95b9-415d-8590-e973c683853b
+		summarizeBy: none
+		sourceColumn: SEASON_LABEL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_SEASON = m
+		mode: import
+		source =
+				let
+				    Origen = Snowflake.Databases("JPHATXE-AR85340","COMPUTE_POWER_BI_WH",[Implementation="2.0"]),
+				    TF_COMPU_II_Database = Origen{[Name="TF_COMPU_II",Kind="Database"]}[Data],
+				    DBT_JTORRES_Schema = TF_COMPU_II_Database{[Name="DBT_JTORRES",Kind="Schema"]}[Data],
+				    DIM_SEASON_Table = DBT_JTORRES_Schema{[Name="DIM_SEASON",Kind="Table"]}[Data]
+				in
+				    DIM_SEASON_Table
+
+	annotation PBI_ResultType = Table
+

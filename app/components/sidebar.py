@@ -1,17 +1,8 @@
 import streamlit as st
 
-
-NOMBRE_TITULO = "Filtros de Búsqueda"
-NOMBRE_FILTRO_TEMPORADA = "Temporada"
-NOMBRE_FILTRO_POSICION = "Posición"
-NOMBRE_FILTRO_GRUPO_ETARIO = "Grupo Etario"
-NOMBRE_FILTRO_RANGO_EDAD = "Rango de Edad"
-NOMBRE_FILTRO_SALARIO = "Salario Anual Mínimo (€)"
-NOMBRE_BOTON_RESET = "Restablecer Filtros"
-
 SELECTED_FILTER_CSS = """
 <style>
-    /* Degradado de fondo del sidebar (arriba hacia abajo) con los colores del banner */
+
     section[data-testid="stSidebar"],
     [data-testid="stSidebar"] {
         background: 
@@ -30,23 +21,25 @@ SELECTED_FILTER_CSS = """
         background-color: transparent !important;
     }
 
-    /* 1. Texto de las opciones seleccionadas en multiselect (chips/tags) */
-    div[data-baseweb="tag"],
-    span[data-baseweb="tag"],
-    [data-baseweb="tag"] span,
-    [data-baseweb="tag"] div,
-    [data-baseweb="tag"] p {
+    span[aria-label="Selected values"] [data-tag],
+    span[aria-label="Selected values"] [data-tag] span,
+    [data-baseweb="tag"],
+    [data-baseweb="tag"] span {
         color: #000000 !important;
         font-weight: 600 !important;
     }
 
-    /* Ícono 'x' para eliminar la selección en el tag */
+    span[aria-label="Selected values"] [data-tag] button,
+    span[aria-label="Selected values"] [data-tag] svg,
     [data-baseweb="tag"] svg {
-        fill: #000000 !important;
         color: #000000 !important;
+        fill: #000000 !important;
     }
 
-    /* 2. Opciones seleccionadas o activas dentro de la lista desplegable (dropdown) */
+    span[aria-label="Selected values"] [data-tag] svg path {
+        stroke: #000000 !important;
+    }
+
     div[data-baseweb="popover"] li[aria-selected="true"],
     div[data-baseweb="popover"] li[aria-selected="true"] *,
     ul[role="listbox"] li[aria-selected="true"],
@@ -54,113 +47,78 @@ SELECTED_FILTER_CSS = """
         color: #000000 !important;
         font-weight: 600 !important;
     }
+
 </style>
 """
+SESSION_DEFAULTS = {
+    "sb_season": [], 
+    "sb_positions": [],
+    "sb_age_groups": [],
+    "sb_age_range": (15, 38),
+    "sb_min_wage": 0,
+}
 
 
-def sidebar(
-    seasons: list[str] | None = None,
-    positions: list[str] | None = None,
-    age_groups: list[str] | None = None,
-    min_age: int = 15,
-    max_age: int = 38,
-    filter_names: dict[str, str] | None = None,
-) -> dict:
+def _reset_filters() -> None:
+    for key, val in SESSION_DEFAULTS.items():
+        st.session_state[key] = val
 
 
-    names = {
-        "title": NOMBRE_TITULO,
-        "season": NOMBRE_FILTRO_TEMPORADA,
-        "position": NOMBRE_FILTRO_POSICION,
-        "age_group": NOMBRE_FILTRO_GRUPO_ETARIO,
-        "age_range": NOMBRE_FILTRO_RANGO_EDAD,
-        "salary": NOMBRE_FILTRO_SALARIO,
-        "reset": NOMBRE_BOTON_RESET,
-    }
-    if filter_names:
-        names.update(filter_names)
-
-
-    default_seasons = seasons or [
-        "2025-2026",
-        "2024-2025",
-        "2023-2024",
-        "2022-2023",
-        "Todas las temporadas",
-    ]
-
-    default_positions = positions or [
-        "Delanteros (ATT)",
-        "Centrocampistas (MID)",
-        "Defensas (DEF)",
-        "Porteros (GK)",
-    ]
-
-    default_age_groups = age_groups or [
-        "15–21",
-        "22–26",
-        "27–31",
-        "32–38",
-    ]
-
-  
-    SESSION_DEFAULTS = {
-        "sb_season": default_seasons[0],
-        "sb_positions": [],
-        "sb_age_groups": [],
-        "sb_age_range": (min_age, max_age),
-        "sb_min_wage": 0,
-    }
+def sidebar() -> dict:
 
     for key, val in SESSION_DEFAULTS.items():
         if key not in st.session_state:
             st.session_state[key] = val
 
-    def _reset_filters():
-        for k, v in SESSION_DEFAULTS.items():
-            st.session_state[k] = v
-
     with st.sidebar:
-       
         st.markdown(SELECTED_FILTER_CSS, unsafe_allow_html=True)
+        st.header("Filtros de Búsqueda")
 
-        
-        st.header(names["title"])
-
-        
-        selected_season = st.selectbox(
-            label=names["season"],
-            options=default_seasons,
+        selected_seasons = st.multiselect(
+            label="Temporada",
+            options=[
+                "2025-2026",
+                "2024-2025",
+                "2023-2024",
+                "2022-2023",
+            ],
             key="sb_season",
+            placeholder="Todas las temporadas...",
         )
 
-        
         selected_positions = st.multiselect(
-            label=names["position"],
-            options=default_positions,
+            label="Posición",
+            options=[
+                "Delanteros (ATT)",
+                "Centrocampistas (MID)",
+                "Defensas (DEF)",
+                "Porteros (GK)",
+            ],
             key="sb_positions",
             placeholder="Todas las posiciones...",
         )
 
-       
         selected_age_groups = st.multiselect(
-            label=names["age_group"],
-            options=default_age_groups,
+            label="Grupo Etario",
+            options=[
+                "15–21",
+                "22–26",
+                "27–31",
+                "32–38",
+            ],
             key="sb_age_groups",
             placeholder="Todos los grupos...",
         )
 
-       
         selected_age_range = st.slider(
-            label=names["age_range"],
-            min_value=min_age,
-            max_value=max_age,
+            label="Rango de Edad",
+            min_value=15,
+            max_value=38,
             key="sb_age_range",
         )
 
-        
         selected_min_wage = st.slider(
-            label=names["salary"],
+            label="Salario Anual Mínimo (€)",
             min_value=0,
             max_value=20_000_000,
             step=250_000,
@@ -168,16 +126,15 @@ def sidebar(
             key="sb_min_wage",
         )
 
-        
         st.button(
-            label=names["reset"],
+            label="Restablecer Filtros",
             key="btn_reset_filters",
-            use_container_width=True,
+            width="stretch",
             on_click=_reset_filters,
         )
 
     return {
-        "season": selected_season,
+        "season": selected_seasons,
         "positions": selected_positions,
         "age_groups": selected_age_groups,
         "age_range": selected_age_range,

@@ -58,7 +58,7 @@ with
             ps.ability_score,
             ps.ability_score - lag(ps.ability_score) over (
                 partition by ps.player_id
-                order by sd.season_order asc
+                order by sd.season_order DESC
             ) as ability_score_delta,
             sc.weekly_wage_eur,
             sc.annual_wage_eur,

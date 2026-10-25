@@ -1,5 +1,62 @@
 import streamlit as st
 
+from utils import query_filtered_data
+
+NOMBRES_POSICION = {
+    "GOALKEEPER": "Porteros",
+    "DEFENDER": "Defensas",
+    "MIDFIELDER": "Centrocampistas",
+    "ATTACKER": "Delanteros",
+}
+
+COLORES_POSICION = {
+    "GOALKEEPER": "#ffb1c4",
+    "DEFENDER": "#00ff87",
+    "MIDFIELDER": "#04f5ff",
+    "ATTACKER": "#ff2882",
+}
+
+def opciones_veteranos(datos):
+    return {
+        "tooltip": {"trigger": "axis"},
+        "xAxis": {
+            "type": "category",
+            "data": [NOMBRES_POSICION.get(p, p) for p in datos["POSICION"]],
+        },
+        "yAxis": {
+            "type": "value",
+            "name": "% con 32-38 años",
+            "axisLabel": {"formatter": "{value}%"},
+        },
+        "series": [{
+            "type": "bar",
+            "data": [
+                {"value": float(v), "itemStyle": {"color": COLORES_POSICION.get(p)}}
+                for p, v in zip(datos["POSICION"], datos["PCT_VETERANOS"])
+            ],
+            "label": {"show": True, "position": "top", "formatter": "{c} %"},
+        }],
+    }
+
 def objetivo2():
     st.subheader("Objetivo 2: Longevidad por posición de juego, periodo 2022-2026")
-    st.info("...")
+    st.markdown("**a) Proporción de jugadores veteranos (32-38 años) en cada posición**")
+    chart_a = st.container()
+    
+    datos = query_filtered_data("""
+        SELECT
+            PRIMARY_CATEGORY AS POSICION,
+            COUNT(*) AS REGISTROS,
+            SUM(CASE WHEN AGE_GROUP = '32-38' THEN 1 ELSE 0 END) AS VETERANOS,
+            ROUND(100.0 * SUM(CASE WHEN AGE_GROUP = '32-38' THEN 1 ELSE 0 END) / COUNT(*), 1) AS PCT_VETERANOS
+            FROM df_filtrado
+            GROUP BY PRIMARY_CATEGORY
+            ORDER BY PCT_VETERANOS DESC                          
+    """)
+    
+    if datos.empty:
+        chart_a.info("No se encontraron registros para la comninación de filtros seleccionada.")
+    elif datos["VETERANOS"].sum() == 0:
+        chart_a.info("Los filtros actuales no incluyen jugadores de 32 a 38 años, así que no se puede calcular esta proporción")
+    else:
+        chart_a.echarts_chart(opciones_veteranos(datos))

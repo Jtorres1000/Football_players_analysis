@@ -1,0 +1,1 @@
+from .objetivo1 import objetivo1

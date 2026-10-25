@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 from utils import query_filtered_data
 
@@ -38,10 +39,33 @@ def opciones_veteranos(datos):
         }],
     }
 
+def opciones_cambio(datos):
+    grupos = sorted(datos["GRUPO_ETARIO"].unique())
+    tipo = "line" if len(grupos) > 1 else "bar"
+    
+    series = []
+    for posicion, filas in datos.groupby("POSICION"):
+        valores = filas.set_index("GRUPO_ETARIO").reindex(grupos)["CAMBIO_PROMEDIO"]
+        series.append({
+            "name": NOMBRES_POSICION.get(posicion, posicion),
+            "type": tipo,
+            "data": [None if pd.isna(v) else float(v) for v in valores],
+            "itemStyle": {"color": COLORES_POSICION.get(posicion)},
+        })
+    return {
+       "tooltip": {"trigger": "axis"},
+       "legend": {"top": 0},
+       "xAxis": {"type": "category", "data": grupos, "name": "Grupo etario"},
+       "yAxis": {"type": "value", "name": "Cambio por temporada"},
+       "series": series,
+    }
+
 def objetivo2():
     st.subheader("Objetivo 2: Longevidad por posición de juego, periodo 2022-2026")
     st.markdown("**a) Proporción de jugadores veteranos (32-38 años) en cada posición**")
     chart_a = st.container()
+    st.markdown("**b) Cambio promedio de habilidad de cada jugador respecto de su temporada anterior, por grupo etario**")
+    chart_b = st.container()
     st.subheader("Datos utilizados")
     st.markdown(
         "Se usa el modelo dimensional:`FACT_PLAYER_SEASON` con `DIM_PLAYER` y `DIM_AGE_BRACKET`. "
@@ -76,6 +100,23 @@ def objetivo2():
                 "POSICION": st.column_config.TextColumn("Posición"),
                 "REGISTROS": st.column_config.NumberColumn("Registros", format="%d"),
                 "VETERANOS": st.column_config.NumberColumn("Registros de 32-38 años", format="%d"),
-                "PCT_VETERANOS": st.column_config.NumberColumn("% veteranos", format="%.1f%%"),  
+                "PCT_VETERANOS": st.column_config.NumberColumn("% veteranos", format="%.1f%%"),
             },
         )
+
+    cambios = query_filtered_data("""
+        SELECT
+            PRIMARY_CATEGORY AS POSICION,
+            AGE_GROUP AS GRUPO_ETARIO,
+            ROUND(AVG(ABILITY_SCORE_DELTA), 1) AS CAMBIO_PROMEDIO,
+            COUNT(*) AS REGISTROS
+        FROM df_filtrado
+        WHERE ABILITY_SCORE_DELTA IS NOT NULL
+        GROUP BY PRIMARY_CATEGORY, AGE_GROUP
+        ORDER BY POSICION, GRUPO_ETARIO
+    """)
+
+    if cambios.empty:
+        chart_b.info("No hay cambios que mostrar con estos filtros. La temporada 2022/23 no tiene una temporada anterior con la cual comparar.")
+    else:
+        chart_b.echarts_chart(opciones_cambio(cambios))

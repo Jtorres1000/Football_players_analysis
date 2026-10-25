@@ -4,6 +4,7 @@ from .data import (
     SEASON_MAP,
     get_filtered_data,
     query_filtered_data,
+    query_base_data,
     get_snowflake_connection,
     load_base_mart_data,
 )
@@ -14,9 +15,9 @@ __all__ = [
     "POSITION_MAP",
     "SEASON_MAP",
     "query_filtered_data",
+    "query_base_data",
     "get_filtered_data",
     "get_snowflake_connection",
     "load_base_mart_data",
     "warm_up_connection",
 ]
-

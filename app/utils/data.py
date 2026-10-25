@@ -40,10 +40,19 @@ SELECT
     s.season_label AS SEASON_LABEL,
     a.age AS AGE,
     a.age_group AS AGE_GROUP,
+    c.club_id AS CLUB_ID,
+    c.club_name AS CLUB_NAME,
+    c.division_name AS DIVISION_NAME,
     f.ability_score AS ABILITY_SCORE,
     f.ability_score_delta AS ABILITY_SCORE_DELTA,
     f.weekly_wage_eur AS WEEKLY_WAGE_EUR,
-    f.annual_wage_eur AS ANNUAL_WAGE_EUR
+    f.annual_wage_eur AS ANNUAL_WAGE_EUR,
+    f.goals AS GOALS,
+    f.dribbles_made AS DRIBBLES_MADE,
+    f.tackles_completed AS TACKLES_COMPLETED,
+    f.save_ratio AS SAVE_RATIO,
+    f.chances_created AS CHANCES_CREATED,
+    f.passes_completed AS PASSES_COMPLETED
 FROM FACT_PLAYER_SEASON f
 INNER JOIN DIM_PLAYER p
     ON f.player_key = p.player_key
@@ -51,7 +60,10 @@ INNER JOIN DIM_SEASON s
     ON f.season_key = s.season_key
 INNER JOIN DIM_AGE_BRACKET a
     ON f.age_key = a.age_key
+LEFT JOIN DIM_CLUB c
+    ON f.club_key = c.club_key
 """
+
 
 def get_snowflake_connection():
     """Devuelve la conexión nativa y cacheada de Streamlit a Snowflake."""
@@ -140,7 +152,20 @@ def query_filtered_data(sql_query: str) -> pd.DataFrame:
     """
     df_filtrado = get_filtered_data()
 
-
     with duckdb.connect(":memory:") as con:
         con.register("df_filtrado", df_filtrado)
+        return con.execute(sql_query).df()
+
+
+def query_base_data(sql_query: str, params: list | None = None) -> pd.DataFrame:
+    """
+    Ejecuta una consulta SQL de DuckDB directamente sobre `df_base` (el Mart completo en caché,
+    independiente de los filtros del sidebar).
+    """
+    df_base = load_base_mart_data()
+
+    with duckdb.connect(":memory:") as con:
+        con.register("df_base", df_base)
+        if params:
+            return con.execute(sql_query, params).df()
         return con.execute(sql_query).df()

@@ -12,6 +12,7 @@ with
             cast("mins" as int) as mins,
             cast("starts" as smallint) as starts,
             cast(coalesce("sub_appearances", 0) as smallint) as sub_appearances,
+            cast(coalesce("starts", 0) + coalesce("sub_appearances", 0) as smallint) as appearances,
             cast("ability_score" as numeric(7, 2)) as ability_score
 
         from source

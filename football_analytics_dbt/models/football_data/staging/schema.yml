@@ -16,9 +16,19 @@ models:
           - unique
           - not_null
 
+      - name: nation_id
+        description: "ID de la nacionalidad del jugador"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__NATIONS_RAW')
+                field: nation_id
+
       - name: primary_category
         description: "Rol general del jugador en el campo"
         data_tests:
+          - not_null
           - accepted_values:
               arguments:
                 values: ['GOALKEEPER', 'DEFENDER', 'MIDFIELDER', 'ATTACKER']
@@ -38,15 +48,20 @@ models:
         data_tests:
           - not_null
 
+      - name: agent_id
+        description: "ID del agente del jugador"
+
   - name: stg_football_data__PLAYER_SEASONS_RAW
     description: "Modelo staging para las métricas de jugadores por temporada"
     columns:
       - name: player_season_id
+        description: "ID único de la temporada del jugador"
         data_tests:
           - not_null
           - unique
 
       - name: player_id
+        description: "ID del jugador"
         data_tests:
           - not_null
           - relationships:
@@ -55,50 +70,70 @@ models:
                 field: player_id
 
       - name: season_id
+        description: "ID de la temporada"
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__SEASONS_RAW')
+                field: season_id
 
       - name: club_id
         description: "ID del club del jugador en esa temporada"
 
       - name: age
+        description: "Edad del jugador durante la temporada"
         data_tests:
           - not_null
 
       - name: mins
+        description: "Minutos totales jugados en la temporada"
         data_tests:
           - not_null
 
       - name: starts
+        description: "Partidos iniciados como titular en la temporada"
         data_tests:
           - not_null
 
       - name: sub_appearances
+        description: "Apariciones entrando como suplente en la temporada"
+        data_tests:
+          - not_null
+
+      - name: appearances
+        description: "Total de apariciones en la temporada"
         data_tests:
           - not_null
 
       - name: ability_score
+        description: "Puntaje de habilidad del jugador en la temporada"
         data_tests:
           - not_null
-  
+
   - name: stg_football_data__SEASONS_RAW
     description: "Modelo staging para las temporadas de fútbol"
     columns:
       - name: season_id
+        description: "ID único de la temporada"
         data_tests:
           - not_null
           - unique
 
       - name: season_label
+        description: "Etiqueta de la temporada formato:2025/26"
         data_tests:
           - not_null
 
       - name: season_order
+        description: "Orden cronológico de la temporada"
         data_tests:
           - not_null
 
       - name: is_fabricated
         description: "Indica si la temporada es fabricada o real"
+        data_tests:
+          - not_null
 
   - name: stg_football_data__PLAYER_POSITIONS_RAW
     description: "Modelo staging para la relación entre jugadores y posiciones"
@@ -107,10 +142,18 @@ models:
         description: "ID del jugador"
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYERS_RAW')
+                field: player_id
       - name: position_id
         description: "ID de la posición"
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__POSITIONS_RAW')
+                field: position_id
       - name: position_rank
         description: "Rango de la posición, 1 es la principal"
         data_tests:
@@ -128,6 +171,10 @@ models:
         description: "ID del jugador transferido"
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYERS_RAW')
+                field: player_id
       - name: from_club_id
         description: "ID del club de origen"
       - name: to_club_id
@@ -259,5 +306,563 @@ models:
           - not_null
       - name: contract_value_eur
         description: "Valor total del contrato en euros"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__PLAYER_STATS_ATTACKING_RAW
+    description: "Modelo staging para las estadísticas ofensivas de jugadores por temporada"
+    columns:
+      - name: player_season_id
+        description: "ID de la temporada del jugador"
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYER_SEASONS_RAW')
+                field: player_season_id
+      - name: goals
+        description: "Goles marcados en la temporada"
+        data_tests:
+          - not_null
+      - name: goals_per_90
+        description: "Goles marcados por cada 90 minutos en la temporada"
+        data_tests:
+          - not_null
+      - name: xg
+        description: "Goles esperados (xG) totales"
+        data_tests:
+          - not_null
+      - name: xg_per_90
+        description: "Goles esperados (xG) por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: non_penalty_xg
+        description: "Goles esperados sin contar penaltis (npxG)"
+        data_tests:
+          - not_null
+      - name: non_penalty_xg_per_90
+        description: "Goles esperados sin penaltis por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: xg_overperformance
+        description: "Diferencia entre goles reales y goles esperados (Goles - xG)"
+        data_tests:
+          - not_null
+      - name: shots
+        description: "Tiros totales realizados"
+        data_tests:
+          - not_null
+      - name: shots_per_90
+        description: "Tiros totales por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: shots_on_target
+        description: "Tiros a puerta realizados"
+        data_tests:
+          - not_null
+      - name: shots_on_target_ratio
+        description: "Proporción de tiros a puerta sobre tiros totales"
+        data_tests:
+          - not_null
+      - name: shots_on_target_per_90
+        description: "Tiros a puerta por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: shots_outside_box_per_90
+        description: "Tiros desde fuera del área por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: shots_blocked
+        description: "Tiros bloqueados por rivales"
+        data_tests:
+          - not_null
+      - name: shots_blocked_per_90
+        description: "Tiros bloqueados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: xg_per_shot
+        description: "Goles esperados promedio por cada tiro realizado"
+        data_tests:
+          - not_null
+      - name: conversion_rate
+        description: "Tasa de conversión de tiros en gol"
+        data_tests:
+          - not_null
+      - name: goals_outside_box
+        description: "Goles anotados desde fuera del área"
+        data_tests:
+          - not_null
+      - name: free_kick_shots
+        description: "Tiros de falta directa hechos"
+        data_tests:
+          - not_null
+      - name: penalties_scored
+        description: "Penaltis convertidos en gol"
+        data_tests:
+          - not_null
+      - name: penalties_scored_ratio
+        description: "Proporción de efectividad en penaltis cobrados"
+        data_tests:
+          - not_null
+      - name: penalties_taken
+        description: "Penaltis totales ejecutados"
+        data_tests:
+          - not_null
+      - name: penalties_faced
+        description: "Penaltis recibidos o enfrentados"
+        data_tests:
+          - not_null
+      - name: assists
+        description: "Asistencias de gol totales"
+        data_tests:
+          - not_null
+      - name: assists_per_90
+        description: "Asistencias de gol por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: xa
+        description: "Asistencias esperadas (xA) totales"
+        data_tests:
+          - not_null
+      - name: xa_per_90
+        description: "Asistencias esperadas (xA) por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: chances_created
+        description: "Ocasiones de gol creadas en la temporada"
+        data_tests:
+          - not_null
+      - name: chances_created_per_90
+        description: "Ocasiones de gol creadas por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: dribbles_made
+        description: "Regates completados con éxito en la temporada"
+        data_tests:
+          - not_null
+      - name: dribbles_made_per_90
+        description: "Regates completados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: offsides
+        description: "Fueras de juego cometidos"
+        data_tests:
+          - not_null
+      - name: average_min_per_goal
+        description: "Promedio de minutos jugados por cada gol anotado"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__PLAYER_STATS_DEFENDING_RAW
+    description: "Modelo staging para las estadísticas defensivas de jugadores por temporada"
+    columns:
+      - name: player_season_id
+        description: "ID de la temporada del jugador"
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYER_SEASONS_RAW')
+                field: player_season_id
+      - name: tackles_completed
+        description: "Entradas defensivas completadas con éxito"
+        data_tests:
+          - not_null
+      - name: tackles_completed_per_90
+        description: "Entradas completadas por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: tackles_attempted
+        description: "Entradas defensivas intentadas"
+        data_tests:
+          - not_null
+      - name: tackle_completion_ratio
+        description: "Proporción de éxito en entradas intentadas"
+        data_tests:
+          - not_null
+      - name: key_tackles
+        description: "Entradas clave decisivas"
+        data_tests:
+          - not_null
+      - name: key_tackles_per_90
+        description: "Entradas clave por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: interceptions
+        description: "Intercepciones de balón totales"
+        data_tests:
+          - not_null
+      - name: interceptions_per_90
+        description: "Intercepciones por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: clearances
+        description: "Despejes defensivos totales"
+        data_tests:
+          - not_null
+      - name: clearances_per_90
+        description: "Despejes por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: blocks
+        description: "Bloqueos defensivos realizados"
+        data_tests:
+          - not_null
+      - name: blocks_per_90
+        description: "Bloqueos por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: headers_won
+        description: "Cabezazos ganados"
+        data_tests:
+          - not_null
+      - name: headers_won_ratio
+        description: "Proporción de cabezazos ganados"
+        data_tests:
+          - not_null
+      - name: headers_won_per_90
+        description: "Cabezazos ganados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: headers_attempted
+        description: "Cabezazos disputados"
+        data_tests:
+          - not_null
+      - name: headers_loss_per_90
+        description: "Cabezazos perdidos por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: key_headers_per_90
+        description: "Cabezazos clave por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: possession_won_per_90
+        description: "Posesiones recuperadas por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: possession_lost_per_90
+        description: "Posesiones perdidas por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: pressures_completed
+        description: "Presiones defensivas exitosas"
+        data_tests:
+          - not_null
+      - name: pressures_completed_per_90
+        description: "Presiones exitosas por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: pressures_attempted
+        description: "Presiones defensivas intentadas"
+        data_tests:
+          - not_null
+      - name: pressures_attempted_per_90
+        description: "Presiones intentadas por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: mistakes_leading_to_goal
+        description: "Errores defensivos que terminaron en gol rival"
+        data_tests:
+          - not_null
+      - name: aerial_challenges_attempted_per_90
+        description: "Disputas aéreas intentadas por cada 90 minutos"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__PLAYER_STATS_GOALKEEPING_RAW
+    description: "Modelo staging para las estadísticas de portería por temporada"
+    columns:
+      - name: player_season_id
+        description: "ID de la temporada del jugador"
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYER_SEASONS_RAW')
+                field: player_season_id
+      - name: saves_tipped
+        description: "Paradas desviando el balón"
+        data_tests:
+          - not_null
+      - name: saves_parried
+        description: "Paradas rechazando el balón"
+        data_tests:
+          - not_null
+      - name: saves_held
+        description: "Paradas reteniendo el balón"
+        data_tests:
+          - not_null
+      - name: saves_per_90
+        description: "Paradas totales por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: save_ratio
+        description: "Proporción o efectividad de paradas del portero"
+        data_tests:
+          - not_null
+      - name: clean_sheets
+        description: "Partido sin goles concedidos"
+        data_tests:
+          - not_null
+      - name: clean_sheets_per_90
+        description: "Partidos sin goles concedidos por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: conceded_per_90
+        description: "Goles concedidos por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: team_conceded
+        description: "Goles totales concedidos por el equipo"
+        data_tests:
+          - not_null
+      - name: team_conceded_per_90
+        description: "Goles concedidos por el equipo por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: team_goals
+        description: "Goles anotados por el equipo"
+        data_tests:
+          - not_null
+      - name: team_goals_per_90
+        description: "Goles del equipo por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: goals_conceded
+        description: "Goles concedidos"
+        data_tests:
+          - not_null
+      - name: penalties_saved
+        description: "Penaltis atajados"
+        data_tests:
+          - not_null
+      - name: penalties_saved_ratio
+        description: "Proporción de penaltis atajados"
+        data_tests:
+          - not_null
+      - name: expected_saves_ratio
+        description: "Proporción de paradas esperadas"
+        data_tests:
+          - not_null
+      - name: expected_goals_prevented
+        description: "Goles esperados evitados (PSxG - Goles encajados)"
+        data_tests:
+          - not_null
+      - name: expected_goals_prevented_per_90
+        description: "Goles esperados evitados por cada 90 minutos"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__PLAYER_STATS_PASSING_RAW
+    description: "Modelo staging para las estadísticas de pase por temporada"
+    columns:
+      - name: player_season_id
+        description: "ID de la temporada del jugador"
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYER_SEASONS_RAW')
+                field: player_season_id
+      - name: passes_completed
+        description: "Pases completados con éxito en la temporada"
+        data_tests:
+          - not_null
+      - name: passes_completed_per_90
+        description: "Pases completados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: passes_attempted
+        description: "Pases totales intentados"
+        data_tests:
+          - not_null
+      - name: passes_attempted_per_90
+        description: "Pases intentados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: pass_completion_ratio
+        description: "Proporción de precisión de pases"
+        data_tests:
+          - not_null
+      - name: progressive_passes
+        description: "Pases progresivos completados"
+        data_tests:
+          - not_null
+      - name: progressive_passes_per_90
+        description: "Pases progresivos por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: key_passes
+        description: "Pases clave que generan ocasión de tiro"
+        data_tests:
+          - not_null
+      - name: key_passes_per_90
+        description: "Pases clave por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: open_play_key_passes
+        description: "Pases clave en jugada abierta"
+        data_tests:
+          - not_null
+      - name: open_play_key_passes_per_90
+        description: "Pases clave en jugada abierta por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: crosses_completed
+        description: "Centros al área completados con éxito"
+        data_tests:
+          - not_null
+      - name: crosses_completed_per_90
+        description: "Centros completados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: crosses_attempted
+        description: "Centros totales intentados"
+        data_tests:
+          - not_null
+      - name: crosses_attempted_per_90
+        description: "Centros intentados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: crosses_completion_ratio
+        description: "Proporción de acierto en centros"
+        data_tests:
+          - not_null
+      - name: open_play_crosses_completed
+        description: "Centros en jugada abierta completados"
+        data_tests:
+          - not_null
+      - name: open_play_crosses_completed_per_90
+        description: "Centros en jugada abierta completados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: open_play_crosses_attempted
+        description: "Centros en jugada abierta intentados"
+        data_tests:
+          - not_null
+      - name: open_play_crosses_attempted_per_90
+        description: "Centros en jugada abierta intentados por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: open_play_crosses_ratio
+        description: "Proporción de acierto en centros de jugada abierta"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__INJURIES_RAW
+    description: "Modelo staging para el historial de lesiones de jugadores"
+    columns:
+      - name: injury_id
+        description: "ID único de la lesión"
+        data_tests:
+          - unique
+          - not_null
+      - name: player_id
+        description: "ID del jugador lesionado"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYERS_RAW')
+                field: player_id
+      - name: season_id
+        description: "ID de la temporada en que ocurrió la lesión"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__SEASONS_RAW')
+                field: season_id
+      - name: injury_type
+        description: "Tipo o diagnóstico de la lesión"
+        data_tests:
+          - not_null
+      - name: start_date
+        description: "Fecha de inicio de la baja por lesión"
+        data_tests:
+          - not_null
+      - name: end_date
+        description: "Fecha de alta médica o recuperación"
+        data_tests:
+          - not_null
+      - name: days_out
+        description: "Cantidad de días fuera de actividad por la lesión"
+        data_tests:
+          - not_null
+
+  - name: stg_football_data__PLAYER_STATS_GENERAL_RAW
+    description: "Modelo staging para las estadísticas generales y físicas de jugadores por temporada"
+    columns:
+      - name: player_season_id
+        description: "ID de la temporada del jugador"
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__PLAYER_SEASONS_RAW')
+                field: player_season_id
+      - name: points_per_game
+        description: "Puntos promedio obtenidos por partido"
+        data_tests:
+          - not_null
+      - name: average_rating
+        description: "Calificación promedio del jugador en la temporada"
+        data_tests:
+          - not_null
+      - name: games_won
+        description: "Partidos ganados"
+        data_tests:
+          - not_null
+      - name: games_lost
+        description: "Partidos perdidos"
+        data_tests:
+          - not_null
+      - name: games_drawn
+        description: "Partidos empatados"
+        data_tests:
+          - not_null
+      - name: game_win_ratio
+        description: "Proporción de victorias sobre partidos jugados"
+        data_tests:
+          - not_null
+      - name: player_of_the_match
+        description: "Veces elegido mejor jugador del partido"
+        data_tests:
+          - not_null
+      - name: mins_per_gm
+        description: "Minutos promedio disputados por partido"
+        data_tests:
+          - not_null
+      - name: yellows
+        description: "Tarjetas amarillas recibidas"
+        data_tests:
+          - not_null
+      - name: red
+        description: "Tarjetas rojas recibidas"
+        data_tests:
+          - not_null
+      - name: fouls_made
+        description: "Faltas cometidas"
+        data_tests:
+          - not_null
+      - name: fouls_against
+        description: "Faltas recibidas"
+        data_tests:
+          - not_null
+      - name: distance_covered
+        description: "Distancia total recorrida en kilómetros"
+        data_tests:
+          - not_null
+      - name: distance_covered_per_90
+        description: "Distancia recorrida promedio por cada 90 minutos"
+        data_tests:
+          - not_null
+      - name: high_intensity_sprints_per_90
+        description: "Sprints de alta intensidad por cada 90 minutos"
         data_tests:
           - not_null

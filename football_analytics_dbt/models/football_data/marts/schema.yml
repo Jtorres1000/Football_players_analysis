@@ -84,6 +84,32 @@ models:
               arguments:
                 values: ['15-21', '22-26', '27-31', '32-38']
 
+  - name: dim_club
+    description: "Dimensión conformada de clubes y sus respectivas divisiones"
+    columns:
+      - name: club_key
+        description: "Clave surrogate del club generada a partir de club_id"
+        data_tests:
+          - unique
+          - not_null
+      - name: club_id
+        description: "Clave primaria natural del club"
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_football_data__CLUBS_RAW')
+                field: club_id
+      - name: club_name
+        description: "Nombre oficial del club de fútbol"
+        data_tests:
+          - not_null
+      - name: division_id
+        description: "ID de la división a la que pertenece el club"
+      - name: division_name
+        description: "Nombre de la división o liga a la que pertenece el club"
+
   - name: fact_player_season
     description: "Tabla de hechos periódica por jugador y temporada que integra rendimiento deportivo, variación anual de habilidad e ingreso salarial"
     columns:
@@ -116,6 +142,13 @@ models:
               arguments:
                 to: ref('dim_age_bracket')
                 field: age_key
+      - name: club_key
+        description: "Clave foránea surrogate hacia la dimensión dim_club (nula si el jugador no tiene club asignado)"
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_club')
+                field: club_key
       - name: ability_score
         description: "Puntaje de habilidad deportiva del jugador registrado en la temporada"
         data_tests:
@@ -128,5 +161,29 @@ models:
           - not_null
       - name: annual_wage_eur
         description: "Salario anualizado del contrato vigente del jugador en euros durante la temporada (weekly_wage_eur × 52)"
+        data_tests:
+          - not_null
+      - name: goals
+        description: "Goles marcados por el jugador durante la temporada"
+        data_tests:
+          - not_null
+      - name: dribbles_made
+        description: "Regates completados con éxito por el jugador durante la temporada"
+        data_tests:
+          - not_null
+      - name: tackles_completed
+        description: "Entradas defensivas completadas con éxito durante la temporada"
+        data_tests:
+          - not_null
+      - name: save_ratio
+        description: "Proporción o efectividad de paradas del portero durante la temporada"
+        data_tests:
+          - not_null
+      - name: chances_created
+        description: "Ocasiones de gol generadas por el jugador durante la temporada"
+        data_tests:
+          - not_null
+      - name: passes_completed
+        description: "Pases completados con éxito por el jugador durante la temporada"
         data_tests:
           - not_null

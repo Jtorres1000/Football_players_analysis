@@ -1,0 +1,88 @@
+table FACT_PLAYER_SEASON
+	lineageTag: e241d426-a720-42a5-9d96-02b87f45308f
+
+	column PLAYER_SEASON_KEY
+		dataType: string
+		lineageTag: de83a5cd-270e-408d-b739-ed751a3460c8
+		summarizeBy: none
+		sourceColumn: PLAYER_SEASON_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLAYER_KEY
+		dataType: string
+		lineageTag: 1ce69251-456f-4ca0-af3e-48708b4660c6
+		summarizeBy: none
+		sourceColumn: PLAYER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEASON_KEY
+		dataType: string
+		lineageTag: 2baa327e-dbd7-4283-8e9d-c3d2f37aab72
+		summarizeBy: none
+		sourceColumn: SEASON_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column AGE_KEY
+		dataType: string
+		lineageTag: af313d81-3fa9-4c44-b4a5-6733447f4bb2
+		summarizeBy: none
+		sourceColumn: AGE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ABILITY_SCORE
+		dataType: double
+		lineageTag: 1909969a-b1e7-4347-be88-82423f5a2531
+		summarizeBy: sum
+		sourceColumn: ABILITY_SCORE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ABILITY_SCORE_DELTA
+		dataType: double
+		lineageTag: 1be42836-055b-400b-9c38-f0d622e12188
+		summarizeBy: sum
+		sourceColumn: ABILITY_SCORE_DELTA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WEEKLY_WAGE_EUR
+		dataType: double
+		lineageTag: 437eb59b-850d-4d28-9782-791c497f4514
+		summarizeBy: sum
+		sourceColumn: WEEKLY_WAGE_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANNUAL_WAGE_EUR
+		dataType: double
+		lineageTag: 873b3d13-7410-4fc8-95c1-fffe4b1c065c
+		summarizeBy: sum
+		sourceColumn: ANNUAL_WAGE_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FACT_PLAYER_SEASON = m
+		mode: import
+		source =
+				let
+				    Origen = Snowflake.Databases("JPHATXE-AR85340","COMPUTE_POWER_BI_WH",[Implementation="2.0"]),
+				    TF_COMPU_II_Database = Origen{[Name="TF_COMPU_II",Kind="Database"]}[Data],
+				    DBT_JTORRES_Schema = TF_COMPU_II_Database{[Name="DBT_JTORRES",Kind="Schema"]}[Data],
+				    FACT_PLAYER_SEASON_Table = DBT_JTORRES_Schema{[Name="FACT_PLAYER_SEASON",Kind="Table"]}[Data]
+				in
+				    FACT_PLAYER_SEASON_Table
+
+	annotation PBI_ResultType = Table
+

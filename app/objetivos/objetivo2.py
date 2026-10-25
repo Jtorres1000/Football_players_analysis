@@ -42,6 +42,12 @@ def objetivo2():
     st.subheader("Objetivo 2: Longevidad por posición de juego, periodo 2022-2026")
     st.markdown("**a) Proporción de jugadores veteranos (32-38 años) en cada posición**")
     chart_a = st.container()
+    st.subheader("Datos utilizados")
+    st.markdown(
+        "Se usa el modelo dimensional:`FACT_PLAYER_SEASON` con `DIM_PLAYER` y `DIM_AGE_BRACKET`. "
+        "Los conteos son registros jugador-temporada: un jugador que aparece en varias temporadas cuenta una ve por cada una."
+    )
+    tabla_a = st.container()
     
     datos = query_filtered_data("""
         SELECT
@@ -58,5 +64,17 @@ def objetivo2():
         chart_a.info("No se encontraron registros para la comninación de filtros seleccionada.")
     elif datos["VETERANOS"].sum() == 0:
         chart_a.info("Los filtros actuales no incluyen jugadores de 32 a 38 años, así que no se puede calcular esta proporción")
+    elif (datos["VETERANOS"] == datos["REGISTROS"]).all():
+        chart_a.info("Los filtros solo incluyen jugadores de 32 a 38 años, así que todas la posiciones dan 100%. Incluye otros grupos de edad para poder comparar.")
     else:
         chart_a.echarts_chart(opciones_veteranos(datos))
+        tabla_a.dataframe(
+            datos.assign(POSICION=datos["POSICION"].map(NOMBRES_POSICION)),
+            key="objetivo2_tabla_a",
+            hide_index=True,
+            column_config={
+                "POSICION": st.column_config.TextColumn("Posición"),
+                "REGISTROS": st.column_config.NumberColumn("Registros", format="%d"),
+                "VETERANOS": st.column_config.NumberColumn("% veteranos", format="%.1f%%"), 
+            },
+        )

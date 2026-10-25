@@ -45,7 +45,7 @@ def objetivo2():
     st.subheader("Datos utilizados")
     st.markdown(
         "Se usa el modelo dimensional:`FACT_PLAYER_SEASON` con `DIM_PLAYER` y `DIM_AGE_BRACKET`. "
-        "Los conteos son registros jugador-temporada: un jugador que aparece en varias temporadas cuenta una ve por cada una."
+        "Los conteos son registros jugador-temporada: un jugador que aparece en varias temporadas cuenta una vez por cada una."
     )
     tabla_a = st.container()
     
@@ -65,7 +65,7 @@ def objetivo2():
     elif datos["VETERANOS"].sum() == 0:
         chart_a.info("Los filtros actuales no incluyen jugadores de 32 a 38 años, así que no se puede calcular esta proporción")
     elif (datos["VETERANOS"] == datos["REGISTROS"]).all():
-        chart_a.info("Los filtros solo incluyen jugadores de 32 a 38 años, así que todas la posiciones dan 100%. Incluye otros grupos de edad para poder comparar.")
+        chart_a.info("Los filtros solo incluyen jugadores de 32 a 38 años, así que todas las posiciones dan 100%. Incluye otros grupos de edad para poder comparar.")
     else:
         chart_a.echarts_chart(opciones_veteranos(datos))
         tabla_a.dataframe(
@@ -75,6 +75,7 @@ def objetivo2():
             column_config={
                 "POSICION": st.column_config.TextColumn("Posición"),
                 "REGISTROS": st.column_config.NumberColumn("Registros", format="%d"),
-                "VETERANOS": st.column_config.NumberColumn("% veteranos", format="%.1f%%"), 
+                "VETERANOS": st.column_config.NumberColumn("Registros de 32-38 años", format="%d"),
+                "PCT_VETERANOS": st.column_config.NumberColumn("% veteranos", format="%.1f%%"),  
             },
         )

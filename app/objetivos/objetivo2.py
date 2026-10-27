@@ -20,7 +20,7 @@ COLORES_POSICION = {
 #funcion auxiliar
 
 def nombre(posicion):
-    return NOMBRES_POSICION.get(posicion, posicion).lower()
+    return NOMBRES_POSICION.get(posicion, posicion).lower()[0:-1]
 
 #funcion auxiliar
 
@@ -33,7 +33,7 @@ def datos_a_validos(datos):
 
 def opciones_veteranos(datos):
     return {
-        "tooltip": {"trigger": "axis"},
+        "tooltip": {"trigger": "item"},
         "xAxis": {
             "type": "category",
             "data": [NOMBRES_POSICION.get(p, p) for p in datos["POSICION"]],
@@ -84,13 +84,13 @@ def interpretar_objetivo2(datos, cambios):
         if len(datos) == 1:
             texto += (
                 f"En la posición de {nombre(mayor['POSICION'])}, el {mayor['PCT_VETERANOS']}% "
-                f"de los registros corresponde a jugadores de 32 a 38 años. "
+                f"de los registros corresponde a jugadores de 32 a 38 años."
             )
         else:
             pos_a = mayor["POSICION"]
             texto += (
                 f"La posición con mayor proporción de jugadores de 32 a 38 años es la de "
-                f"{nombre(pos_a)} ({mayor['PCT_VETERANOS']}%). "
+                f"{nombre(pos_a)} con ({mayor['PCT_VETERANOS']}%). "
             )
 
     veteranos = cambios[cambios["GRUPO_ETARIO"] == "32-38"]
@@ -98,7 +98,7 @@ def interpretar_objetivo2(datos, cambios):
         mejor = veteranos.loc[veteranos["CAMBIO_PROMEDIO"].idxmax()]
         if len(veteranos) == 1:
             texto += (
-                f"Entre los 32 y 38 años, los {nombre(mejor['POSICION'])} cambian en promedio "
+                f"Entre los 32 y 38 años, los {nombre(mejor['POSICION'])}s cambian en promedio "
                 f"{mejor['CAMBIO_PROMEDIO']} puntos de habilidad por temporada. "
             )
         else:
@@ -107,29 +107,28 @@ def interpretar_objetivo2(datos, cambios):
             diferencia = round(mejor["CAMBIO_PROMEDIO"] - peor["CAMBIO_PROMEDIO"], 1)
             texto += (
                 f"Entre los 32 y 38 años, la posición que mejor conserva su habilidad es la de "
-                f"{nombre(pos_b)} ({mejor['CAMBIO_PROMEDIO']} puntos por temporada) y la que más pierde, "
-                f"la de {nombre(peor['POSICION'])} ({peor['CAMBIO_PROMEDIO']}); la diferencia es de {diferencia} puntos. "
+                f"{nombre(pos_b)} que cambia ({mejor['CAMBIO_PROMEDIO']}) puntos por temporada y la que más pierde puntos es la de "
+                f"{nombre(peor['POSICION'])} con ({peor['CAMBIO_PROMEDIO']}) puntos; la diferencia entre ambas es de {diferencia} puntos. "
             )
             if diferencia < 5:
                 texto += "Es una diferencia pequeña: la pérdida de habilidad con la edad es parecida en todas las posiciones. "
                 
     if pos_a and pos_b:
         if pos_a == pos_b:
-            texto += f"La posición de {nombre(pos_a)} resulta la más longeva según ambos criterios. "
+            texto += f"La posición de {nombre(pos_a)} resulta ser la más longeva según ambos criterios."
         else:
             texto += (
-                f"Los dos criterios no coinciden: los {nombre(pos_a)} son los que más tiempo permanecen en activo "
-                f"y los {nombre(pos_b)} los que mejor conservan su habilidad. "
+                f"Los dos criterios no coinciden: los {nombre(pos_a)}s son los que más tiempo permanecen activos "
+                f"y los {nombre(pos_b)}s los que mejor conservan su habilidad."
             )
     if datos_a_validos(datos):
         texto += (
-            "La proporción de veteranos varía mucho entre temporadas, porque las temporadas generadas "
-            "(2022/23 a 2024/25) tienen muchos menos jugadores de 32 a 38 años que la temporada real 2025/26."
+            "La proporción de veteranos varía mucho entre temporadas, porque las temporadas generadas entre "
+            "2022/23 a 2024/25, tienen muchos menos jugadores de 32 a 38 años que la temporada real 2025/26."
         )
     if not texto:
         texto = "Con los filtros actuales no hay datos suficientes para interpretar la longevidad."
     return texto
-
 
 def tarjetas_objetivo2(slot, datos, cambios):
     tarjetas = []
@@ -154,7 +153,6 @@ def tarjetas_objetivo2(slot, datos, cambios):
             border=True,
         )
 
-
 def objetivo2():
     st.subheader("Objetivo 2: Longevidad por posición de juego, periodo 2022-2026")
     st.markdown("**a) Proporción de jugadores veteranos (32-38 años) en cada posición**")
@@ -165,11 +163,8 @@ def objetivo2():
     tarjetas_slot = st.container()
     texto_slot = st.container()
     st.subheader("Datos utilizados")
-    st.markdown(
-        "Se usa el modelo dimensional:`FACT_PLAYER_SEASON` con `DIM_PLAYER` y `DIM_AGE_BRACKET`. "
-        "Los conteos son registros jugador-temporada: un jugador que aparece en varias temporadas cuenta una vez por cada una."
-    )
-    st.markdown("**Parte a**")
+
+    st.markdown("**Parte a**: Se usa el modelo dimensional:`FACT_PLAYER_SEASON` con `DIM_PLAYER` y `DIM_AGE_BRACKET`. Los conteos son registros jugador-temporada: un jugador que aparece en varias temporadas cuenta una vez por cada una")
     tabla_a = st.container()
     st.markdown(
         "**Parte b**: se usa `ABILITY_SCORE_DELTA`, la diferencia entre la habilidad de cada jugador "
@@ -189,11 +184,14 @@ def objetivo2():
     """)
     
     if datos.empty:
-        chart_a.info("No se encontraron registros para la comninación de filtros seleccionada.")
+        chart_a.info("No se encontraron registros para la combinación de filtros seleccionada.")
+        tabla_a.info("No se encontraron registros para la combinación de filtros seleccionada.")
     elif datos["VETERANOS"].sum() == 0:
         chart_a.info("Los filtros actuales no incluyen jugadores de 32 a 38 años, así que no se puede calcular esta proporción")
+        tabla_a.info("Los filtros actuales no incluyen jugadores de 32 a 38 años, así que no se puede calcular esta proporción")
     elif (datos["VETERANOS"] == datos["REGISTROS"]).all():
         chart_a.info("Los filtros solo incluyen jugadores de 32 a 38 años, así que todas las posiciones dan 100%. Incluye otros grupos de edad para poder comparar.")
+        tabla_a.info("Los filtros solo incluyen jugadores de 32 a 38 años, así que todas las posiciones dan 100%. Incluye otros grupos de edad para poder comparar.")
     else:
         chart_a.echarts_chart(opciones_veteranos(datos))
         tabla_a.dataframe(
@@ -221,7 +219,8 @@ def objetivo2():
     """)
 
     if cambios.empty:
-        chart_b.info("No hay cambios que mostrar con estos filtros. La temporada 2022/23 no tiene una temporada anterior con la cual comparar.")
+        chart_b.info("No se encontraron registros para la combinación de filtros seleccionada.")
+        tabla_b.info("No se encontraron registros para la combinación de filtros seleccionada.")
     else:
         chart_b.echarts_chart(opciones_cambio(cambios))
         tabla_b.dataframe(

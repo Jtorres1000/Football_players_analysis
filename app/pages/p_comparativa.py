@@ -204,29 +204,18 @@ def get_club_roster_stats(club_name: str) -> list[dict]:
     return df.to_dict(orient="records")
 
 
-def _build_radar_chart_option(
+def build_radar_chart_option(
     p1_data: dict,
     p2_data: dict,
     bounds: dict[str, tuple[float, float]],
 ) -> dict:
-    indicators = []
-    p1_values = []
-    p2_values = []
-
-    for key, label in METRICS:
-        min_val, max_val = bounds[key]
-        indicators.append({
-            "name": label,
-            "text": label,
-            "min": min_val,
-            "max": max_val,
-        })
-
-        v1 = p1_data[key]
-        v2 = p2_data[key]
-
-        p1_values.append(round(v1, 4) if isinstance(v1, float) else int(v1))
-        p2_values.append(round(v2, 4) if isinstance(v2, float) else int(v2))
+    """
+    Construye el gráfico de radar usando la data de los jugadores seleccionados.
+    """
+    players_style = [
+        (p1_data, "#04f5ff", "rgba(4, 245, 255, 0.25)"),
+        (p2_data, "#e4006f", "rgba(228, 0, 111, 0.25)"),
+    ]
 
     return {
         "backgroundColor": "rgba(29, 2, 32, 0.9)",
@@ -281,49 +270,26 @@ def _build_radar_chart_option(
                     "color": "rgba(255, 255, 255, 0.12)",
                 },
             },
-            "indicator": indicators,
+            "indicator": [
+                {"name": label, "min": bounds[key][0], "max": bounds[key][1]}
+                for key, label in METRICS
+            ],
         },
         "series": [
             {
                 "type": "radar",
-                "emphasis": {
-                    "lineStyle": {
-                        "width": 4,
-                    },
-                },
+                "emphasis": {"lineStyle": {"width": 4}},
                 "data": [
                     {
-                        "value": p1_values,
-                        "name": p1_data["name"],
+                        "value": [p[key] for key, _ in METRICS],
+                        "name": p["name"],
                         "symbol": "circle",
                         "symbolSize": 6,
-                        "lineStyle": {
-                            "color": "#04f5ff",
-                            "width": 3,
-                        },
-                        "itemStyle": {
-                            "color": "#04f5ff",
-                        },
-                        "areaStyle": {
-                            "color": "rgba(4, 245, 255, 0.25)",
-                        },
-                    },
-                    {
-                        "value": p2_values,
-                        "name": p2_data["name"],
-                        "symbol": "circle",
-                        "symbolSize": 6,
-                        "lineStyle": {
-                            "color": "#e4006f",
-                            "width": 3,
-                        },
-                        "itemStyle": {
-                            "color": "#e4006f",
-                        },
-                        "areaStyle": {
-                            "color": "rgba(228, 0, 111, 0.25)",
-                        },
-                    },
+                        "lineStyle": {"color": color, "width": 3},
+                        "itemStyle": {"color": color},
+                        "areaStyle": {"color": area_color},
+                    }
+                    for p, color, area_color in players_style
                 ],
             }
         ],

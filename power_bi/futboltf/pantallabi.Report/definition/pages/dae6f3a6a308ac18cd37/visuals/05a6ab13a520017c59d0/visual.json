@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "05a6ab13a520017c59d0",
+  "position": {
+    "x": 655,
+    "y": 87.5,
+    "z": 0,
+    "height": 475,
+    "width": 1172.5,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "ANÁLISIS DEL CICLO DE VIDA FUTBOLÍSTICO SEGÚN LA POSICIÓN CON BASE EN EL RENDIMIENTO, LA LONGEVIDAD Y EL IMPACTO DE ESTOS EN EL INGRESO SALARIAL (2022-2026)",
+                    "textStyle": {
+                      "fontFamily": "DIN",
+                      "fontSize": "54pt",
+                      "color": "#fafafa"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

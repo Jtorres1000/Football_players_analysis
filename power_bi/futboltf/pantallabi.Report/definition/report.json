@@ -40,7 +40,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "false"
+                "Value": "true"
               }
             }
           }
@@ -70,13 +70,8 @@
           "type": "CustomTheme"
         },
         {
-          "name": "Gemini_Generated_Image_cw7bvmc15655983259612571.png",
-          "path": "Gemini_Generated_Image_cw7bvmc15655983259612571.png",
-          "type": "Image"
-        },
-        {
-          "name": "Gemini_Generated_Image_nqh7k2n9510731435225581.jpeg",
-          "path": "Gemini_Generated_Image_nqh7k2n9510731435225581.jpeg",
+          "name": "Presentaci_n_El_f_tbol_Ilustra561519680596918.jpg",
+          "path": "Presentaci_n_El_f_tbol_Ilustra561519680596918.jpg",
           "type": "Image"
         }
       ]

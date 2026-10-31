@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 6.4000000953674316,
+        "x": 6,
         "y": 0
       },
       "nodes": [
@@ -59,6 +59,19 @@
             "width": 234
           },
           "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 910.27761697517485,
+            "y": 206.36606298381002
+          },
+          "nodeIndex": "Participantes_Proyecto",
+          "nodeLineageTag": "52ee3eb1-68d0-43df-8dd5-2bb0909d1236",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas las tablas",

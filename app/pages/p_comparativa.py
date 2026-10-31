@@ -358,15 +358,14 @@ def p_comparativa():
 
     st.markdown(
         """
-        ### Propósito del Módulo y Flujo de Trabajo
+        ### Uso del comparador
 
-        Esta herramienta permite comparar perfiles de rendimiento entre dos futbolistas en seis dimensiones esenciales: goles, regates realizados, entradas completadas, ratio de paradas, ocasiones creadas y pases completados. Los ejes emplean una escala normalizada con topes referenciales globales extraídos del modelo dimensional, garantizando que el perfil geométrico de cada jugador permanezca inmutable al contrastarlo frente a distintos rivales.
+        Esta sección permite contrastar el rendimiento acumulado de dos futbolistas en seis métricas clave: goles, regates, entradas completadas, ratio de paradas, ocasiones creadas y pases completados. Los ejes del radar utilizan los valores máximos y mínimos globales de la base de datos para normalizar los rangos.
 
-        **Pasos para el análisis:**
-        1. **Inspección del Radar**: Observa la superposición de polígonos en la tarjeta visual. Al interactuar con cada vértice, el cursor revelará la estadística cuantitativa acumulada real.
-        2. **Configuración de Candidatos**: Filtra por división, posición, rol, lado o nombre para acotar la búsqueda y selecciona a los dos futbolistas a confrontar.
-        3. **Asignación del Club Objetivo**: Selecciona la división y el equipo donde se proyecta la evaluación de los perfiles para activar la comunicación con el módulo de inteligencia.
-        4. **Envío al Agente Coach**: Acciona el botón de envío para empaquetar los datos de los futbolistas y la plantilla actual (2025/26) del club en la estructura estandarizada que procesará el agente para el reporte final.
+        **Pasos:**
+        1. **Filtrar y elegir candidatos**: Usa los selectores debajo del gráfico para buscar por liga, posición, rol, banda o nombre a los dos jugadores que quieras comparar.
+        2. **Elegir el club destino**: Selecciona la división y el club donde se evaluaría su incorporación, se incluirá el roester actual del club temporada 2025-2026.
+        3. **Enviar al Agente Coach**: Cuando esté listo, haz click en enviar para hacer la solicitud a nuestro agente de IA con las estadísticas de ambos candidatos y la plantilla actual del club seleccionado.
         """
     )
 

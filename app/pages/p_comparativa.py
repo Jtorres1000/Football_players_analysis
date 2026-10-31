@@ -105,25 +105,20 @@ def get_available_roles(category: str) -> list[str]:
 
 
 @st.cache_data(ttl="1h", show_spinner=False)
-def _get_available_sides(category: str, role_code: str) -> list[str]:
-    conditions = ["PRIMARY_SIDE_CODE IS NOT NULL"]
-    params: list = []
-    if category and category != "Todas":
-        conditions.append("PRIMARY_CATEGORY = ?")
-        params.append(category)
-    if role_code and role_code != "Todos":
-        conditions.append("PRIMARY_ROLE_CODE = ?")
-        params.append(role_code)
-
-    where_clause = " AND ".join(conditions)
+def get_available_sides(category: str, role_code: str) -> list[str]:
+    """
+    Devuelve los códigos de banda disponibles según la categoría y el rol táctico seleccionados.
+    """
     df = query_base_data(
-        f"""
+        """
         SELECT DISTINCT PRIMARY_SIDE_CODE
         FROM df_base
-        WHERE {where_clause}
+        WHERE PRIMARY_SIDE_CODE IS NOT NULL
+          AND (? = 'Todas' OR PRIMARY_CATEGORY = ?)
+          AND (? = 'Todos' OR PRIMARY_ROLE_CODE = ?)
         ORDER BY PRIMARY_SIDE_CODE
         """,
-        params=params,
+        params=[category, category, role_code, role_code],
     )
     return df["PRIMARY_SIDE_CODE"].tolist()
 

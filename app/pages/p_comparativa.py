@@ -142,13 +142,12 @@ def get_clubs_by_division(division_name: str) -> list[str]:
 
 
 @st.cache_data(ttl="1h", show_spinner=False)
-def _search_candidate_options(
+def search_candidate_options(
     division: str,
     category: str,
     role_code: str,
     side_code: str,
     search_term: str,
-    default_name: str | None = None,
     limit: int = 80,
 ) -> list[dict]:
     conditions = ["1=1"]

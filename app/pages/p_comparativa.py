@@ -379,47 +379,27 @@ def p_comparativa():
     with controls_container:
         col1, col2 = st.columns(2)
         with col1:
-            p1_id = _render_candidate_selector(
-                slot_key="comp_p1",
-                title_label="Jugador 1 (Candidato A)",
-                default_player_name="Nesto Groen",
-                divisions_options=divisions_filter_options,
-            )
+            p1_data = render_candidate_selector("comp_p1", "Jugador 1 (Candidato A)", divisions_filter_options, 0)
         with col2:
-            p2_id = _render_candidate_selector(
-                slot_key="comp_p2",
-                title_label="Jugador 2 (Candidato B)",
-                default_player_name="Vinícius Júnior",
-                divisions_options=divisions_filter_options,
-            )
+            p2_data = render_candidate_selector("comp_p2", "Jugador 2 (Candidato B)", divisions_filter_options, 1)
 
         st.markdown("#### Selección de Club Objetivo (Temporada 2025/26)")
         team_col1, team_col2 = st.columns(2)
-
         with team_col1:
             selected_team_div = st.selectbox(
                 "División",
                 options=divisions,
                 index=None,
-                placeholder="Seleccione primero una división...",
+                placeholder="Selecciona una división...",
                 key="comp_team_div",
             )
         with team_col2:
-            clubs_in_div = (
-                _get_clubs_by_division(selected_team_div)
-                if selected_team_div
-                else []
-            )
             selected_team = st.selectbox(
-                "Selecciona el equipo para la Comparativa",
-                options=clubs_in_div,
+                "Equipo para la comparativa",
+                options=get_clubs_by_division(selected_team_div) if selected_team_div else [],
                 index=None,
-                placeholder=(
-                    "Seleccione un equipo..."
-                    if selected_team_div
-                    else "Elija una división para listar sus clubes..."
-                ),
-                disabled=not bool(selected_team_div),
+                placeholder="Selecciona un equipo...",
+                disabled=not selected_team_div,
                 key="comp_team",
             )
 
@@ -427,79 +407,33 @@ def p_comparativa():
             "Enviar al Agente Coach",
             type="primary",
             use_container_width=True,
-            disabled=not bool(selected_team and p1_id is not None and p2_id is not None),
+            disabled=not (selected_team and p1_data and p2_data),
         )
 
-    p1_data = _get_player_stats_by_id(p1_id) if p1_id is not None else _get_player_stats_by_id(-1)
-    p2_data = _get_player_stats_by_id(p2_id) if p2_id is not None else _get_player_stats_by_id(-1)
+    if not (p1_data and p2_data):
+        radar_container.info("Selecciona dos jugadores válidos para visualizar el radar comparativo.")
+        return
 
     with radar_container:
-        tag1 = _format_position_tag(
-            p1_data.get("primary_category"),
-            p1_data.get("primary_role_code"),
-            p1_data.get("primary_side_code"),
-        )
-        tag2 = _format_position_tag(
-            p2_data.get("primary_category"),
-            p2_data.get("primary_role_code"),
-            p2_data.get("primary_side_code"),
-        )
-
         card_header = f"""
-        <div style="
-            background: linear-gradient(135deg, #26042a 0%, #1d0220 100%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px 16px 0 0;
-            padding: 20px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        ">
-            <div style="display: flex; align-items: center; gap: 14px;">
-                <div style="
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 50%;
-                    background: rgba(228, 0, 111, 0.15);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border: 1px solid rgba(228, 0, 111, 0.4);
-                    flex-shrink: 0;
-                ">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="9" stroke="#e4006f" stroke-width="2"/>
-                        <circle cx="12" cy="12" r="5" stroke="#e4006f" stroke-width="2"/>
-                        <circle cx="12" cy="12" r="2" fill="#e4006f"/>
-                    </svg>
+        <div style="background:linear-gradient(135deg,#26042a 0%,#1d0220 100%);border:1px solid rgba(255,255,255,0.08);border-radius:16px 16px 0 0;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:40px;height:40px;border-radius:50%;background:rgba(4,245,255,0.12);border:1px solid rgba(4,245,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#04f5ff"><path d="M8.1,21.21q-1.82-0.79-3.17-2.14Q3.58,17.73 2.79,15.9T2,12Q2,9.92 2.79,8.1Q3.58,6.27 4.93,4.93Q6.28,3.57 8.1,2.79Q9.93,2 12,2t3.9,0.79t3.17,2.14q1.35,1.35 2.14,3.17Q22,9.92 22,12t-0.79,3.9t-2.14,3.17q-1.35,1.35-3.17,2.14T12,22q-2.07,0-3.9-0.79ZM12,20q1.4,0 2.64-0.44t2.26-1.24L15.48,16.9q-0.73,0.53-1.61,0.81T12,18q-2.5,0-4.25-1.75T6,12T7.75,7.75T12,6t4.25,1.75T18,12q0,0.97-0.3,1.88T16.88,15.5l1.43,1.43q0.8-1.03 1.25-2.28T20,12q0-3.35-2.32-5.68T12,4T6.33,6.32T4,12t2.33,5.68T12,20Zm0-4q0.55,0 1.06-0.14q0.51-0.14 0.96-0.41L12.5,13.93q-0.13,0.05-0.25,0.06T12,14q-0.82,0-1.41-0.59T10,12t0.59-1.41T12,10t1.41,0.59Q14,11.18 14,12q0,0.15-0.01,0.29t-0.06,0.26l1.5,1.5q0.28-0.45 0.43-0.96Q16,12.58 16,12q0-1.65-1.17-2.83T12,8T9.18,9.17T8,12t1.18,2.82T12,16Z"/></svg>
                 </div>
                 <div>
-                    <div style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: #fbfaff; line-height: 1.2;">
+                    <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#fbfaff;">
                         Radar Comparativo de Jugadores
                     </div>
-                    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #c6b5cb; margin-top: 3px;">
+                    <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:#c6b5cb;margin-top:3px;">
                         Comparando {p1_data['name']} vs {p2_data['name']}
                     </div>
                 </div>
             </div>
-            <div style="
-                background: rgba(255, 255, 255, 0.06);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 20px;
-                padding: 6px 14px;
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: 0.03em;
-                display: flex;
-                align-items: center;
-                white-space: nowrap;
-            ">
-                <span style="color: #04f5ff;">P1: {tag1}</span>
-                <span style="color: rgba(255, 255, 255, 0.25); margin: 0 8px;">|</span>
-                <span style="color: #e4006f;">P2: {tag2}</span>
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;">
+                <span style="color:#04f5ff;">P1: {format_position_tag(p1_data)}</span>
+                <span style="color:rgba(255,255,255,0.25);margin:0 8px;">|</span>
+                <span style="color:#e4006f;">P2: {format_position_tag(p2_data)}</span>
             </div>
         </div>
         """

@@ -40,6 +40,13 @@
           "expanded": {
             "expr": {
               "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
                 "Value": "true"
               }
             }
@@ -72,6 +79,16 @@
         {
           "name": "Presentaci_n_El_f_tbol_Ilustra561519680596918.jpg",
           "path": "Presentaci_n_El_f_tbol_Ilustra561519680596918.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Presentaci_n_El_f_tbol_Ilustra610626966665576.jpg",
+          "path": "Presentaci_n_El_f_tbol_Ilustra610626966665576.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Presentaci_n_El_f_tbol_Ilustra8216100747968793.jpg",
+          "path": "Presentaci_n_El_f_tbol_Ilustra8216100747968793.jpg",
           "type": "Image"
         }
       ]

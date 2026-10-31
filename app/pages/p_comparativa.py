@@ -157,62 +157,27 @@ def search_candidate_options(
     term = f"%{search_term.strip()}%" if search_term else "%"
     df = query_base_data(
         f"""
-        SELECT
-            CAST(PLAYER_ID AS INT) AS player_id,
-            NAME AS name,
-            PRIMARY_CATEGORY AS primary_category,
-            PRIMARY_ROLE_CODE AS primary_role_code,
-            PRIMARY_SIDE_CODE AS primary_side_code,
-            MAX(ABILITY_SCORE) AS max_ability
+        {STATS_SELECT_SQL}
         FROM df_base
-        WHERE {where_clause}
-        GROUP BY
-            PLAYER_ID,
-            NAME,
-            PRIMARY_CATEGORY,
-            PRIMARY_ROLE_CODE,
-            PRIMARY_SIDE_CODE
-        ORDER BY max_ability DESC NULLS LAST, NAME ASC
+        WHERE (? = 'Todas' OR PRIMARY_CATEGORY = ?)
+          AND (? = 'Todos' OR PRIMARY_ROLE_CODE = ?)
+          AND (? = 'Todos' OR PRIMARY_SIDE_CODE = ?)
+          AND NAME ILIKE ?
+        GROUP BY PLAYER_ID, NAME, PRIMARY_CATEGORY, PRIMARY_ROLE_CODE, PRIMARY_SIDE_CODE
+        HAVING BOOL_OR(? = 'Todas' OR DIVISION_NAME = ?)
+        ORDER BY MAX(ABILITY_SCORE) DESC, NAME ASC
         LIMIT ?
         """,
-        params=params,
+        params=[
+            category, category,
+            role_code, role_code,
+            side_code, side_code,
+            term,
+            division, division,
+            limit,
+        ],
     )
-    records = df.to_dict(orient="records")
-
-    if (
-        default_name
-        and division == "Todas"
-        and category == "Todas"
-        and role_code == "Todos"
-        and side_code == "Todos"
-        and not cleaned_search
-        and not any(r["name"] == default_name for r in records)
-    ):
-        default_df = query_base_data(
-            """
-            SELECT
-                CAST(PLAYER_ID AS INT) AS player_id,
-                NAME AS name,
-                PRIMARY_CATEGORY AS primary_category,
-                PRIMARY_ROLE_CODE AS primary_role_code,
-                PRIMARY_SIDE_CODE AS primary_side_code,
-                MAX(ABILITY_SCORE) AS max_ability
-            FROM df_base
-            WHERE NAME = ?
-            GROUP BY
-                PLAYER_ID,
-                NAME,
-                PRIMARY_CATEGORY,
-                PRIMARY_ROLE_CODE,
-                PRIMARY_SIDE_CODE
-            LIMIT 1
-            """,
-            params=[default_name],
-        )
-        if not default_df.empty:
-            records.insert(0, default_df.iloc[0].to_dict())
-
-    return records
+    return df.to_dict(orient="records")
 
 
 @st.cache_data(ttl="1h", show_spinner=False)

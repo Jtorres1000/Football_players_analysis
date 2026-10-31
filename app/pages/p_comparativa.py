@@ -369,8 +369,8 @@ def p_comparativa():
         """
     )
 
-    bounds = _get_global_metric_bounds()
-    divisions = _get_available_divisions()
+    bounds = get_global_metric_bounds()
+    divisions = get_available_divisions()
     divisions_filter_options = ["Todas"] + divisions
 
     radar_container = st.container()

@@ -13,38 +13,26 @@ METRICS = [
     ("passes_completed", "Pases Completados"),
 ]
 
-POSITION_OPTIONS = [
-    "Todas",
-    "ATTACKER",
-    "MIDFIELDER",
-    "DEFENDER",
-    "GOALKEEPER",
-]
+POSITION_OPTIONS = ["Todas", "ATTACKER", "MIDFIELDER", "DEFENDER", "GOALKEEPER"]
+
+STATS_SELECT_SQL = """
+    SELECT
+        NAME AS name,
+        PRIMARY_CATEGORY AS primary_category,
+        PRIMARY_ROLE_CODE AS primary_role_code,
+        PRIMARY_SIDE_CODE AS primary_side_code,
+        CAST(SUM(GOALS) AS INT) AS goals,
+        CAST(SUM(DRIBBLES_MADE) AS INT) AS dribbles_made,
+        CAST(SUM(TACKLES_COMPLETED) AS INT) AS tackles_completed,
+        ROUND(AVG(SAVE_RATIO), 4) AS save_ratio,
+        CAST(SUM(CHANCES_CREATED) AS INT) AS chances_created,
+        CAST(SUM(PASSES_COMPLETED) AS INT) AS passes_completed
+"""
 
 
-def _clean_code(val) -> str | None:
-    if val is None or pd.isna(val):
-        return None
-    s = str(val).strip()
-    return s if s else None
-
-
-def _format_position_tag(
-    category: str | None,
-    role_code: str | None,
-    side_code: str | None,
-) -> str:
-    cat = _clean_code(category) or "N/A"
-    role = _clean_code(role_code)
-    side = _clean_code(side_code)
-
-    if role and side:
-        return f"{cat}({role} - {side})"
-    if role:
-        return f"{cat}({role})"
-    if side:
-        return f"{cat}({side})"
-    return cat
+def format_position_tag(player):
+    cat, role, side = player["primary_category"], player["primary_role_code"], player["primary_side_code"]
+    return f"{cat} ({role} - {side})" if pd.notna(side) else f"{cat} ({role})"
 
 
 @st.cache_data(ttl="1h", show_spinner=False)

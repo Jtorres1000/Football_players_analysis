@@ -72,10 +72,7 @@ def get_snowflake_connection():
 
 def _optimize_dataframe_memory(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Optimiza el uso de RAM sin pérdida de precisión
-    - Textos se almacenan en memoria contigua C++ con PyArrow 
-      sin convertirlos en ENUM/categorías.
-    - Enteros se reducen al tipo entero exacto más pequeño (int8/int16/int32).
+    Optimiza el uso de RAM sin pérdida de precisión usando pyarrow para strings y downcast para enteros. Esto reduce el consumo de memoria
     """
     df = df.copy()
     df.columns = df.columns.str.upper()
@@ -159,8 +156,7 @@ def query_filtered_data(sql_query: str) -> pd.DataFrame:
 
 def query_base_data(sql_query: str, params: list | None = None) -> pd.DataFrame:
     """
-    Ejecuta una consulta SQL de DuckDB directamente sobre `df_base` (el Mart completo en caché,
-    independiente de los filtros del sidebar).
+    Ejecuta una consulta SQL de DuckDB directamente sobre `df_base` usa el mart completo en caché.
     """
     df_base = load_base_mart_data()
 

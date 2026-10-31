@@ -93,13 +93,13 @@ def get_available_roles(category: str) -> list[str]:
     Devuelve los códigos de rol táctico disponibles para la categoría posicional seleccionada.
     """
     df = query_base_data(
-        f"""
+        """
         SELECT DISTINCT PRIMARY_ROLE_CODE
         FROM df_base
-        WHERE {where_clause}
+        WHERE (? = 'Todas' OR PRIMARY_CATEGORY = ?)
         ORDER BY PRIMARY_ROLE_CODE
         """,
-        params=params,
+        params=[category, category],
     )
     return df["PRIMARY_ROLE_CODE"].tolist()
 

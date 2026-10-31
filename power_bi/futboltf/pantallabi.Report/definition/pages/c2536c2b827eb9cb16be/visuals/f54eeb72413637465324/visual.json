@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f54eeb72413637465324",
+  "position": {
+    "x": 1162.7262569832403,
+    "y": 45.050279329608941,
+    "z": 6001,
+    "height": 429,
+    "width": 545,
+    "tabOrder": 6001
+  },
+  "visual": {
+    "visualType": "hundredPercentStackedColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_PLAYER"
+                    }
+                  },
+                  "Property": "PRIMARY_CATEGORY"
+                }
+              },
+              "queryRef": "DIM_PLAYER.PRIMARY_CATEGORY",
+              "nativeQueryRef": "PRIMARY_CATEGORY",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_AGE_BRACKET"
+                    }
+                  },
+                  "Property": "AGE_GROUP"
+                }
+              },
+              "queryRef": "DIM_AGE_BRACKET.AGE_GROUP",
+              "nativeQueryRef": "AGE_GROUP"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_PLAYER_SEASON"
+                    }
+                  },
+                  "Property": "Proporcion_Veteranos"
+                }
+              },
+              "queryRef": "FACT_PLAYER_SEASON.Proporcion_Veteranos",
+              "nativeQueryRef": "Proporcion_Veteranos"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT_PLAYER_SEASON"
+                  }
+                },
+                "Property": "Proporcion_Veteranos"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

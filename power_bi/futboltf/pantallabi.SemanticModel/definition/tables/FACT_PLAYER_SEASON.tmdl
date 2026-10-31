@@ -1,6 +1,34 @@
 table FACT_PLAYER_SEASON
 	lineageTag: e241d426-a720-42a5-9d96-02b87f45308f
 
+	measure Proporcion_Veteranos =
+			
+			DIVIDE(
+			    CALCULATE(
+			        DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY]),
+			        DIM_AGE_BRACKET[AGE_GROUP] = "32-38"
+			    ),
+			    DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY]),
+			    0
+			)
+		lineageTag: 435ad164-c6e3-4578-bcbe-638defd1ac74
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Jugadores = DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY])
+		formatString: 0
+		lineageTag: 9146d507-8ae3-424d-b9c1-bb99259e52b1
+
+	measure Salario_Anual_Promedio = AVERAGE(FACT_PLAYER_SEASON[ANNUAL_WAGE_EUR])
+		lineageTag: 2236e027-3a5e-4887-9938-0fb92096e94c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Puntaje_Promedio = AVERAGE(FACT_PLAYER_SEASON[ABILITY_SCORE])
+		lineageTag: 559fe8c1-214c-4213-beda-9eff28e66572
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column PLAYER_SEASON_KEY
 		dataType: string
 		lineageTag: de83a5cd-270e-408d-b739-ed751a3460c8
@@ -68,6 +96,74 @@ table FACT_PLAYER_SEASON
 		lineageTag: 873b3d13-7410-4fc8-95c1-fffe4b1c065c
 		summarizeBy: sum
 		sourceColumn: ANNUAL_WAGE_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLUB_KEY
+		dataType: string
+		lineageTag: a21b092a-6717-43d0-b9e2-77d1aff800e7
+		summarizeBy: none
+		sourceColumn: CLUB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column GOALS
+		dataType: double
+		lineageTag: 9cf61ae5-cbb9-4aca-96bd-63005aa8d706
+		summarizeBy: sum
+		sourceColumn: GOALS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DRIBBLES_MADE
+		dataType: double
+		lineageTag: 1bb32702-b82b-43c1-a67d-75e1d89fea3f
+		summarizeBy: sum
+		sourceColumn: DRIBBLES_MADE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TACKLES_COMPLETED
+		dataType: double
+		lineageTag: ebefb248-d89f-45bf-a6d7-fbdb8c2bface
+		summarizeBy: sum
+		sourceColumn: TACKLES_COMPLETED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SAVE_RATIO
+		dataType: double
+		lineageTag: 14265386-f8e8-4e29-8067-f20b997b0a1c
+		summarizeBy: sum
+		sourceColumn: SAVE_RATIO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CHANCES_CREATED
+		dataType: double
+		lineageTag: ca46759c-2da0-4eb4-92b4-12de5e3e2a01
+		summarizeBy: sum
+		sourceColumn: CHANCES_CREATED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PASSES_COMPLETED
+		dataType: double
+		lineageTag: 07b33909-2356-4f85-a9e9-8c8b645fba26
+		summarizeBy: sum
+		sourceColumn: PASSES_COMPLETED
 
 		annotation SummarizationSetBy = Automatic
 

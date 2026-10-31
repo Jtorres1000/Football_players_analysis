@@ -150,33 +150,11 @@ def search_candidate_options(
     search_term: str,
     limit: int = 80,
 ) -> list[dict]:
-    conditions = ["1=1"]
-    params: list = []
-
-    if division and division != "Todas":
-        conditions.append("DIVISION_NAME = ?")
-        params.append(division)
-
-    if category and category != "Todas":
-        conditions.append("PRIMARY_CATEGORY = ?")
-        params.append(category)
-
-    if role_code and role_code != "Todos":
-        conditions.append("PRIMARY_ROLE_CODE = ?")
-        params.append(role_code)
-
-    if side_code and side_code != "Todos":
-        conditions.append("PRIMARY_SIDE_CODE = ?")
-        params.append(side_code)
-
-    cleaned_search = search_term.strip() if search_term else ""
-    if cleaned_search:
-        conditions.append("NAME ILIKE ?")
-        params.append(f"%{cleaned_search}%")
-
-    where_clause = " AND ".join(conditions)
-    params.append(limit)
-
+    """
+    Filtra jugadores según los criterios seleccionados y devuelve sus estadísticas acumuladas
+    en todas las temporadas, ordenados por mayor habilidad.
+    """
+    term = f"%{search_term.strip()}%" if search_term else "%"
     df = query_base_data(
         f"""
         SELECT

@@ -181,89 +181,27 @@ def search_candidate_options(
 
 
 @st.cache_data(ttl="1h", show_spinner=False)
-def _get_player_stats_by_id(player_id: int) -> dict:
+def get_club_roster_stats(club_name: str) -> list[dict]:
+    """
+    Obtiene la plantilla 2025/26 del club seleccionado junto con las estadísticas históricas
+    acumuladas de cada uno de sus jugadores.
+    """
     df = query_base_data(
-        """
-        SELECT
-            NAME AS name,
-            PRIMARY_CATEGORY AS primary_category,
-            PRIMARY_ROLE_CODE AS primary_role_code,
-            PRIMARY_SIDE_CODE AS primary_side_code,
-            CAST(SUM(GOALS) AS INT) AS goals,
-            CAST(SUM(DRIBBLES_MADE) AS INT) AS dribbles_made,
-            CAST(SUM(TACKLES_COMPLETED) AS INT) AS tackles_completed,
-            ROUND(AVG(SAVE_RATIO), 4) AS save_ratio,
-            CAST(SUM(CHANCES_CREATED) AS INT) AS chances_created,
-            CAST(SUM(PASSES_COMPLETED) AS INT) AS passes_completed
+        f"""
+        {STATS_SELECT_SQL}
         FROM df_base
-        WHERE PLAYER_ID = ?
-        GROUP BY
-            PLAYER_ID,
-            NAME,
-            PRIMARY_CATEGORY,
-            PRIMARY_ROLE_CODE,
-            PRIMARY_SIDE_CODE
-        """,
-        params=[int(player_id)],
-    )
-    if df.empty:
-        return {
-            "name": "Sin selección",
-            "primary_category": "N/A",
-            "primary_role_code": None,
-            "primary_side_code": None,
-            "goals": 0,
-            "dribbles_made": 0,
-            "tackles_completed": 0,
-            "save_ratio": 0.0,
-            "chances_created": 0,
-            "passes_completed": 0,
-        }
-    record = df.iloc[0].to_dict()
-    record["primary_role_code"] = _clean_code(record.get("primary_role_code"))
-    record["primary_side_code"] = _clean_code(record.get("primary_side_code"))
-    return record
-
-
-@st.cache_data(ttl="1h", show_spinner=False)
-def _get_club_roster_stats(club_name: str) -> list[dict]:
-    df = query_base_data(
-        """
-        WITH roster_25_26 AS (
+        WHERE PLAYER_ID IN (
             SELECT DISTINCT PLAYER_ID
             FROM df_base
             WHERE SEASON_LABEL = '2025/26'
               AND CLUB_NAME = ?
         )
-        SELECT
-            b.NAME AS name,
-            b.PRIMARY_CATEGORY AS primary_category,
-            b.PRIMARY_ROLE_CODE AS primary_role_code,
-            b.PRIMARY_SIDE_CODE AS primary_side_code,
-            CAST(SUM(b.GOALS) AS INT) AS goals,
-            CAST(SUM(b.DRIBBLES_MADE) AS INT) AS dribbles_made,
-            CAST(SUM(b.TACKLES_COMPLETED) AS INT) AS tackles_completed,
-            ROUND(AVG(b.SAVE_RATIO), 4) AS save_ratio,
-            CAST(SUM(b.CHANCES_CREATED) AS INT) AS chances_created,
-            CAST(SUM(b.PASSES_COMPLETED) AS INT) AS passes_completed
-        FROM df_base b
-        INNER JOIN roster_25_26 r
-            ON b.PLAYER_ID = r.PLAYER_ID
-        GROUP BY
-            b.PLAYER_ID,
-            b.NAME,
-            b.PRIMARY_CATEGORY,
-            b.PRIMARY_ROLE_CODE,
-            b.PRIMARY_SIDE_CODE
-        ORDER BY b.PRIMARY_CATEGORY, b.NAME
+        GROUP BY PLAYER_ID, NAME, PRIMARY_CATEGORY, PRIMARY_ROLE_CODE, PRIMARY_SIDE_CODE
+        ORDER BY PRIMARY_CATEGORY, NAME
         """,
         params=[club_name],
     )
-    records = df.to_dict(orient="records")
-    for rec in records:
-        rec["primary_role_code"] = _clean_code(rec.get("primary_role_code"))
-        rec["primary_side_code"] = _clean_code(rec.get("primary_side_code"))
-    return records
+    return df.to_dict(orient="records")
 
 
 def _build_radar_chart_option(

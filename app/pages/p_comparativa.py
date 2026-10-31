@@ -88,14 +88,10 @@ def get_available_divisions() -> list[str]:
 
 
 @st.cache_data(ttl="1h", show_spinner=False)
-def _get_available_roles(category: str) -> list[str]:
-    conditions = ["PRIMARY_ROLE_CODE IS NOT NULL"]
-    params: list = []
-    if category and category != "Todas":
-        conditions.append("PRIMARY_CATEGORY = ?")
-        params.append(category)
-
-    where_clause = " AND ".join(conditions)
+def get_available_roles(category: str) -> list[str]:
+    """
+    Devuelve los códigos de rol táctico disponibles para la categoría posicional seleccionada.
+    """
     df = query_base_data(
         f"""
         SELECT DISTINCT PRIMARY_ROLE_CODE

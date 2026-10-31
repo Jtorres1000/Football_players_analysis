@@ -134,7 +134,6 @@ def get_clubs_by_division(division_name: str) -> list[str]:
         FROM df_base
         WHERE SEASON_LABEL = '2025/26'
           AND DIVISION_NAME = ?
-          AND CLUB_NAME IS NOT NULL
         ORDER BY CLUB_NAME
         """,
         params=[division_name],

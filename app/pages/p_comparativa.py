@@ -71,7 +71,10 @@ def get_global_metric_bounds() -> dict[str, tuple[float, float]]:
 
 
 @st.cache_data(ttl="1h", show_spinner=False)
-def _get_available_divisions() -> list[str]:
+def get_available_divisions() -> list[str]:
+    """
+    Devuelve la lista ordenada de divisiones activas en la temporada 2025/26.
+    """
     df = query_base_data(
         """
         SELECT DISTINCT DIVISION_NAME

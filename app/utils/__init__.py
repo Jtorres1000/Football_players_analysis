@@ -6,9 +6,11 @@ from .data import (
     query_filtered_data,
     query_base_data,
     get_snowflake_connection,
-    load_base_mart_data,
+    load_base_mart_data
 )
+
 from .warmup import warm_up_connection
+from .global_css import global_css
 
 __all__ = [
     "AGE_GROUP_MAP",
@@ -20,4 +22,5 @@ __all__ = [
     "get_snowflake_connection",
     "load_base_mart_data",
     "warm_up_connection",
+    "global_css"
 ]

@@ -61,18 +61,8 @@ def _get_global_metric_bounds() -> dict[str, tuple[float, float]]:
         FROM player_totals
         """
     )
-    if df.empty:
-        return {key: (0.0, 1.0) for key, _ in METRICS}
-
     row = df.iloc[0]
-    bounds = {}
-    for key, _ in METRICS:
-        min_v = float(row[f"min_{key}"]) if row[f"min_{key}"] is not None else 0.0
-        max_v = float(row[f"max_{key}"]) if row[f"max_{key}"] is not None else 1.0
-        if max_v <= min_v:
-            max_v = min_v + 1.0
-        bounds[key] = (min_v, max_v)
-    return bounds
+    return {key: (float(row[f"min_{key}"]), float(row[f"max_{key}"])) for key, _ in METRICS}
 
 
 @st.cache_data(ttl="1h", show_spinner=False)

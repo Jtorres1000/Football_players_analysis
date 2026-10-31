@@ -30,7 +30,10 @@ STATS_SELECT_SQL = """
 """
 
 
-def format_position_tag(player):
+def format_position_tag(player: dict) -> str:
+    """
+    Formatea la etiqueta táctica del jugador combinando su categoría, rol y banda si la posee.
+    """
     cat, role, side = player["primary_category"], player["primary_role_code"], player["primary_side_code"]
     return f"{cat} ({role} - {side})" if pd.notna(side) else f"{cat} ({role})"
 

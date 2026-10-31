@@ -439,30 +439,15 @@ def p_comparativa():
         """
 
         st.markdown(card_header, unsafe_allow_html=True)
-        chart_option = _build_radar_chart_option(p1_data, p2_data, bounds)
-
-        try:
-            st.echarts_chart(chart_option, height=480, use_container_width=True)
-        except TypeError:
-            try:
-                st.echarts_chart(chart_option, height=480)
-            except TypeError:
-                st.echarts_chart(chart_option)
+        st.echarts_chart(build_radar_chart_option(p1_data, p2_data, bounds), height=480)
 
     if send_coach_clicked and selected_team:
         with controls_container:
-            roster_stats = _get_club_roster_stats(selected_team)
             payload = {
                 "target_team": selected_team,
-                "candidates": [
-                    p1_data,
-                    p2_data,
-                ],
-                "current_team_roster_stats": roster_stats,
+                "candidates": [p1_data, p2_data],
+                "current_team_roster_stats": get_club_roster_stats(selected_team),
             }
-
-            st.success(
-                "Payload generado con datos reales del modelo dimensional y listo para enviar al Agente Coach."
-            )
-            with st.expander("Ver JSON que se enviará al Agente Coach"):
+            st.success("Datos listos para enviar al Agente Coach.")
+            with st.expander("Ver JSON generado"):
                 st.json(payload)

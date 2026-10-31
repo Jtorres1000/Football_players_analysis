@@ -39,12 +39,14 @@ def format_position_tag(player: dict) -> str:
 
 
 @st.cache_data(ttl="1h", show_spinner=False)
-def _get_global_metric_bounds() -> dict[str, tuple[float, float]]:
+def get_global_metric_bounds() -> dict[str, tuple[float, float]]:
+    """
+    Calcula los valores mínimos y máximos globales por jugador para normalizar los 6 ejes del radar.
+    """
     df = query_base_data(
         """
         WITH player_totals AS (
             SELECT
-                PLAYER_ID,
                 SUM(GOALS) AS goals,
                 SUM(DRIBBLES_MADE) AS dribbles_made,
                 SUM(TACKLES_COMPLETED) AS tackles_completed,

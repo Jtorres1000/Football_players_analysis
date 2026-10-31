@@ -296,94 +296,58 @@ def build_radar_chart_option(
     }
 
 
-def _render_candidate_selector(
+def render_candidate_selector(
     slot_key: str,
     title_label: str,
-    default_player_name: str,
     divisions_options: list[str],
-) -> int | None:
-    
+    default_idx: int = 0,
+) -> dict | None:
+    """
+    Renderiza las opciones de filtrado de un jugador candidato y devuelve el diccionario del jugador elegido según los filtros.
+    """
     st.markdown(f"**{title_label}**")
+
     f_col1, f_col2 = st.columns(2)
-
     with f_col1:
-        selected_div = st.selectbox(
-            "División",
-            options=divisions_options,
-            index=0,
-            key=f"{slot_key}_div",
-        )
+        selected_div = st.selectbox("División", options=divisions_options, key=f"{slot_key}_div")
     with f_col2:
-        selected_pos = st.selectbox(
-            "Posición",
-            options=POSITION_OPTIONS,
-            index=0,
-            key=f"{slot_key}_pos",
-        )
-
-    role_options = ["Todos"] + _get_available_roles(selected_pos)
+        selected_pos = st.selectbox("Posición", options=POSITION_OPTIONS, key=f"{slot_key}_pos")
 
     f_col3, f_col4 = st.columns(2)
     with f_col3:
         selected_role = st.selectbox(
-            "Rol (Role Code)",
-            options=role_options,
-            index=0,
+            "Rol",
+            options=["Todos"] + get_available_roles(selected_pos),
             key=f"{slot_key}_role",
         )
-    side_options = ["Todos"] + _get_available_sides(selected_pos, selected_role)
     with f_col4:
         selected_side = st.selectbox(
-            "Banda / Lado (Side Code)",
-            options=side_options,
-            index=0,
+            "Banda / Lado",
+            options=["Todos"] + get_available_sides(selected_pos, selected_role),
             key=f"{slot_key}_side",
         )
 
     search_term = st.text_input(
         "Buscar por nombre",
-        value="",
         placeholder="Ej. Vinícius, Mbappé...",
         key=f"{slot_key}_search",
     )
 
-    candidates = _search_candidate_options(
-        division=selected_div,
-        category=selected_pos,
-        role_code=selected_role,
-        side_code=selected_side,
-        search_term=search_term,
-        default_name=default_player_name,
-        limit=80,
+    candidates = search_candidate_options(
+        selected_div, selected_pos, selected_role, selected_side, search_term
     )
-
     if not candidates:
         st.info("No se encontraron jugadores con esos filtros.")
         return None
 
-    option_ids = [c["player_id"] for c in candidates]
-    label_map = {
-        c["player_id"]: (
-            f"{c['name']} - "
-            f"{_format_position_tag(c.get('primary_category'), c.get('primary_role_code'), c.get('primary_side_code'))}"
-        )
-        for c in candidates
-    }
-
-    default_idx = 0
-    for idx, c in enumerate(candidates):
-        if c["name"] == default_player_name:
-            default_idx = idx
-            break
-
-    selected_id = st.selectbox(
-        "Seleccionar Futbolista - Top 80 por puntaje de habilidad",
-        options=option_ids,
-        index=default_idx,
-        format_func=lambda pid: label_map.get(pid, str(pid)),
-        key=f"{slot_key}_player_id",
+    return st.selectbox(
+        "Seleccionar Futbolista",
+        options=candidates,
+        help="Selecciona un jugador de la lista filtrada para comparar, esta lista tiene al top 80 por puntaje de habilidad",
+        index=min(default_idx, len(candidates) - 1),
+        format_func=lambda c: f"{c['name']} - {format_position_tag(c)}",
+        key=f"{slot_key}_player",
     )
-    return selected_id
 
 
 def p_comparativa():

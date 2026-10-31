@@ -374,7 +374,7 @@ def p_comparativa():
     divisions_filter_options = ["Todas"] + divisions
 
     radar_container = st.container()
-    controls_container = st.container()
+    controls_container = st.container(border=True)
 
     with controls_container:
         col1, col2 = st.columns(2)

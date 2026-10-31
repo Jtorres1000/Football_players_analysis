@@ -124,7 +124,10 @@ def get_available_sides(category: str, role_code: str) -> list[str]:
 
 
 @st.cache_data(ttl="1h", show_spinner=False)
-def _get_clubs_by_division(division_name: str) -> list[str]:
+def get_clubs_by_division(division_name: str) -> list[str]:
+    """
+    Devuelve los clubes pertenecientes a la división seleccionada en la temporada 2025/26.
+    """
     df = query_base_data(
         """
         SELECT DISTINCT CLUB_NAME

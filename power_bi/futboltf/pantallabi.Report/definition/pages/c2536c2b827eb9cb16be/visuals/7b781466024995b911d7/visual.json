@@ -123,6 +123,11 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "PRIMARY_CATEGORY",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   }
 }

@@ -45,6 +45,10 @@ table FACT_PLAYER_SEASON
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure Salario_prom = AVERAGE(FACT_PLAYER_SEASON[ANNUAL_WAGE_EUR])
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		lineageTag: e1238f5c-2da8-4e60-992a-8d1b5a0a2ff1
+
 	column PLAYER_SEASON_KEY
 		dataType: string
 		lineageTag: de83a5cd-270e-408d-b739-ed751a3460c8

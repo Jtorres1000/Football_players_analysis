@@ -4,10 +4,10 @@
   "position": {
     "x": 33.032258064516128,
     "y": 117.6774193548387,
-    "z": 1000,
+    "z": 0,
     "height": 251.96850393700788,
     "width": 279.68503937007875,
-    "tabOrder": 1000
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "slicer",
@@ -137,23 +137,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "adf155f0e0c7899ce0ee",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM_AGE_BRACKET"
-              }
-            },
-            "Property": "AGE_GROUP"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

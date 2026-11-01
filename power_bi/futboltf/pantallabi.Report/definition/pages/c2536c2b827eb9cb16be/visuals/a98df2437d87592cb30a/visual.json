@@ -4,10 +4,10 @@
   "position": {
     "x": 408.77419354838707,
     "y": 189.93548387096774,
-    "z": 6000,
+    "z": 3000,
     "height": 429.41935483870969,
     "width": 563.61290322580646,
-    "tabOrder": 6000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "lineChart",
@@ -89,5 +89,51 @@
       }
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ca222aaac00d9a376036",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_AGE_BRACKET"
+              }
+            },
+            "Property": "AGE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "adb9aeb426c6dede99b9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_PLAYER"
+              }
+            },
+            "Property": "PRIMARY_CATEGORY"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "588615b460c637c1c162",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT_PLAYER_SEASON"
+              }
+            },
+            "Property": "Puntaje_Promedio"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

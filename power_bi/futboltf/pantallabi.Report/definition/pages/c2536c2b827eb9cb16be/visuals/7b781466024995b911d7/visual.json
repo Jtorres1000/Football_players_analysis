@@ -4,10 +4,10 @@
   "position": {
     "x": 33.032258064516128,
     "y": 400.51612903225805,
-    "z": 3000,
+    "z": 1000,
     "height": 280.77419354838707,
     "width": 326.19354838709677,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -124,23 +124,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "39addbf10c7eeb44d2ad",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM_PLAYER"
-              }
-            },
-            "Property": "PRIMARY_CATEGORY"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

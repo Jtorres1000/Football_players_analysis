@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "2d66525b0764200c7bb5",
+  "position": {
+    "x": 1398.4251968503938,
+    "y": 813.85826771653547,
+    "z": 16003,
+    "height": 151.18110236220474,
+    "width": 506.45669291338584,
+    "tabOrder": 16003
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "MEDIA DE EDAD DEL GRUPO DE JUGARES SELECCIONADOS ",
+                    "textStyle": {
+                      "fontFamily": "Arial Black",
+                      "fontSize": "24pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -4,10 +4,10 @@
   "position": {
     "x": 1033.0708661417323,
     "y": 534.17322834645677,
-    "z": 6006,
+    "z": 9000,
     "height": 146.14173228346456,
     "width": 347.71653543307087,
-    "tabOrder": 6006
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -132,23 +132,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6cc76e460940aec220bc",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FACT_PLAYER_SEASON"
-              }
-            },
-            "Property": "Jugadores_Veteranos"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -1,0 +1,30 @@
+table Participantes_Proyecto
+	lineageTag: 52ee3eb1-68d0-43df-8dd5-2bb0909d1236
+
+	column Nombre
+		dataType: string
+		lineageTag: f18af124-64d7-4695-b0e5-74a0b8f08278
+		summarizeBy: none
+		sourceColumn: Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rol
+		dataType: string
+		lineageTag: c90708ad-2f23-4b63-8dd4-31e1d5985a6f
+		summarizeBy: none
+		sourceColumn: Rol
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Participantes_Proyecto = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("bY5BCsJADEWvEmbdS7jSDmIL1tXQRdR0OlASyQwFj+XWbS9m6LJ1k8B/j+SH4Dzl5ZuheYyCrnKtykBZ1PVVcM2UZlLo1NbykS32opGgE1XKxmouFBVtrvSId000wS3iH3oRfRPDCVUTxyK8V66FXiMyJ4Kz3cKnvd1JXkyBmoc12eEDR6vQYi6WyYb3Pw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Nombre = _t, Rol = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Nombre", type text}, {"Rol", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

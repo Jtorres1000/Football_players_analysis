@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 from components import banner
-from utils import query_base_data
+from utils import query_base_data, generate_response_gemini
 
 METRICS = [
     ("goals", "Goles"),
@@ -351,6 +351,7 @@ def render_candidate_selector(
 
 
 def p_comparativa():
+    payload = {}
     banner(
         title="Comparativa Radar de Rendimiento",
         subtitle="Análisis multidimensional de perfiles de jugadores y selección de los mismos con apoyo de nuestro agente director deportivo de IA.",
@@ -448,6 +449,10 @@ def p_comparativa():
                 "candidates": [p1_data, p2_data],
                 "current_team_roster_stats": get_club_roster_stats(selected_team),
             }
-            st.success("Datos listos para enviar al Agente Coach.")
-            with st.expander("Ver JSON generado"):
-                st.json(payload)
+            st.success("Datos generados y enviados al Agente Coach.")
+
+    if payload and send_coach_clicked:
+        with st.chat_message("assistant"):               
+            with st.spinner("El Agente Coach está evaluando los candidatos..."):
+                response = generate_response_gemini(payload)
+                st.markdown(response)

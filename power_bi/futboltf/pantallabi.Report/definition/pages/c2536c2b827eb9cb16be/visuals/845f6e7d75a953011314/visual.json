@@ -4,10 +4,10 @@
   "position": {
     "x": 1033.0708661417323,
     "y": 234.33070866141733,
-    "z": 8000,
+    "z": 7000,
     "height": 136.06299212598427,
     "width": 347.71653543307087,
-    "tabOrder": 8000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -140,28 +140,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0a42d3ec25d700d007d2",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "DIM_PLAYER"
-                  }
-                },
-                "Property": "PLAYER_KEY"
-              }
-            },
-            "Function": 2
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

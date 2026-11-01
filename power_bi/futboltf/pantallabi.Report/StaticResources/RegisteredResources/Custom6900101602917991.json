@@ -492,5 +492,11 @@
         ]
       }
     }
+  },
+  "textClasses": {
+    "label": {
+      "fontSize": 18,
+      "fontFace": "Arial"
+    }
   }
 }

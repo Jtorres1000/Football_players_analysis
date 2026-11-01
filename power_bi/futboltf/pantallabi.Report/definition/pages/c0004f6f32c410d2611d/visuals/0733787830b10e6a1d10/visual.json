@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "0733787830b10e6a1d10",
   "position": {
-    "x": 0,
-    "y": 18,
-    "z": 4,
-    "height": 654,
-    "width": 960,
-    "tabOrder": 4
+    "x": 1062.8343313373252,
+    "y": 39.969838101574631,
+    "z": 0,
+    "height": 654.0716242494783,
+    "width": 845.9326340293253,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "donutChart",
@@ -42,11 +42,11 @@
                       "Entity": "FACT_PLAYER_SEASON"
                     }
                   },
-                  "Property": "Salario_prom"
+                  "Property": "Salario_Anual_Promedio"
                 }
               },
-              "queryRef": "FACT_PLAYER_SEASON.Salario_prom",
-              "nativeQueryRef": "Salario_prom"
+              "queryRef": "FACT_PLAYER_SEASON.Salario_Anual_Promedio",
+              "nativeQueryRef": "Salario_Anual_Promedio"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "FACT_PLAYER_SEASON"
                   }
                 },
-                "Property": "Salario_prom"
+                "Property": "Salario_Anual_Promedio"
               }
             },
             "direction": "Descending"
@@ -172,7 +172,7 @@
                   "expr": {
                     "ThemeDataColor": {
                       "ColorId": 0,
-                      "Percent": 0
+                      "Percent": -0.1
                     }
                   }
                 }
@@ -209,7 +209,7 @@
             "innerRadiusRatio": {
               "expr": {
                 "Literal": {
-                  "Value": "70L"
+                  "Value": "65L"
                 }
               }
             },

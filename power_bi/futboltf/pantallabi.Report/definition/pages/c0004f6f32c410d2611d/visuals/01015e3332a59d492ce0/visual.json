@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "01015e3332a59d492ce0",
   "position": {
-    "x": 1222,
-    "y": 238,
-    "z": 8,
-    "height": 184,
-    "width": 588,
-    "tabOrder": 8
+    "x": 143.5280550011089,
+    "y": 276.15524506542471,
+    "z": 3000,
+    "height": 245.26946107784431,
+    "width": 445.11865158571743,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -58,7 +58,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -115,7 +115,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "22D"
+                  "Value": "40D"
                 }
               }
             },
@@ -129,7 +129,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },
@@ -239,7 +239,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Salario Promedio Anual'"
+                  "Value": "'SALARIO ANUAL PROMEDIO'"
                 }
               }
             },

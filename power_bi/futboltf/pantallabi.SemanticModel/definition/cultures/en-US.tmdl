@@ -1,2 +1,4823 @@
 cultureInfo en-US
 
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "dim_player": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_PLAYER"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim player": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DIM_PLAYER": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "player": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "dim actor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "dim performer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "dim entertainer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "dim trouper": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "actor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "performer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "entertainer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "trouper": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "dim thespian": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "dim play-actor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "dim_player.player_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_PLAYER",
+			          "ConceptualProperty": "PLAYER_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "player key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PLAYER_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "player solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "player explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "player basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "dim_player.player_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_PLAYER",
+			          "ConceptualProperty": "PLAYER_ID"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "player id": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "id": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "PLAYER_ID": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "player": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "player identification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "player identity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "player identifier": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "player credential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "actor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "performer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "entertainer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "trouper": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "thespian": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "play-actor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ],
+			      "NameType": "Identifier"
+			    },
+			    "dim_player.name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_PLAYER",
+			          "ConceptualProperty": "NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "title": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "dim_player.primary_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_PLAYER",
+			          "ConceptualProperty": "PRIMARY_CATEGORY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "primary category": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PRIMARY_CATEGORY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "category": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "primary classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "primary class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "primary group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "primary type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "primary grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "primary kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "dim_player.primary_role_code": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_PLAYER",
+			          "ConceptualProperty": "PRIMARY_ROLE_CODE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "primary role code": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PRIMARY_ROLE_CODE": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "role code": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "primary role id": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "role id": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "primary role key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "role key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "dim_player.primary_side_code": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_PLAYER",
+			          "ConceptualProperty": "PRIMARY_SIDE_CODE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "primary side code": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PRIMARY_SIDE_CODE": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "side code": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "primary side id": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "side id": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "primary side key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "side key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "dim_age_bracket": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_AGE_BRACKET"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim age bracket": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DIM_AGE_BRACKET": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "bracket": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "age bracket": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "dim age support": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "dim age strut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "dim age prop": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "dim age stay": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "dim age brace": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "age support": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "age strut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "age prop": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "age stay": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "age brace": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "dim_age_bracket.age_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_AGE_BRACKET",
+			          "ConceptualProperty": "AGE_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "age key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AGE_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "age solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "age explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "age basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "dim_age_bracket.age": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_AGE_BRACKET",
+			          "ConceptualProperty": "AGE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "age": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "oldness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "stage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "phase": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "era": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "epoch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "dim_age_bracket.age_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_AGE_BRACKET",
+			          "ConceptualProperty": "AGE_GROUP"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "age group": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AGE_GROUP": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "age category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "age organization": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "age class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "age crew": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "age team": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "Grupos": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_season": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_SEASON"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim season": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DIM_SEASON": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "season": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "dim period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "dim term": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "dim spell": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "term": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spell": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "dim_season.season_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_SEASON",
+			          "ConceptualProperty": "SEASON_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "season key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "SEASON_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "season solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "season explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "season basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "dim_season.season_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_SEASON",
+			          "ConceptualProperty": "SEASON_ID"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "season id": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "id": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "SEASON_ID": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "season": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "season identification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "season identity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "season identifier": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "season credential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "term": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spell": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ],
+			      "NameType": "Identifier"
+			    },
+			    "dim_season.season_label": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_SEASON",
+			          "ConceptualProperty": "SEASON_LABEL"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "season label": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "SEASON_LABEL": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "label": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "season sticker": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "sticker": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "season tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "season decal": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "decal": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "season name tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.589
+			          }
+			        },
+			        {
+			          "name tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.571
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fact player season": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "FACT_PLAYER_SEASON": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "season": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "player season": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "fact player period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "fact player term": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "fact player spell": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "player period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "player term": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "player spell": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "term": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spell": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.player_season_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "PLAYER_SEASON_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "player season key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PLAYER_SEASON_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "player season solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "player season explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "player season basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "player season recipe": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "player season interpretation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "player season resolution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.player_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "PLAYER_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "player key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PLAYER_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "player solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "player explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "player basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.season_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "SEASON_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "season key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "SEASON_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "season solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "season explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "season basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.age_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "AGE_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "age key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AGE_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "age solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "age explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "age basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.ability_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "ABILITY_SCORE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ability score": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ABILITY_SCORE": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "score": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "ability notch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "ability slash": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "ability groove": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "ability nick": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "ability cut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "ability mark": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "notch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "slash": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "groove": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "nick": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.ability_score_delta": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "ABILITY_SCORE_DELTA"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ability score delta": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ABILITY_SCORE_DELTA": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "delta": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "score delta": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "ability score estuary": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "ability score outlet": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "score estuary": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "score outlet": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "ability score mouth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "ability score channel": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "estuary": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "outlet": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "score mouth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "score channel": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.weekly_wage_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "WEEKLY_WAGE_EUR"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "weekly wage eur": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "WEEKLY_WAGE_EUR": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.annual_wage_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "ANNUAL_WAGE_EUR"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "annual wage eur": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ANNUAL_WAGE_EUR": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.club_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "CLUB_KEY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "club key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "CLUB_KEY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "association key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "nightclub key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "alliance key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "guild key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "organization key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "team key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "group key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "union key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.goal": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "GOALS"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "goal": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "goalmouth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "box": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "area": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "aspiration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "objective": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "aim": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "end": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "ambition": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "purpose": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "target": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.dribble_made": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "DRIBBLES_MADE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dribble made": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DRIBBLES_MADE": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "trickle made": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "drop made": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "drip made": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.tackle_completed": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "TACKLES_COMPLETED"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tackle completed": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "TACKLES_COMPLETED": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "confrontation completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "challenge completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "attack completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "block completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "throw completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "grab completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "hold completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "wrestle completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "equipment completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "apparatus completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.save_ratio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "SAVE_RATIO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "save ratio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "SAVE_RATIO": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "ratio": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "save relation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "save percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "save quotient": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "save relationship": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "relation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "quotient": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "relationship": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "save proportion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "save share": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "save fraction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.chance_created": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "CHANCES_CREATED"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "chance created": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "CHANCES_CREATED": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "gamble created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "risk created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "hazard created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "venture created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "stake created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "possibility created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.451
+			          }
+			        },
+			        {
+			          "probability created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.451
+			          }
+			        },
+			        {
+			          "likelihood created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.451
+			          }
+			        },
+			        {
+			          "ability created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.451
+			          }
+			        },
+			        {
+			          "opportunity created": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.451
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.pass_completed": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "PASSES_COMPLETED"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "pass completed": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PASSES_COMPLETED": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "authorization completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "documentation completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "clearance completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "permission completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "permit completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "license completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "card completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "badge completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "corridor completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "valley completed": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.proporcion_veteranos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Proporcion_Veteranos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "proporcion veteranos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Proporcion_Veteranos": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.total_jugadores": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Total_Jugadores"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total jugadores": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Total_Jugadores": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "aggregate jugadore": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "overall jugadore": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.salario_anual_promedio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Salario_Anual_Promedio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "salario anual promedio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Salario_Anual_Promedio": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "Salario Promedio": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.puntaje_promedio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Puntaje_Promedio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "puntaje promedio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Puntaje_Promedio": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.jugadores_veteranos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Jugadores_Veteranos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "jugadores veteranos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Jugadores_Veteranos": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.proporcion_grupos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Proporcion_grupos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "proporcion grupos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Proporcion_grupos": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "Proporción": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "participantes_proyecto": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Participantes_Proyecto"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "participantes proyecto": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "participante proyecto": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "Participantes_Proyecto": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "participantes_proyecto.nombre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Participantes_Proyecto",
+			          "ConceptualProperty": "Nombre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nombre": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "participantes_proyecto.rol": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Participantes_Proyecto",
+			          "ConceptualProperty": "Rol"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "rol": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "participantes_proyecto_has_nombre": {
+			      "Binding": {
+			        "ConceptualEntity": "Participantes_Proyecto"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "participantes_proyecto": {
+			          "Target": {
+			            "Entity": "participantes_proyecto"
+			          }
+			        },
+			        "participantes_proyecto.nombre": {
+			          "Target": {
+			            "Entity": "participantes_proyecto.nombre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "participantes_proyecto"
+			            },
+			            "Object": {
+			              "Role": "participantes_proyecto.nombre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "participantes_proyectos_have_nombres"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_proporcion_grupos": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.proporcion_grupos": {
+			          "Target": {
+			            "Entity": "fact_player_season.proporcion_grupos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.proporcion_grupos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_proporcion_grupos"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_jugadores_veteranos": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.jugadores_veteranos": {
+			          "Target": {
+			            "Entity": "fact_player_season.jugadores_veteranos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.jugadores_veteranos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_jugadores_veteranos"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_puntaje_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.puntaje_promedio": {
+			          "Target": {
+			            "Entity": "fact_player_season.puntaje_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.puntaje_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_puntaje_promedio"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_salario_anual_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.salario_anual_promedio": {
+			          "Target": {
+			            "Entity": "fact_player_season.salario_anual_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.salario_anual_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_salario_anual_promedio"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_total_jugadores": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.total_jugadores": {
+			          "Target": {
+			            "Entity": "fact_player_season.total_jugadores"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.total_jugadores"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_total_jugadores"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_proporcion_veteranos": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.proporcion_veteranos": {
+			          "Target": {
+			            "Entity": "fact_player_season.proporcion_veteranos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.proporcion_veteranos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_proporcion_veteranos"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_pass_completed": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.pass_completed": {
+			          "Target": {
+			            "Entity": "fact_player_season.pass_completed"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.pass_completed"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_pass_completed"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_chance_created": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.chance_created": {
+			          "Target": {
+			            "Entity": "fact_player_season.chance_created"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.chance_created"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_chance_created"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_save_ratio": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.save_ratio": {
+			          "Target": {
+			            "Entity": "fact_player_season.save_ratio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.save_ratio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_save_ratio"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_tackle_completed": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.tackle_completed": {
+			          "Target": {
+			            "Entity": "fact_player_season.tackle_completed"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.tackle_completed"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_tackle_completed"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_dribble_made": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.dribble_made": {
+			          "Target": {
+			            "Entity": "fact_player_season.dribble_made"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.dribble_made"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_dribble_made"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_goal": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.goal": {
+			          "Target": {
+			            "Entity": "fact_player_season.goal"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.goal"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_goals"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_club_key": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.club_key": {
+			          "Target": {
+			            "Entity": "fact_player_season.club_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.club_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_club_keys"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_annual_wage_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.annual_wage_eur": {
+			          "Target": {
+			            "Entity": "fact_player_season.annual_wage_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.annual_wage_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_annual_wage_eurs"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_weekly_wage_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.weekly_wage_eur": {
+			          "Target": {
+			            "Entity": "fact_player_season.weekly_wage_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.weekly_wage_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_weekly_wage_eurs"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_ability_score_delta": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.ability_score_delta": {
+			          "Target": {
+			            "Entity": "fact_player_season.ability_score_delta"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.ability_score_delta"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_ability_score_deltas"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_ability_score": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.ability_score": {
+			          "Target": {
+			            "Entity": "fact_player_season.ability_score"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.ability_score"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_ability_scores"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_player_season_key": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.player_season_key": {
+			          "Target": {
+			            "Entity": "fact_player_season.player_season_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.player_season_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_player_season_keys"
+			        }
+			      ]
+			    },
+			    "dim_season_has_season_label": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_season": {
+			          "Target": {
+			            "Entity": "dim_season"
+			          }
+			        },
+			        "dim_season.season_label": {
+			          "Target": {
+			            "Entity": "dim_season.season_label"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_season"
+			            },
+			            "Object": {
+			              "Role": "dim_season.season_label"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_seasons_have_season_labels"
+			        }
+			      ]
+			    },
+			    "dim_season_has_season_id": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_season": {
+			          "Target": {
+			            "Entity": "dim_season"
+			          }
+			        },
+			        "dim_season.season_id": {
+			          "Target": {
+			            "Entity": "dim_season.season_id"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_season"
+			            },
+			            "Object": {
+			              "Role": "dim_season.season_id"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_seasons_have_season_ids"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "dim_season"
+			            },
+			            "Name": {
+			              "Role": "dim_season.season_id"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "season_ids_are_names_IDs_of_dim_seasons"
+			        }
+			      ]
+			    },
+			    "dim_season_has_season_key": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_season": {
+			          "Target": {
+			            "Entity": "dim_season"
+			          }
+			        },
+			        "dim_season.season_key": {
+			          "Target": {
+			            "Entity": "dim_season.season_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_season"
+			            },
+			            "Object": {
+			              "Role": "dim_season.season_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_seasons_have_season_keys"
+			        }
+			      ]
+			    },
+			    "dim_age_bracket_has_age_group": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_AGE_BRACKET"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_age_bracket": {
+			          "Target": {
+			            "Entity": "dim_age_bracket"
+			          }
+			        },
+			        "dim_age_bracket.age_group": {
+			          "Target": {
+			            "Entity": "dim_age_bracket.age_group"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_age_bracket"
+			            },
+			            "Object": {
+			              "Role": "dim_age_bracket.age_group"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_age_brackets_have_age_groups"
+			        }
+			      ]
+			    },
+			    "dim_age_bracket_has_age": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_AGE_BRACKET"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_age_bracket": {
+			          "Target": {
+			            "Entity": "dim_age_bracket"
+			          }
+			        },
+			        "dim_age_bracket.age": {
+			          "Target": {
+			            "Entity": "dim_age_bracket.age"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_age_bracket"
+			            },
+			            "Object": {
+			              "Role": "dim_age_bracket.age"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_age_brackets_have_ages"
+			        },
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "dim_age_bracket"
+			            },
+			            "Adjectives": [
+			              {
+			                "old": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Antonyms": [
+			              {
+			                "young": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Measurement": {
+			              "Role": "dim_age_bracket.age"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "age_indicates_how_old_dim_age_brackets_are"
+			        }
+			      ]
+			    },
+			    "dim_age_bracket_has_age_key": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_AGE_BRACKET"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_age_bracket": {
+			          "Target": {
+			            "Entity": "dim_age_bracket"
+			          }
+			        },
+			        "dim_age_bracket.age_key": {
+			          "Target": {
+			            "Entity": "dim_age_bracket.age_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_age_bracket"
+			            },
+			            "Object": {
+			              "Role": "dim_age_bracket.age_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_age_brackets_have_age_keys"
+			        }
+			      ]
+			    },
+			    "dim_player_has_primary_side_code": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_PLAYER"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_player": {
+			          "Target": {
+			            "Entity": "dim_player"
+			          }
+			        },
+			        "dim_player.primary_side_code": {
+			          "Target": {
+			            "Entity": "dim_player.primary_side_code"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Object": {
+			              "Role": "dim_player.primary_side_code"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_players_have_primary_side_codes"
+			        }
+			      ]
+			    },
+			    "dim_player_has_primary_role_code": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_PLAYER"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_player": {
+			          "Target": {
+			            "Entity": "dim_player"
+			          }
+			        },
+			        "dim_player.primary_role_code": {
+			          "Target": {
+			            "Entity": "dim_player.primary_role_code"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Object": {
+			              "Role": "dim_player.primary_role_code"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_players_have_primary_role_codes"
+			        }
+			      ]
+			    },
+			    "dim_player_has_primary_category": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_PLAYER"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_player": {
+			          "Target": {
+			            "Entity": "dim_player"
+			          }
+			        },
+			        "dim_player.primary_category": {
+			          "Target": {
+			            "Entity": "dim_player.primary_category"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Object": {
+			              "Role": "dim_player.primary_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_players_have_primary_categories"
+			        }
+			      ]
+			    },
+			    "dim_player_has_name": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_PLAYER"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_player": {
+			          "Target": {
+			            "Entity": "dim_player"
+			          }
+			        },
+			        "dim_player.name": {
+			          "Target": {
+			            "Entity": "dim_player.name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Object": {
+			              "Role": "dim_player.name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_players_have_names"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Name": {
+			              "Role": "dim_player.name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "names_are_names_IDs_of_dim_players"
+			        }
+			      ]
+			    },
+			    "dim_player_has_player_id": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_PLAYER"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_player": {
+			          "Target": {
+			            "Entity": "dim_player"
+			          }
+			        },
+			        "dim_player.player_id": {
+			          "Target": {
+			            "Entity": "dim_player.player_id"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Object": {
+			              "Role": "dim_player.player_id"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_players_have_player_ids"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Name": {
+			              "Role": "dim_player.player_id"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "player_ids_are_names_IDs_of_dim_players"
+			        }
+			      ]
+			    },
+			    "dim_player_has_player_key": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_PLAYER"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_player": {
+			          "Target": {
+			            "Entity": "dim_player"
+			          }
+			        },
+			        "dim_player.player_key": {
+			          "Target": {
+			            "Entity": "dim_player.player_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Object": {
+			              "Role": "dim_player.player_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_players_have_player_keys"
+			        }
+			      ]
+			    },
+			    "participantes_proyecto_has_rol": {
+			      "Binding": {
+			        "ConceptualEntity": "Participantes_Proyecto"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "participantes_proyecto": {
+			          "Target": {
+			            "Entity": "participantes_proyecto"
+			          }
+			        },
+			        "participantes_proyecto.rol": {
+			          "Target": {
+			            "Entity": "participantes_proyecto.rol"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "participantes_proyecto"
+			            },
+			            "Object": {
+			              "Role": "participantes_proyecto.rol"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "participantes_proyectos_have_rols"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_dim_player": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "dim_player": {
+			          "Target": {
+			            "Entity": "dim_player"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "dim_player"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_dim_players"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_player"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_players_have_fact_player_seasons"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_dim_age_bracket": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "dim_age_bracket": {
+			          "Target": {
+			            "Entity": "dim_age_bracket"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "dim_age_bracket"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_dim_age_brackets"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_age_bracket"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_age_brackets_have_fact_player_seasons"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_dim_season": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "dim_season": {
+			          "Target": {
+			            "Entity": "dim_season"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "dim_season"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_dim_seasons"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_seasons_have_fact_player_seasons"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

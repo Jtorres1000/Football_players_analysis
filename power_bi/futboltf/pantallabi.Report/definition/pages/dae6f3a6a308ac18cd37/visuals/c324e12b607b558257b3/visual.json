@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c324e12b607b558257b3",
+  "position": {
+    "x": 1313.0322580645161,
+    "y": 720.516129032258,
+    "z": 3008,
+    "height": 51.612903225806448,
+    "width": 551.22580645161293,
+    "tabOrder": 3008
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Trayectoria de longevidad y veterania ",
+                    "textStyle": {
+                      "fontFamily": "Arial Black",
+                      "fontSize": "20pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

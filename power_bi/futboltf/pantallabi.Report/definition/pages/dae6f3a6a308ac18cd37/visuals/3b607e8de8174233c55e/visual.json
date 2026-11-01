@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "Arial Black",
                       "fontSize": "28pt",
-                      "color": "#1b5e3b"
+                      "color": "#ffffff"
                     }
                   }
                 ]
@@ -36,7 +36,7 @@
                       "fontWeight": "bold",
                       "fontFamily": "Arial Black",
                       "fontSize": "24pt",
-                      "color": "#1b5e3b"
+                      "color": "#ffffff"
                     }
                   },
                   {
@@ -44,7 +44,7 @@
                     "textStyle": {
                       "fontFamily": "Arial Black",
                       "fontSize": "24pt",
-                      "color": "#1b5e3b"
+                      "color": "#ffffff"
                     }
                   }
                 ]
@@ -57,7 +57,7 @@
                       "fontWeight": "bold",
                       "fontFamily": "Arial Black",
                       "fontSize": "24pt",
-                      "color": "#1b5e3b"
+                      "color": "#ffffff"
                     }
                   }
                 ]

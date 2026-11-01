@@ -29,6 +29,15 @@ table FACT_PLAYER_SEASON
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure Jugadores_Veteranos =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY]),
+			    DIM_AGE_BRACKET[AGE_GROUP] = "32-38"
+			)
+		formatString: 0
+		lineageTag: bef7e7d4-3d25-4010-a0ef-b49e621317fa
+
 	column PLAYER_SEASON_KEY
 		dataType: string
 		lineageTag: de83a5cd-270e-408d-b739-ed751a3460c8

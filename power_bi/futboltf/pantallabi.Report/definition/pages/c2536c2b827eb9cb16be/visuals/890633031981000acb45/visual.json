@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "890633031981000acb45",
   "position": {
-    "x": 30.236220472440948,
-    "y": 755.90551181102364,
+    "x": 32.755905511811022,
+    "y": 702.992125984252,
     "z": 5000,
     "height": 262.04724409448818,
     "width": 279.68503937007875,
@@ -92,7 +92,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "17D"
                 }
               }
             },
@@ -124,5 +124,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "497a9182d1e1b851602d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_SEASON"
+              }
+            },
+            "Property": "SEASON_LABEL"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

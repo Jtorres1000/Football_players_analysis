@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 6,
-        "y": 158
+        "x": 0,
+        "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 223.37759125922918,
-            "y": 387.71644388063942
+            "x": 48.977593548047537,
+            "y": 283.71644388063942
           },
           "nodeIndex": "DIM_AGE_BRACKET",
           "nodeLineageTag": "5211d6d1-77ad-43e7-9e07-b2abef3b1923",
@@ -19,20 +19,20 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 626.27761697517485,
-            "y": -1.0156820869806324
+            "x": 658.79999923706055,
+            "y": 0
           },
           "nodeIndex": "DIM_PLAYER",
           "nodeLineageTag": "29250a33-9220-4590-bb7c-0dffbb2e45d3",
           "size": {
-            "height": 224,
+            "height": 245,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 4
         },
         {
           "location": {
@@ -49,33 +49,33 @@
         },
         {
           "location": {
-            "x": 336.36077390336305,
-            "y": 65.384948517525459
+            "x": 361.36077390336305,
+            "y": 0
           },
           "nodeIndex": "FACT_PLAYER_SEASON",
           "nodeLineageTag": "e241d426-a720-42a5-9d96-02b87f45308f",
           "size": {
-            "height": 302,
+            "height": 597,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 5
         },
         {
           "location": {
-            "x": 910.27761697517485,
+            "x": 955.27761697517485,
             "y": 206.36606298381002
           },
           "nodeIndex": "Participantes_Proyecto",
           "nodeLineageTag": "52ee3eb1-68d0-43df-8dd5-2bb0909d1236",
           "size": {
-            "height": 128,
-            "width": 234
+            "height": 145,
+            "width": 189
           },
-          "zIndex": 0
+          "zIndex": 1
         }
       ],
       "name": "Todas las tablas",
-      "zoomValue": 100,
+      "zoomValue": 77.911646586345384,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

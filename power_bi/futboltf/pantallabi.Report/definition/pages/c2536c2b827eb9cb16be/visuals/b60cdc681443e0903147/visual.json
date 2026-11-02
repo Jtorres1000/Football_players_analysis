@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b60cdc681443e0903147",
+  "position": {
+    "x": 408.18897637795277,
+    "y": 22.677165354330711,
+    "z": 6000,
+    "height": 146.58064516129033,
+    "width": 1478.1935483870968,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "ANALISIS DE RENDIMIENTO Y TRAYECTORIA  DE ENVEJECIMIENTO ",
+                    "textStyle": {
+                      "fontFamily": "Arial Black",
+                      "fontSize": "40pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

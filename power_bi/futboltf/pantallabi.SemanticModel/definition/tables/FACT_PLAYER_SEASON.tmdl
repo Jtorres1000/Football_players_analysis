@@ -13,6 +13,8 @@ table FACT_PLAYER_SEASON
 			)
 		lineageTag: 435ad164-c6e3-4578-bcbe-638defd1ac74
 
+		changedProperty = IsHidden
+
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Total_Jugadores = DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY])
@@ -26,6 +28,20 @@ table FACT_PLAYER_SEASON
 
 	measure Puntaje_Promedio = AVERAGE(FACT_PLAYER_SEASON[ABILITY_SCORE])
 		lineageTag: 559fe8c1-214c-4213-beda-9eff28e66572
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Jugadores_Veteranos =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY]),
+			    DIM_AGE_BRACKET[AGE_GROUP] = "32-38"
+			)
+		formatString: 0
+		lineageTag: bef7e7d4-3d25-4010-a0ef-b49e621317fa
+
+	measure Proporcion_grupos = DIVIDE(DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY]),CALCULATE(DISTINCTCOUNT(FACT_PLAYER_SEASON[PLAYER_KEY]),REMOVEFILTERS(DIM_AGE_BRACKET)),0)
+		lineageTag: 1795ca92-8c4f-4753-9af9-12b46daf9cdd
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

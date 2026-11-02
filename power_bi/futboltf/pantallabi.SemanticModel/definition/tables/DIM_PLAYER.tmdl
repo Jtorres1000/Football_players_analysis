@@ -41,6 +41,8 @@ table DIM_PLAYER
 		summarizeBy: none
 		sourceColumn: PRIMARY_ROLE_CODE
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column PRIMARY_SIDE_CODE

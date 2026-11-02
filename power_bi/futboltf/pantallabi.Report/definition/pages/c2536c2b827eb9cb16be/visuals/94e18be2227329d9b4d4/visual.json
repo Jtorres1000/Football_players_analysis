@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "94e18be2227329d9b4d4",
   "position": {
-    "x": 30.236220472440948,
-    "y": 45.354330708661422,
-    "z": 1000,
+    "x": 33.032258064516128,
+    "y": 117.6774193548387,
+    "z": 0,
     "height": 251.96850393700788,
     "width": 279.68503937007875,
-    "tabOrder": 1000
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "slicer",
@@ -110,7 +110,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "17D"
                 }
               }
             },
@@ -135,6 +135,11 @@
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "AGE_GROUP",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   }

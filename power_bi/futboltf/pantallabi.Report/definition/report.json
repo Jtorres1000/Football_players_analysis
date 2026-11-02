@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Custom6402387066080351.json",
+      "name": "Custom6900101602917991.json",
       "reportVersionAtImport": {
         "visual": "2.14.0",
         "report": "3.4.0",
@@ -72,23 +72,48 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Custom6402387066080351.json",
-          "path": "Custom6402387066080351.json",
+          "name": "15772293937584471.png",
+          "path": "15772293937584471.png",
+          "type": "Image"
+        },
+        {
+          "name": "27296049662635378.png",
+          "path": "27296049662635378.png",
+          "type": "Image"
+        },
+        {
+          "name": "Custom6900101602917991.json",
+          "path": "Custom6900101602917991.json",
           "type": "CustomTheme"
+        },
+        {
+          "name": "Green_White_Simple_Minimalist_012931127554050792.png",
+          "path": "Green_White_Simple_Minimalist_012931127554050792.png",
+          "type": "Image"
+        },
+        {
+          "name": "Green_White_Simple_Minimalist_384136745744851.png",
+          "path": "Green_White_Simple_Minimalist_384136745744851.png",
+          "type": "Image"
+        },
+        {
+          "name": "pngwing.com5750865782634584.png",
+          "path": "pngwing.com5750865782634584.png",
+          "type": "Image"
+        },
+        {
+          "name": "pngwing.com6092302025067258.png",
+          "path": "pngwing.com6092302025067258.png",
+          "type": "Image"
+        },
+        {
+          "name": "pngwing.com7733450411377469.png",
+          "path": "pngwing.com7733450411377469.png",
+          "type": "Image"
         },
         {
           "name": "Presentaci_n_El_f_tbol_Ilustra561519680596918.jpg",
           "path": "Presentaci_n_El_f_tbol_Ilustra561519680596918.jpg",
-          "type": "Image"
-        },
-        {
-          "name": "Presentaci_n_El_f_tbol_Ilustra610626966665576.jpg",
-          "path": "Presentaci_n_El_f_tbol_Ilustra610626966665576.jpg",
-          "type": "Image"
-        },
-        {
-          "name": "Presentaci_n_El_f_tbol_Ilustra8216100747968793.jpg",
-          "path": "Presentaci_n_El_f_tbol_Ilustra8216100747968793.jpg",
           "type": "Image"
         }
       ]

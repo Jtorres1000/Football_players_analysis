@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "68b14f905627a47c131e",
+  "position": {
+    "x": 1313.5542248835661,
+    "y": 592.280328232424,
+    "z": 9000,
+    "height": 52.687513861166558,
+    "width": 583.19627411842976,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Evolucion del rendimiento y longevidad",
+                    "textStyle": {
+                      "fontFamily": "Arial Black",
+                      "fontSize": "20pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

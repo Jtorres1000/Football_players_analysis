@@ -146,81 +146,48 @@ def opciones_grafico(datos):
 
 
 def tarjetas(slot, datos):
+    temporadas = sorted(datos["TEMPORADA"].unique()) if "TEMPORADA" in datos.columns else []
+    if len(temporadas) < 2:
+        return
+
     grupos_orden = ["15-21", "22-26", "27-31", "32-38"]
     grupos = [g for g in grupos_orden if g in datos["GRUPO_ETARIO"].values] or sorted(datos["GRUPO_ETARIO"].unique())
 
-    temporadas = sorted(datos["TEMPORADA"].unique()) if "TEMPORADA" in datos.columns else []
-
-    promedios = {}
-    totales_jugadores = {}
+    tarjetas_info = []
     for g in grupos:
-        sub = datos[datos["GRUPO_ETARIO"] == g]
-        total_j = sub["JUGADORES"].sum()
-        totales_jugadores[g] = total_j
-        if total_j > 0:
-            promedios[g] = round((sub["SALARIO_PROMEDIO"] * sub["JUGADORES"]).sum() / total_j)
-        else:
-            promedios[g] = 0
+        sub_g = datos[datos["GRUPO_ETARIO"] == g]
+        temps_g = sorted(sub_g["TEMPORADA"].unique())
+        if len(temps_g) < 2:
+            continue
 
-    columnas = slot.columns(len(grupos))
+        t_ini = temps_g[0]
+        t_fin = temps_g[-1]
 
-    for idx, (col, g) in enumerate(zip(columnas, grupos)):
-        sal = promedios[g]
-        total_j = int(totales_jugadores[g])
+        sub_ini = sub_g[sub_g["TEMPORADA"] == t_ini]
+        sub_fin = sub_g[sub_g["TEMPORADA"] == t_fin]
 
-        if idx == 0:
-            delta_str = None
-            delta_color = "normal"
-            interpretacion_etaria = "Tramo de inicio profesional (primeros contratos en la élite)."
-        else:
-            prev_g = grupos[idx - 1]
-            prev_sal = promedios[prev_g]
-            if prev_sal > 0:
-                diff = sal - prev_sal
-                pct = (diff / prev_sal) * 100
-                signo = "+" if diff > 0 else ""
-                delta_str = f"{signo}{formatear_eur(diff)} ({pct:+.1f}%)"
-                if diff > 0:
-                    delta_color = "normal"
-                    if g == "27-31":
-                        interpretacion_etaria = f"Pico salarial de la carrera. Aumenta {formatear_eur(diff)} (+{pct:.1f}%) respecto a {prev_g} por máxima madurez y estatus."
-                    else:
-                        interpretacion_etaria = f"Aumento de {formatear_eur(diff)} (+{pct:.1f}%) respecto a {prev_g} por consolidación en el primer equipo."
-                else:
-                    delta_color = "inverse"
-                    interpretacion_etaria = f"Disminución de {formatear_eur(diff)} ({pct:.1f}%) respecto al pico de {prev_g}. Se mantiene en niveles altos por sesgo de supervivencia."
-            else:
-                delta_str = None
-                delta_color = "normal"
-                interpretacion_etaria = ""
+        if sub_ini["JUGADORES"].sum() == 0 or sub_fin["JUGADORES"].sum() == 0:
+            continue
 
-        info_temporal = ""
-        if len(temporadas) > 1:
-            t_ini = temporadas[0]
-            t_fin = temporadas[-1]
-            sub_ini = datos[(datos["GRUPO_ETARIO"] == g) & (datos["TEMPORADA"] == t_ini)]
-            sub_fin = datos[(datos["GRUPO_ETARIO"] == g) & (datos["TEMPORADA"] == t_fin)]
-            if not sub_ini.empty and not sub_fin.empty and sub_ini["JUGADORES"].sum() > 0 and sub_fin["JUGADORES"].sum() > 0:
-                s_ini = (sub_ini["SALARIO_PROMEDIO"] * sub_ini["JUGADORES"]).sum() / sub_ini["JUGADORES"].sum()
-                s_fin = (sub_fin["SALARIO_PROMEDIO"] * sub_fin["JUGADORES"]).sum() / sub_fin["JUGADORES"].sum()
-                d_temp = s_fin - s_ini
-                pct_temp = (d_temp / s_ini) * 100 if s_ini > 0 else 0
-                signo_temp = "+" if d_temp > 0 else ""
-                info_temporal = f"\nEvolución en el periodo ({t_ini} a {t_fin}): {signo_temp}{formatear_eur(d_temp)} ({pct_temp:+.1f}%)"
+        sal_ini = round((sub_ini["SALARIO_PROMEDIO"] * sub_ini["JUGADORES"]).sum() / sub_ini["JUGADORES"].sum())
+        sal_fin = round((sub_fin["SALARIO_PROMEDIO"] * sub_fin["JUGADORES"]).sum() / sub_fin["JUGADORES"].sum())
+        diff = sal_fin - sal_ini
+        pct = (diff / sal_ini) * 100 if sal_ini > 0 else 0
+        signo = "+" if diff > 0 else ""
+        delta_str = f"{signo}{formatear_eur(diff)} ({pct:+.1f}%)"
 
-        help_texto = (
-            f"Salario anual promedio: {formatear_eur(sal)}\n"
-            f"{interpretacion_etaria}"
-            f"{info_temporal}\n"
-            f"Total futbolistas analizados: {total_j}"
-        )
+        tarjetas_info.append((g, t_ini, t_fin, sal_fin, delta_str))
 
+    if not tarjetas_info:
+        return
+
+    columnas = slot.columns(len(tarjetas_info))
+    for col, (g, t_ini, t_fin, sal_fin, delta_str) in zip(columnas, tarjetas_info):
         col.metric(
-            label=f"Grupo {g}",
-            value=formatear_eur(sal),
+            label=f"Grupo {g} · {t_fin}",
+            value=formatear_eur(sal_fin),
             delta=delta_str,
-            delta_color=delta_color,
-            help=help_texto,
+            help=f"Cambio entre {t_ini} y {t_fin}",
             border=True,
         )
 

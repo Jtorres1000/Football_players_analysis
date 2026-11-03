@@ -115,7 +115,7 @@ def opciones_grafico(datos):
             "right": "4%",
         },
         "grid": {
-            "top": 65,
+            "top": 100,
             "left": "6%",
             "right": "6%",
             "bottom": 40,
@@ -312,7 +312,7 @@ def objetivo3():
         return
 
     with chart_slot:
-        st.echarts_chart(opciones_grafico(datos), height=460)
+        st.echarts_chart(opciones_grafico(datos), height=600)
 
     tarjetas(metricas_slot, datos)
     texto_slot.markdown(interpretar(datos))

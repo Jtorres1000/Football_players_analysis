@@ -32,6 +32,11 @@ def get_gemini_client() -> genai.Client:
     return genai.Client(api_key=api_key)
 
 
+def generate_response_gemini(json_generated: dict) -> str:
+    """
+    Recibe el json generado por p_comparativa y envía la solicitud con la data al agente de gemini y devuelve su respuesta
+    """
+    client = get_gemini_client()
     json_string_input = json.dumps(json_generated, ensure_ascii=False)
 
     generation_config = {
@@ -39,12 +44,14 @@ def get_gemini_client() -> genai.Client:
         "thinking_level": "medium",
     }
 
-    interaction = client.interactions.create(
-        model="gemini-3.8-flash",
-        system_instruction=PROMPT_AGENT,
-        input=json_string_input,
-        generation_config=generation_config,
-    )
+    try:
+        interaction = client.interactions.create(
+            model="gemini-3.8-flash",
+            system_instruction=PROMPT_AGENT,
+            input=json_string_input,
+            generation_config=generation_config,
+        )
+    except Exception as error:
+        return f"Error al generar la respuesta del agente: {error}"
 
-    return  interaction.output_text
-
+    return interaction.output_text

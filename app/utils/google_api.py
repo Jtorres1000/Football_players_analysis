@@ -2,17 +2,7 @@ import json
 import streamlit as st
 from google import genai
 
-
-def generate_response_gemini(json_generated):
-    """
-    Recibe el json generado por p_comparativa y envía la solicitud con la data al agente de gemini y devuelve su espuesta
-    """
-    
-    api_key = st.secrets["connections"]["gemini"]["GEMINI_API_KEY"]
-
-    client = genai.Client(api_key=api_key)
-
-    PROMPT_AGENT = """
+PROMPT_AGENT = """
 # ROL Y OBJETIVO
 Eres el Director Deportivo y Jefe de Scouting Analítico de un club de fútbol. Tu objetivo es evaluar un JSON con dos jugadores candidatos (`candidates`) y determinar si alguno de ellos, ambos o ninguno debe ser fichado (o renovado/mantenido) para el equipo objetivo (`target_team`), comparando sus métricas y roles tácticos frente a la plantilla actual (`current_team_roster_stats`).
 
@@ -29,9 +19,18 @@ Interpreta los campos de cada jugador bajo estos parámetros:
    - Si ya está en el equipo: trátalo como un activo propio. Evalúa si debe **mantenerse/renovarse como titular**, pasar a rotación, o ser reemplazado por el otro candidato.
 3. **Contraste con el Roster Actual:** Busca a los jugadores del `target_team` que compartan el mismo `primary_role_code` y `primary_side_code` (o zonas adyacentes). Evalúa si los candidatos superan las cifras de los titulares actuales o si cubren una banda/rol vacío en la plantilla.
 4. **Reubicación Táctica:** Si ambos candidatos son excelentes pero compiten por el mismo puesto (ej. ambos son `M` - `L`), evalúa si las estadísticas de uno le permiten adaptarse a un rol o banda secundaria donde el equipo sea débil.
-5. **Rigor de Fichaje:** No estás obligado a elegir
+5. **Rigor de Fichaje:** No estás obligado a elegir a ninguno si no mejoran la plantilla actual; recomienda únicamente incorporaciones que aporten valor real al equipo.
+"""
 
+
+@st.cache_resource
+def get_gemini_client() -> genai.Client:
     """
+    Inicializa y mantiene en caché la conexión del cliente de gemini
+    """
+    api_key = st.secrets["connections"]["gemini"]["GEMINI_API_KEY"]
+    return genai.Client(api_key=api_key)
+
 
     json_string_input = json.dumps(json_generated, ensure_ascii=False)
 

@@ -1,6 +1,4 @@
 import streamlit as st
-import base64
-from pathlib import Path
 
 CSS = """
 <style>
@@ -35,17 +33,11 @@ CSS = """
 </style>
 """
 
-@st.cache_data(show_spinner=False)
-def _load_audio_b64() -> str:
-    audio_path = Path(__file__).resolve().parents[2] / "assets" / "we_are_one.mp3"
-    return base64.b64encode(audio_path.read_bytes()).decode("utf-8")
-
 
 def audio_player():
-
     st.markdown(
-            f"""
-            {CSS}<div class="audio-card"> <div class="audio-title">We Are One (Ole Ola)</div><audio controls src="data:audio/mp3;base64,{_load_audio_b64()}"></audio></div>
-            """,
-            unsafe_allow_html=True,
-        )
+        f"""
+        {CSS}<div class="audio-card"> <div class="audio-title">We Are One (Ole Ola)</div><audio controls src="app/static/we_are_one.mp3"></audio></div>
+        """,
+        unsafe_allow_html=True,
+    )

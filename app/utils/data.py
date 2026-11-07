@@ -1,6 +1,29 @@
+from pathlib import Path
 import duckdb
 import pandas as pd
 import streamlit as st
+
+LOCAL_DUCKDB_PATH = Path(__file__).resolve().parents[2] / "data" / "football_local.duckdb"
+
+B2_TABLES: list[str] = [
+    "agents",
+    "clubs",
+    "contracts",
+    "divisions",
+    "injuries",
+    "nations",
+    "player_positions",
+    "player_seasons",
+    "player_stats_attacking",
+    "player_stats_defending",
+    "player_stats_general",
+    "player_stats_goalkeeping",
+    "player_stats_passing",
+    "players",
+    "positions",
+    "seasons",
+    "transfers",
+]
 
 # Mapeos entre las etiquetas de la sidebar a  los valores en Snowflake
 SEASON_MAP: dict[str, str] = {
@@ -63,6 +86,71 @@ INNER JOIN DIM_AGE_BRACKET a
 LEFT JOIN DIM_CLUB c
     ON f.club_key = c.club_key
 """
+
+
+@st.cache_resource(show_spinner=False)
+def download_parquets_to_duckdb(db_path: Path = LOCAL_DUCKDB_PATH) -> Path:
+    """
+    Descarga los archivos parquet desde el bucket de backblaze y construye
+    una base de datos duckdb local con todas las tablas para realizar consultas
+    locales.
+    """
+    print("Descargando archivos parquet desde Backblaze y construyendo base de datos duckdb local...")
+    db_path = Path(db_path)
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+
+    B2_KEY_ID = st.secrets['connections']['backblaze']['B2_KEY_ID']
+    B2_KEY_NAME = st.secrets['connections']['backblaze']['B2_KEY_NAME']
+    B2_APPLICATION_KEY = st.secrets['connections']['backblaze']['B2_APPLICATION_KEY']
+    B2_BUCKET_NAME = st.secrets['connections']['backblaze']['B2_BUCKET_NAME']
+    B2_ENDPOINT = st.secrets['connections']['backblaze']['B2_ENDPOINT']
+    B2_REGION = st.secrets['connections']['backblaze']['B2_REGION']
+
+    with duckdb.connect(db_path.as_posix()) as con:
+        existing_tables = {
+            row[0]
+            for row in con.execute(
+                "SELECT table_name FROM information_schema.tables WHERE table_schema = 'main'"
+            ).fetchall()
+        }
+        if set(B2_TABLES).issubset(existing_tables):
+            return db_path
+
+        con.execute("INSTALL httpfs;")
+        con.execute("LOAD httpfs;")
+
+        con.execute(f"""
+            CREATE OR REPLACE SECRET backblaze_b2 (
+                TYPE S3,
+                KEY_ID '{B2_KEY_ID}',
+                SECRET '{B2_APPLICATION_KEY}',
+                REGION '{B2_REGION}',
+                ENDPOINT '{B2_ENDPOINT}',
+                URL_STYLE 'path'
+            );
+        """)
+
+        for tabla in B2_TABLES:
+            ruta_s3 = f"s3://{B2_BUCKET_NAME}/{tabla}.parquet"
+            con.execute(
+                f"CREATE OR REPLACE TABLE {tabla} AS SELECT * FROM read_parquet('{ruta_s3}');"
+            )
+
+    return db_path
+
+
+def query_local_duckdb(sql_query: str, params: list | None = None) -> pd.DataFrame:
+    """
+    Ejecuta una consulta SQL sobre la base de datos duckdb local construida
+    a partir de los archivos parquets.
+    """
+    if not LOCAL_DUCKDB_PATH.exists():
+        download_parquets_to_duckdb(LOCAL_DUCKDB_PATH)
+
+    with duckdb.connect(LOCAL_DUCKDB_PATH.as_posix(), read_only=True) as con:
+        if params:
+            return con.execute(sql_query, params).df()
+        return con.execute(sql_query).df()
 
 
 def get_snowflake_connection():

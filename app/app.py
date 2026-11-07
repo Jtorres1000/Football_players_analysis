@@ -1,10 +1,12 @@
 import streamlit as st
-
+from pathlib import Path
 from components import sidebar
 from pages import p_inicio, p_infomd, p_exploratorio, p_comparativa, p_cuestionario
-from utils import warm_up_connection, global_css
+from utils import warm_up_connection, global_css, download_parquets_to_duckdb
 
 st.set_page_config(page_title="Fútbol Análisis.", layout="wide", page_icon=":material/sports_soccer:")
+
+LOCAL_DUCKDB_PATH = Path(__file__).resolve().parents[1] / "data" / "football_local.duckdb"
 
 global_css()
 
@@ -20,3 +22,6 @@ pg = st.navigation([p_inicio, p_infomd, p_exploratorio, p_comparativa, p_cuestio
 pg.run()
 
 warm_up_connection()
+
+if not LOCAL_DUCKDB_PATH.exists():
+    download_parquets_to_duckdb(LOCAL_DUCKDB_PATH)

@@ -45,7 +45,7 @@ Esta investigación es fundamental para entender cómo ha cambiado la gestión d
 
 ## Herramientas Tecnológicas Utilizadas
 
-- Python, SQLite, DuckDB, Snowflake, DBT Core, Power BI, Streamlit.
+- Python, SQLite, DuckDB, Snowflake, DBT Core, Power BI, Streamlit, Backblaze B2.
 
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
@@ -54,12 +54,13 @@ Esta investigación es fundamental para entender cómo ha cambiado la gestión d
 [![dbt](https://img.shields.io/badge/dbt_Core-FF694B?style=for-the-badge&logo=dbt&logoColor=white)](https://docs.getdbt.com/)
 [![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Backblaze B2](https://img.shields.io/badge/Backblaze_B2-E21E29?style=for-the-badge&logo=backblaze&logoColor=white)](https://www.backblaze.com/)
 
 ## Bosquejo del Modelo de Datos Desnormalizado 
 
 Para facilitar el procesamiento analítico, la evaluación del rendimiento por posición y el estudio de la longevidad deportiva y su impacto en el ingreso salarial durante el periodo 2022-2026, los datos se estructuran bajo un modelo dimensional en esquema de estrella.
 
-Este esquema centraliza las métricas deportivas, las variaciones interanuales de nivel y los ingresos salariales en una tabla de hechos periódica (`fact_player_season`), conectada directamente a tres dimensiones conformadas: datos del jugador y su rol táctico (`dim_player`), temporalidad del estudio (`dim_season`) y segmentación etaria (`dim_age_bracket`). Esta estructura optimizada permite responder de forma directa a los objetivos de investigación del ciclo de vida futbolístico, garantizando consultas analíticas de alto rendimiento sin combinaciones complejas en tiempo de ejecución.
+Este esquema centraliza las métricas específicas de juego (goles, regates, entradas, ratio de paradas, ocasiones creadas y pases completados), el puntaje de habilidad, sus variaciones interanuales y los ingresos salariales en una tabla de hechos periódica (`fact_player_season`), conectada directamente a cuatro dimensiones conformadas: datos del jugador y su rol táctico (`dim_player`), temporalidad del estudio (`dim_season`), segmentación etaria (`dim_age_bracket`) e información del club y su liga (`dim_club`). Esta estructura optimizada permite responder de forma directa a los objetivos de investigación del ciclo de vida futbolístico y alimentar las herramientas de radar para la comparación de jugadores, garantizando consultas analíticas de alto rendimiento sin combinaciones complejas y un tiempo óptimo ejecución.
 
 ## Diagrama de Entidad-Relación (DER)
 
@@ -68,6 +69,7 @@ erDiagram
     dim_player ||--o{ fact_player_season : "player_key"
     dim_season ||--o{ fact_player_season : "season_key"
     dim_age_bracket ||--o{ fact_player_season : "age_key"
+    dim_club |o--o{ fact_player_season : "club_key"
 
     dim_player {
         varchar player_key PK "Clave surrogate única"
@@ -87,7 +89,15 @@ erDiagram
     dim_age_bracket {
         varchar age_key PK "Clave surrogate única"
         int age UK "Edad exacta cumplida (15-38)"
-        varchar age_group "Grupo etario (15-21, 22-26, etc.)"
+        varchar age_group "Grupo etario (15-21, 22-26, 27-31, 32-38)"
+    }
+
+    dim_club {
+        varchar club_key PK "Clave surrogate única"
+        int club_id UK "Clave natural del club"
+        varchar club_name "Nombre oficial del club"
+        int division_id "ID de la división"
+        varchar division_name "Nombre de la división o liga"
     }
 
     fact_player_season {
@@ -95,22 +105,31 @@ erDiagram
         varchar player_key FK "Referencia a dim_player"
         varchar season_key FK "Referencia a dim_season"
         varchar age_key FK "Referencia a dim_age_bracket"
+        varchar club_key FK "Referencia a dim_club (opcional)"
         float ability_score "Puntaje de habilidad"
         float ability_score_delta "Variación anual de habilidad"
         float weekly_wage_eur "Salario semanal en EUR"
         float annual_wage_eur "Salario anualizado en EUR"
+        int goals "Goles marcados"
+        int dribbles_made "Regates completados"
+        int tackles_completed "Entradas defensivas completadas"
+        float save_ratio "Efectividad de paradas (GK)"
+        int chances_created "Ocasiones de gol generadas"
+        int passes_completed "Pases completados"
     }
 ```
 
 ## Cardinalidad y Relaciones entre Entidades
 
-Las relaciones del diagrama configuran un esquema en estrella con patrones estrictos de Uno a Muchos (1:N) entre las dimensiones conformadas y la tabla de hechos central:
+Las relaciones del diagrama configuran un esquema en estrella con relaciones de uno a muchos (1:N) entre las dimensiones conformadas y la tabla de hechos central:
 
 * **dim_player → fact_player_season (1:N)**: Un jugador único registrado en la dimensión puede tener múltiples registros en la tabla de hechos, uno por cada temporada en la que participó entre 2022 y 2026. Cada registro de hecho corresponde exclusivamente a un único jugador identificado mediante `player_key`.
 
 * **dim_season → fact_player_season (1:N)**: Una temporada deportiva de estudio (`2022/23`, `2023/24`, `2024/25`, `2025/26`) agrupa los hechos y rendimientos de miles de futbolistas activos durante dicho periodo. Sin embargo, cada fila de la tabla de hechos pertenece a una única temporada vinculada por `season_key`.
 
 * **dim_age_bracket → fact_player_season (1:N)**: Una edad exacta o grupo etario de estudio se asocia a múltiples observaciones anuales de jugadores que tenían esa edad en una temporada dada. Cada hecho anual del jugador se mapea a una única edad y rango etario mediante `age_key`.
+
+* **dim_club → fact_player_season (0..1:N)**: Un club y su respectiva división pueden agrupar a múltiples futbolistas a lo largo de las distintas temporadas registradas en la tabla de hechos. A su vez, cada registro anual de un jugador se asocia a lo sumo a un club mediante `club_key` puede ser nulo si un jugador no posee club asignado en ese periodo.
 
 ## Colaboradores del Proyecto 
 

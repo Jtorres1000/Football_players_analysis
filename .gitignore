@@ -4,3 +4,4 @@ __pycache__/
 *.parquet
 /logs
 app/.streamlit/secrets.toml
+*.duckdb

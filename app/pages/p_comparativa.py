@@ -404,6 +404,9 @@ def p_comparativa():
                 key="comp_team",
             )
 
+        st.caption(
+            "Nota: El análisis del Agente Coach procesa toda la plantilla del club y puede tardar entre 1 y 3 minutos en responder según la disponibilidad de la API."
+        )
         send_coach_clicked = st.button(
             "Enviar al Agente Coach",
             type="primary",
@@ -450,9 +453,11 @@ def p_comparativa():
                 "current_team_roster_stats": get_club_roster_stats(selected_team),
             }
             st.success("Datos generados y enviados al Agente Coach.")
+            with st.expander("Ver JSON enviado"):
+                st.json(payload)
 
     if payload and send_coach_clicked:
-        with st.chat_message("assistant"):               
+        with st.chat_message("assistant"):
             with st.spinner("El Agente Coach está evaluando los candidatos..."):
                 response = generate_response_gemini(payload)
                 st.markdown(response)

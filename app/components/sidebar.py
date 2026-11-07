@@ -1,4 +1,5 @@
 import streamlit as st
+from .audio_player import audio_player
 
 SELECTED_FILTER_CSS = """
 <style>
@@ -47,11 +48,11 @@ SELECTED_FILTER_CSS = """
         color: #000000 !important;
         font-weight: 600 !important;
     }
-
 </style>
 """
+
 SESSION_DEFAULTS = {
-    "sb_season": [], 
+    "sb_season": [],
     "sb_positions": [],
     "sb_age_groups": [],
     "sb_age_range": (15, 38),
@@ -63,7 +64,6 @@ def _reset_filters() -> None:
     for key, val in SESSION_DEFAULTS.items():
         st.session_state[key] = val
 
-
 def sidebar() -> dict:
 
     for key, val in SESSION_DEFAULTS.items():
@@ -72,7 +72,7 @@ def sidebar() -> dict:
 
     with st.sidebar:
         st.markdown(SELECTED_FILTER_CSS, unsafe_allow_html=True)
-        st.header("Filtros de Búsqueda")
+        st.header("Filtros de Búsqueda", text_alignment="center")
 
         selected_seasons = st.multiselect(
             label="Temporada",
@@ -132,6 +132,8 @@ def sidebar() -> dict:
             width="stretch",
             on_click=_reset_filters,
         )
+
+        audio_player()
 
     return {
         "season": selected_seasons,

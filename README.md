@@ -1,3 +1,6 @@
+![banner_readme](./assets/banner_readme.png)
+
+
 # Análisis del ciclo de vida futbolístico según la posición con base en el rendimiento, la longevidad y el impacto de estos en el ingreso salarial en el periodo 2022-2026
 
 ## Introducción

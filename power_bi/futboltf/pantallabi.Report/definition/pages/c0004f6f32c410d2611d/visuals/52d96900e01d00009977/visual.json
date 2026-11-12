@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "52d96900e01d00009977",
   "position": {
-    "x": 112.6422710135285,
-    "y": 39.969838101574631,
+    "x": 50,
+    "y": 32.5,
     "z": 4000,
-    "height": 176.1632907978595,
-    "width": 950.5840939092418,
+    "height": 62.5,
+    "width": 1110,
     "tabOrder": 4000
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "EVOLUCION SALARIAL SEGUN CICLO DE VIDA PROFESIONAL",
                     "textStyle": {
                       "fontFamily": "Arial Black",
-                      "fontSize": "40pt",
+                      "fontSize": "24pt",
                       "color": "#ffffff"
                     }
                   }

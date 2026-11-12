@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
-        "y": 0
+        "x": 249.33084644601183,
+        "y": 224.28391209983712
       },
       "nodes": [
         {
@@ -55,7 +55,7 @@
           "nodeIndex": "FACT_PLAYER_SEASON",
           "nodeLineageTag": "e241d426-a720-42a5-9d96-02b87f45308f",
           "size": {
-            "height": 597,
+            "height": 476.12176071976887,
             "width": 234
           },
           "zIndex": 5
@@ -72,10 +72,23 @@
             "width": 189
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 626.41858565016048,
+            "y": 299.6326866248873
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "99e4c0a3-b008-4f82-834e-1dd1642f9eb3",
+          "size": {
+            "height": 455.68041237113374,
+            "width": 234
+          },
+          "zIndex": 6
         }
       ],
       "name": "Todas las tablas",
-      "zoomValue": 77.911646586345384,
+      "zoomValue": 87.835100679137412,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

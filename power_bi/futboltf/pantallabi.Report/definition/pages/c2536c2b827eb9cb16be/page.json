@@ -14,7 +14,7 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'2.png'"
+                    "Value": "'Fondo deportivo Full HD.png'"
                   }
                 }
               },
@@ -23,7 +23,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "27296049662635378.png"
+                    "ItemName": "Fondo_deportivo_Full_HD0011480489975415065.png"
                   }
                 }
               },

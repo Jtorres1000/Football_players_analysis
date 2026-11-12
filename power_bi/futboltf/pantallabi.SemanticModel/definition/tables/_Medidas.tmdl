@@ -1,0 +1,105 @@
+table _Medidas
+	lineageTag: 99e4c0a3-b008-4f82-834e-1dd1642f9eb3
+
+	measure 'Total Jugadores' =
+			
+			DISTINCTCOUNT('FACT_PLAYER_SEASON'[PLAYER_KEY])
+		formatString: 0
+		lineageTag: 66f29428-81bb-4db0-b025-1b7b481ae771
+
+	measure 'Puntaje Promedio' = AVERAGE('FACT_PLAYER_SEASON'[ABILITY_SCORE])
+		lineageTag: 64fb1f62-09a0-4ec8-adef-3d891c0ee6da
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Jugadores Veteranos' =
+			
+			CALCULATE(
+			    [Total Jugadores],
+			    'DIM_AGE_BRACKET'[AGE_GROUP] = "32-38")
+		formatString: 0
+		lineageTag: 67afeca6-91cf-44a7-a8c4-682d39065987
+
+	measure '% Jugadores Veteranos' = ```
+			
+			DIVIDE([Jugadores Veteranos], [Total Jugadores], 0)
+			
+			```
+		lineageTag: 72502a9e-13b8-4005-a263-909e9dec80b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Salario Promedio' = AVERAGE('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR])
+		lineageTag: 13512d72-86ee-46d7-b401-0ea01fad089f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var Puntaje' = ```
+			
+			VAR Actual = [Puntaje Promedio]
+			VAR Anterior = 
+			    CALCULATE(
+			        [Puntaje Promedio],
+			        DATEADD('DIM_SEASON'[SEASON_KEY], -1, YEAR) 
+			    )
+			RETURN DIVIDE(Actual - Anterior, Anterior, 0)
+			```
+		formatString: 0
+		lineageTag: 9491ad96-dcea-4b42-a3a2-77d1d5ee1a73
+
+	measure 'Texto KPI Puntaje' =
+			
+			VAR Valor = [Var Puntaje]
+			VAR Icono = IF(Valor >= 0, "▲ ", "▼ ")
+			VAR Porcentaje = FORMAT(Valor, "+0.0%;-0.0%;0.0%")
+			RETURN Icono & Porcentaje
+		lineageTag: 9dc78707-d0f4-42f2-8f9e-56db35c23c30
+
+	measure 'Puntaje Pico' =
+			
+			CALCULATE([Puntaje Promedio], 'DIM_AGE_BRACKET'[AGE_GROUP] = "27-31")
+		lineageTag: 1785a902-2ba4-4e94-9dd9-d7bf74736b89
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Puntaje Veterano' =
+			
+			CALCULATE([Puntaje Promedio], 'DIM_AGE_BRACKET'[AGE_GROUP] = "32-38")
+		lineageTag: fc38de33-9523-4d93-a219-e58e556e6a8e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Caída de Rendimiento' = [Puntaje Pico] - [Puntaje Veterano]
+		lineageTag: 9eb46d77-2431-47bb-80cd-e559eb0f5ac8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Caída de Rendimiento' =
+			
+			DIVIDE([Caída de Rendimiento], [Puntaje Pico], 0)
+		lineageTag: b2bfe6b6-a871-40fd-8f62-2f28cae13bbc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Veteranos Correcto' = ```
+			
+			VAR TotalPosicion = CALCULATE([Total Jugadores], REMOVEFILTERS('DIM_AGE_BRACKET'))
+			VAR Veteranos = CALCULATE([Total Jugadores], 'DIM_AGE_BRACKET'[AGE_GROUP] = "32-38")
+			RETURN 
+			    DIVIDE(Veteranos, TotalPosicion, 0)
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: d6cf14ae-3bae-4e80-94d0-14b2ec489ae6
+
+	partition _Medidas = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

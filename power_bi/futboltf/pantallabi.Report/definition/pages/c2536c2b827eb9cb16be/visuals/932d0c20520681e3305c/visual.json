@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "932d0c20520681e3305c",
   "position": {
-    "x": 960,
-    "y": 75,
-    "z": 7000,
-    "height": 362.5,
-    "width": 842.5,
-    "tabOrder": 7000
+    "x": 817.5,
+    "y": 102.5,
+    "z": 5000,
+    "height": 392.5,
+    "width": 845,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -64,6 +64,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "% Veteranos Correcto"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "objects": {
@@ -312,51 +329,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "50060113c4802ec060cb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM_PLAYER"
-              }
-            },
-            "Property": "PRIMARY_CATEGORY"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d0911e3f00c115c77a17",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Caída de Rendimiento"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "df36fc080100358eb8e3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "% Veteranos Correcto"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

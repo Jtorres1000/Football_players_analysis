@@ -91,6 +91,28 @@ table _Medidas
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		lineageTag: d6cf14ae-3bae-4e80-94d0-14b2ec489ae6
 
+	measure 'Salario Anterior' =
+			
+			CALCULATE(
+			    [Salario Promedio],
+			    'DIM_SEASON'[SEASON_LABEL] = "2022/23" // Cambia esto por la temporada anterior a la que estés analizando
+			)
+		lineageTag: 8e2131a9-a54e-4ad0-98d6-5e544fa04e1a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'KPI Salario Final' = ```
+			
+			VAR Actual = [Salario Promedio]
+			VAR Anterior = [Salario Anterior]
+			VAR Diferencia = DIVIDE(Actual - Anterior, Anterior, 0)
+			VAR Icono = IF(Diferencia >= 0, "▲ ", "▼ ")
+			VAR Porcentaje = FORMAT(Diferencia, "+0.0%;-0.0%;0.0%")
+			RETURN 
+			    Icono & Porcentaje
+			```
+		lineageTag: 7282d6cc-d0d8-44a8-9d52-e778feb6e9d2
+
 	partition _Medidas = m
 		mode: import
 		source =

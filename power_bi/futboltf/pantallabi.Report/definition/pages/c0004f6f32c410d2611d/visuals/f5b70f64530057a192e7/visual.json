@@ -4,10 +4,10 @@
   "position": {
     "x": 1240,
     "y": 50,
-    "z": 4008,
+    "z": 8000,
     "height": 970,
     "width": 657.5,
-    "tabOrder": 4008
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -444,20 +444,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "3c26684a7ce7350eea26",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Puntaje Promedio"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

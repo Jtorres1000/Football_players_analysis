@@ -4,10 +4,10 @@
   "position": {
     "x": 912.5,
     "y": 202.5,
-    "z": 4007,
+    "z": 7000,
     "height": 95,
     "width": 327.5,
-    "tabOrder": 4007
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -149,23 +149,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "4937dfd700dde0523915",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM_SEASON"
-              }
-            },
-            "Property": "SEASON_LABEL"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

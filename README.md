@@ -59,6 +59,10 @@ Esta investigación es fundamental para entender cómo ha cambiado la gestión d
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Backblaze B2](https://img.shields.io/badge/Backblaze_B2-E21E29?style=for-the-badge&logo=backblaze&logoColor=white)](https://www.backblaze.com/)
 
+## Dashboard Interactivo (versión Web Power Bi)
+
+Explora las metricas y patrones de los futbolistas a lo largo del periodo 2022-2026 [Dashboard interactivo](https://app.powerbi.com/view?r=eyJrIjoiNGJjMDNiY2EtNjgxZi00NjVhLWIxMzktZTVmNGZjN2YxZmQ2IiwidCI6IjRjODE4Zjc5LWFiODQtNDU1Mi05YjdjLTJmZTcxNWIwZDBkNSIsImMiOjR9)
+
 ## Bosquejo del Modelo de Datos Desnormalizado 
 
 Para facilitar el procesamiento analítico, la evaluación del rendimiento por posición y el estudio de la longevidad deportiva y su impacto en el ingreso salarial durante el periodo 2022-2026, los datos se estructuran bajo un modelo dimensional en esquema de estrella.

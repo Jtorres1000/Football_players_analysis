@@ -3375,16 +3375,6 @@ cultureInfo en-US
 			          "qsalario": {
 			            "State": "Generated"
 			          }
-			        },
-			        {
-			          "Salarios (€)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -3400,6 +3390,16 @@ cultureInfo en-US
 			        {
 			          "qpuntaje": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Puntajes de Habilidad": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -3787,7 +3787,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Puntaje de Habilidad y  el Salario Anual": {
+			          "Correlación Puntuaje vs. Salario": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -3797,7 +3797,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Correlación Puntuaje vs. Salario": {
+			          "Puntaje de Habilidad y  el Salario Anual": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

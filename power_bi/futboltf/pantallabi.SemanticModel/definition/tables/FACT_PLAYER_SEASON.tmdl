@@ -141,13 +141,39 @@ table FACT_PLAYER_SEASON
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column Qsalarios = VAR Q1 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR], 0.25) VAR Q2 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR], 0.50) VAR Q3 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR], 0.75) VAR Val = 'FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR] RETURN  SWITCH( TRUE(), Val <= Q1, REPT(UNICHAR(8203), 1) & "0-" & FORMAT(Q1, "#,0"), Val <= Q2, REPT(UNICHAR(8203), 2) & FORMAT(Q1, "#,0") & " - " & FORMAT(Q2, "#,0"), Val <= Q3, REPT(UNICHAR(8203), 3) & FORMAT(Q2, "#,0") & " - " & FORMAT(Q3, "#,0"), REPT(UNICHAR(8203), 4) &">" & FORMAT(Q3, "#,0"))
+	column Qsalarios = ```
+			
+			VAR Q1 = 249117
+			VAR Q2 = 719498 
+			VAR Q3 = 1791988 
+			VAR Val = 'FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR] 
+			RETURN  
+			SWITCH( 
+			    TRUE(), 
+			    Val <= Q1, REPT(UNICHAR(8203), 1) & "0-" & FORMAT(Q1, "#,0"), 
+			    Val <= Q2, REPT(UNICHAR(8203), 2) & FORMAT(Q1+1, "#,0") & " - " & FORMAT(Q2, "#,0"), 
+			    Val <= Q3, REPT(UNICHAR(8203), 3) & FORMAT(Q2+1, "#,0") & " - " & FORMAT(Q3, "#,0"), 
+			    REPT(UNICHAR(8203), 4) &">" & FORMAT(Q3, "#,0"))
+			```
 		lineageTag: e6363c1a-0593-4b42-ba22-08242a0dcedf
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
-	column Qpuntajes = VAR Q1 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ABILITY_SCORE], 0.25) VAR Q2 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ABILITY_SCORE], 0.50) VAR Q3 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ABILITY_SCORE], 0.75) VAR Val = 'FACT_PLAYER_SEASON'[ABILITY_SCORE] RETURN SWITCH(TRUE(), VAL <= Q1, REPT(UNICHAR(8203), 4) & "0-" & FORMAT (Q1, "#,0"), Val <= Q2, REPT(UNICHAR(8203), 3) & FORMAT(Q1, "#,0") & "-" & FORMAT(Q2, "#,0"), Val <= Q3, REPT(UNICHAR(8203), 2) & FORMAT(Q2, "#,0") & "-" & FORMAT(Q3, "#,0"), REPT(UNICHAR(8203), 1) & ">" & FORMAT(Q3, "#,0"))
+	column Qpuntajes = ```
+			
+			VAR Q1 = 304
+			VAR Q2 = 400 
+			VAR Q3 = 504 
+			VAR Val = 'FACT_PLAYER_SEASON'[ABILITY_SCORE] 
+			RETURN 
+			SWITCH(
+			    TRUE(), 
+			    VAL <= Q1, REPT(UNICHAR(8203), 4) & "0-" & FORMAT (Q1, "#,0"), 
+			    Val <= Q2, REPT(UNICHAR(8203), 3) & FORMAT(Q1+1, "#,0") & "-" & FORMAT(Q2, "#,0"), 
+			    Val <= Q3, REPT(UNICHAR(8203), 2) & FORMAT(Q2+1, "#,0") & "-" & FORMAT(Q3, "#,0"), 
+			    REPT(UNICHAR(8203), 1) & ">" & FORMAT(Q3, "#,0"))
+			```
 		lineageTag: 1cf73156-f78a-4fb9-a0bd-2574ee0cd214
 		summarizeBy: none
 

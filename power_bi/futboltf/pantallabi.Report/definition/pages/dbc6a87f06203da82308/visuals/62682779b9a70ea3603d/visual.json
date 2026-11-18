@@ -4,10 +4,10 @@
   "position": {
     "x": 79.629629629629619,
     "y": 633.33333333333326,
-    "z": 3000,
+    "z": 1000,
     "height": 375.92592592592592,
-    "width": 1114.8148148148148,
-    "tabOrder": 3000
+    "width": 1079.6296296296296,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -56,37 +56,17 @@
           "projections": [
             {
               "field": {
-                "Arithmetic": {
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Medidas"
-                        }
-                      },
-                      "Property": "Total Jugadores"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
                     }
                   },
-                  "Right": {
-                    "ScopedEval": {
-                      "Expression": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "_Medidas"
-                            }
-                          },
-                          "Property": "Total Jugadores"
-                        }
-                      },
-                      "Scope": []
-                    }
-                  },
-                  "Operator": 3
+                  "Property": "Total Jugadores"
                 }
               },
               "queryRef": "_Medidas.Total Jugadores",
-              "nativeQueryRef": "%TG Total Jugadores"
+              "nativeQueryRef": "Total Jugadores"
             }
           ]
         }

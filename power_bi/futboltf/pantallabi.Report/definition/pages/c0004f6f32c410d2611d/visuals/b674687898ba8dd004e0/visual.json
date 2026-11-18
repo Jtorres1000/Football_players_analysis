@@ -148,6 +148,11 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "SEASON_LABEL",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   }
 }

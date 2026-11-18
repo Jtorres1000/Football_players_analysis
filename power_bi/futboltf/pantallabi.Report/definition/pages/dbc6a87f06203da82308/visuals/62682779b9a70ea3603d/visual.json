@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "62682779b9a70ea3603d",
   "position": {
-    "x": 49.903885203736294,
-    "y": 624.72271106899507,
+    "x": 79.629629629629619,
+    "y": 633.33333333333326,
     "z": 3000,
-    "height": 389.98962140697626,
-    "width": 1341.8600243671315,
+    "height": 375.92592592592592,
+    "width": 1114.8148148148148,
     "tabOrder": 3000
   },
   "visual": {
@@ -46,8 +46,9 @@
                 }
               },
               "queryRef": "FACT_PLAYER_SEASON.Qsalarios",
-              "nativeQueryRef": "Qsalarios",
-              "active": true
+              "nativeQueryRef": "Salarios (€)",
+              "active": true,
+              "displayName": "Salarios (€)"
             }
           ]
         },
@@ -103,7 +104,7 @@
                 "Property": "Qsalarios"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -123,6 +124,20 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "columnSubtotalsLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Totales'"
+                }
+              }
+            },
+            "rowSubtotalsLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Totales'"
                 }
               }
             }
@@ -214,7 +229,7 @@
             "wordWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -259,7 +274,7 @@
             "titleAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Auto'"
+                  "Value": "'Left'"
                 }
               }
             },
@@ -290,7 +305,7 @@
             "wordWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -302,6 +317,20 @@
               }
             },
             "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "autoExpand": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -324,7 +353,7 @@
             "gridHorizontalWeight": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "2D"
                 }
               }
             },
@@ -351,7 +380,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F4DFF7'"
+                      "Value": "'#C390CB'"
                     }
                   }
                 }
@@ -362,7 +391,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#C390CB'"
                     }
                   }
                 }
@@ -371,7 +400,7 @@
             "gridVerticalWeight": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "2D"
                 }
               }
             },
@@ -626,7 +655,7 @@
             "width": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "8D"
                 }
               }
             }

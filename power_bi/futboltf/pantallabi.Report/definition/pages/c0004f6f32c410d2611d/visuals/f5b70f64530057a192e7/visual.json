@@ -64,7 +64,7 @@
                 "Property": "Puntaje Promedio"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }

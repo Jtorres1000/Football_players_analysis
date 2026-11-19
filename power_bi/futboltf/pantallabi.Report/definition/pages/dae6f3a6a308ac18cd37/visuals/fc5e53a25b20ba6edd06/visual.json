@@ -4,10 +4,10 @@
   "position": {
     "x": 618,
     "y": 708,
-    "z": 1002,
+    "z": 3000,
     "height": 98,
     "width": 206,
-    "tabOrder": 1002
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "textbox",
@@ -22,7 +22,7 @@
                     "value": "Relación",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "color": "#33ff9f"
+                      "color": "#00bf65"
                     }
                   }
                 ]
@@ -33,7 +33,7 @@
                     "value": "salarial según su",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "color": "#33ff9f"
+                      "color": "#00bf65"
                     }
                   }
                 ]

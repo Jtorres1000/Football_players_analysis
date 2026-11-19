@@ -1,38 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
-  "name": "593b68e64ec7cd9cdca9",
+  "name": "a3c592234bc916b6200d",
   "position": {
-    "x": 792,
-    "y": 354,
-    "z": 3003,
-    "height": 684,
-    "width": 1004,
-    "tabOrder": 3003
+    "x": 1117.414205419567,
+    "y": 452.95517204612264,
+    "z": 8000,
+    "height": 574.61668519900684,
+    "width": 703.76506069976085,
+    "tabOrder": 8000
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DIM_PLAYER"
-                    }
-                  },
-                  "Property": "PRIMARY_CATEGORY"
-                }
-              },
-              "queryRef": "DIM_PLAYER.PRIMARY_CATEGORY",
-              "nativeQueryRef": "PRIMARY_CATEGORY",
-              "active": true
-            }
-          ]
-        },
-        "Series": {
           "projections": [
             {
               "field": {
@@ -46,10 +27,13 @@
                 }
               },
               "queryRef": "FACT_PLAYER_SEASON.Qpuntajes",
-              "nativeQueryRef": "Puntajes de Habilidad",
-              "displayName": "Puntajes de Habilidad"
+              "nativeQueryRef": "Qpuntajes",
+              "active": true
             }
           ]
+        },
+        "Series": {
+          "projections": []
         },
         "Y": {
           "projections": [
@@ -66,11 +50,11 @@
                       "Property": "ANNUAL_WAGE_EUR"
                     }
                   },
-                  "Function": 1
+                  "Function": 0
                 }
               },
               "queryRef": "Sum(FACT_PLAYER_SEASON.ANNUAL_WAGE_EUR)",
-              "nativeQueryRef": "Promedio de ANNUAL_WAGE_EUR"
+              "nativeQueryRef": "Suma de ANNUAL_WAGE_EUR"
             }
           ]
         }
@@ -90,36 +74,15 @@
                     "Property": "ANNUAL_WAGE_EUR"
                   }
                 },
-                "Function": 1
+                "Function": 0
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
-      "dataPoint": [
-        {
-          "properties": {
-            "borderShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fillTransparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            }
-          }
-        }
-      ],
       "categoryAxis": [
         {
           "properties": {
@@ -138,28 +101,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
-                }
-              }
-            },
-            "maxMarginFactor": {
-              "expr": {
-                "Literal": {
-                  "Value": "50L"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "15D"
                 }
               }
             }
@@ -169,57 +111,13 @@
       "valueAxis": [
         {
           "properties": {
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "15D"
                 }
               }
-            }
-          }
-        }
-      ],
-      "totals": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "legend": [
-        {
-          "properties": {
+            },
             "labelColor": {
               "solid": {
                 "color": {
@@ -229,60 +127,6 @@
                       "Percent": 0
                     }
                   }
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'TopRight'"
-                }
-              }
-            },
-            "showTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "layout": [
-        {
-          "properties": {
-            "seriesOrderReversed": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "seriesOrderSorted": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "ribbonBands": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fillTransparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "58D"
                 }
               }
             }
@@ -352,7 +196,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Comparativa Ingreso Promedio por Rendimiento'"
+                  "Value": "'Salario Anual Promedio (€) por Rango de habilidad'"
                 }
               }
             },
@@ -368,17 +212,17 @@
                 }
               }
             },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "21D"
-                }
-              }
-            },
             "fontFamily": {
               "expr": {
                 "Literal": {
                   "Value": "'''Arial Black'''"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
                 }
               }
             }

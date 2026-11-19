@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "75a582d701a48c706599",
   "position": {
-    "x": 112,
-    "y": 140,
-    "z": 2000,
-    "height": 442,
-    "width": 596,
-    "tabOrder": 2000
+    "x": 50.536320848121122,
+    "y": 602.69241900351858,
+    "z": 1000,
+    "height": 405.84287880380117,
+    "width": 606.91957784750264,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "gauge",
@@ -177,8 +177,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 3,
-                      "Percent": 0
+                      "ColorId": 4,
+                      "Percent": 0.2
                     }
                   }
                 }
@@ -195,7 +195,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Correlación Puntaje vs. Salario'"
+                  "Value": "'Correlación Puntaje y Salario'"
                 }
               }
             },

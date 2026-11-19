@@ -67,7 +67,7 @@ def opciones_small_multiples(datos):
     series = []
     titulos = [
         {
-            "text": "Small Multiples: Evolución de Habilidad vs. Salario por Posición",
+            "text": "Evolución de Habilidad vs. Salario por Posición",
             "textStyle": {"color": "#fbfaff", "fontSize": 14, "fontWeight": 600},
             "left": "center",
             "top": 0,
@@ -226,7 +226,7 @@ def opciones_picos_comparados(picos):
     return {
         "backgroundColor": "transparent",
         "title": {
-            "text": "Mixed Line and Bar: Pico Salarial vs. Pico de Habilidad por Posición",
+            "text": "Pico Salarial vs. Pico de Habilidad por Posición",
             "textStyle": {"color": "#fbfaff", "fontSize": 14, "fontWeight": 600},
             "left": "center",
             "top": 0,
@@ -353,16 +353,94 @@ def interpretar(datos, picos):
     if datos.empty or not picos:
         return "No hay suficientes datos para interpretar este objetivo."
 
-    return (
-        "Al examinar la evolución conjunta a través de los cuatro grupos de edad, se puede apreciar el progreso en el rendimiento y la compensación: "
-        "en el grupo de 15-21 años, se establece la base de formación con una habilidad media de 375.2 puntos y un salario inicial de €1.04M; "
-        "en el rango de edad de 22-26 años, se produce una consolidación deportiva, alcanzando 399.4 puntos y aumentando el ingreso medio a €1.16M; "
-        "en la etapa de 27-31 años, se consolida la madurez competitiva y contractual con 445.4 puntos de rendimiento medio y una remuneración de €1.79M; "
-        "por último, en el rango de 32-38 años, los registros llegan a 461.9 puntos de habilidad y €2.41M de salario anual, debido a un sesgo de supervivencia, "
-        "ya que a esta edad, pues a esta edad solo continúan activos los jugadores de fútbol con más jerarquía y con contratos más altos. "
-        "Cuando se comparan los picos por posición, se observa que todos alcanzan su puntaje máximo de habilidad y su salario más alto en el rango de 32 a 38 años, "
-        "siendo los Centrocampistas (MID) los que sobresalen en habilidad (470.8 pts) y también en remuneración (€2.56M)."
+    posiciones_orden = [
+        "Delanteros (ATT)",
+        "Centrocampistas (MID)",
+        "Defensas (DEF)",
+        "Porteros (GK)",
+    ]
+    grupos_orden = ["15-21", "22-26", "27-31", "32-38"]
+
+    trayectorias_pos = []
+    for pos in posiciones_orden:
+        if pos not in picos:
+            continue
+        filas_p = datos[datos["POSICION"] == pos].set_index("GRUPO_ETARIO")
+        grupos_disp = [g for g in grupos_orden if g in filas_p.index]
+        if not grupos_disp:
+            continue
+
+        g_ini = grupos_disp[0]
+        hab_ini = float(filas_p.loc[g_ini, "HABILIDAD_PROMEDIO"])
+        sal_ini = float(filas_p.loc[g_ini, "SALARIO_PROMEDIO"])
+
+        info = picos[pos]
+        if info["coinciden"]:
+            trayectorias_pos.append(
+                f"en **{pos}**, la progresión parte en **{g_ini} años** ({hab_ini} pts y {formatear_eur(sal_ini)}) "
+                f"y asciende de forma sostenida hasta converger en **{info['pico_hab']} años** con su máximo tanto de habilidad "
+                f"(**{info['val_hab']} pts**) como de salario (**{formatear_eur(info['val_sal'])}**)"
+            )
+        else:
+            trayectorias_pos.append(
+                f"en **{pos}**, la curva inicia en **{g_ini} años** ({hab_ini} pts y {formatear_eur(sal_ini)}), "
+                f"alcanza su tope deportivo en **{info['pico_hab']} años** (**{info['val_hab']} pts**) "
+                f"y registra su techo salarial en **{info['pico_sal']} años** (**{formatear_eur(info['val_sal'])}**)"
+            )
+
+    coincidentes = [pos for pos, info in picos.items() if info["coinciden"]]
+    desfasadas = [pos for pos, info in picos.items() if not info["coinciden"]]
+
+    mejor_hab_pos = max(picos.items(), key=lambda x: x[1]["val_hab"])
+    menor_hab_pos = min(picos.items(), key=lambda x: x[1]["val_hab"])
+    mejor_sal_pos = max(picos.items(), key=lambda x: x[1]["val_sal"])
+    menor_sal_pos = min(picos.items(), key=lambda x: x[1]["val_sal"])
+
+    brecha_hab = round(mejor_hab_pos[1]["val_hab"] - menor_hab_pos[1]["val_hab"], 1)
+    brecha_sal = mejor_sal_pos[1]["val_sal"] - menor_sal_pos[1]["val_sal"]
+
+    if len(coincidentes) == len(picos):
+        comparativa_picos = (
+            f"Al contrastar los picos máximos entre posiciones, se confirma una convergencia total en el rango de "
+            f"**{mejor_hab_pos[1]['pico_hab']} años**: **{mejor_hab_pos[0]}** lidera el techo de habilidad con **{mejor_hab_pos[1]['val_hab']} pts** "
+            f"(superando por {brecha_hab} pts el pico de {menor_hab_pos[0]} con {menor_hab_pos[1]['val_hab']} pts), mientras que "
+            f"**{mejor_sal_pos[0]}** encabeza el pico salarial con **{formatear_eur(mejor_sal_pos[1]['val_sal'])}** "
+            f"(una diferencia de {formatear_eur(brecha_sal)} frente al tope de {menor_sal_pos[0]} con {formatear_eur(menor_sal_pos[1]['val_sal'])}). "
+        )
+    elif len(desfasadas) == len(picos):
+        comparativa_picos = (
+            f"Al contrastar los picos máximos entre posiciones, se observa un desfase generalizado entre el mejor momento "
+            f"deportivo y el mayor ingreso: **{mejor_hab_pos[0]}** alcanza el mayor pico de habilidad con **{mejor_hab_pos[1]['val_hab']} pts** "
+            f"en **{mejor_hab_pos[1]['pico_hab']} años** ({brecha_hab} pts por encima del tope de {menor_hab_pos[0]}), en tanto que "
+            f"**{mejor_sal_pos[0]}** registra el pico salarial más alto con **{formatear_eur(mejor_sal_pos[1]['val_sal'])}** en "
+            f"**{mejor_sal_pos[1]['pico_sal']} años** ({formatear_eur(brecha_sal)} por encima del techo de {menor_sal_pos[0]}). "
+        )
+    else:
+        comparativa_picos = (
+            f"Al contrastar los picos máximos entre posiciones, ambos momentos coinciden en {', '.join(coincidentes)} "
+            f"y presentan desfase etario en {', '.join(desfasadas)}: a nivel absoluto, **{mejor_hab_pos[0]}** marca la cima de habilidad "
+            f"con **{mejor_hab_pos[1]['val_hab']} pts** en **{mejor_hab_pos[1]['pico_hab']} años** (superando por {brecha_hab} pts a {menor_hab_pos[0]}), "
+            f"mientras que **{mejor_sal_pos[0]}** lidera el techo salarial con **{formatear_eur(mejor_sal_pos[1]['val_sal'])}** en "
+            f"**{mejor_sal_pos[1]['pico_sal']} años** ({formatear_eur(brecha_sal)} más que el tope de {menor_sal_pos[0]}). "
+        )
+
+    texto_a = (
+        "**Gráfico a) Evolución de habilidad promedio y salario anual por posición y grupo etario:** "
+        "Al examinar la progresión conjunta en cada panel de posición a través de los cuatro tramos etarios, se aprecia cómo "
+        "cada rol táctico incrementa su rendimiento y remuneración desde la etapa formativa hasta su techo profesional: "
+        + "; ".join(trayectorias_pos)
+        + "."
     )
+
+    texto_b = (
+        "**Gráfico b) Comparativa de picos máximos de habilidad y salario anual por posición:** "
+        + comparativa_picos
+        + "Esta concentración de los picos deportivos y financieros en las etapas avanzadas responde tanto a la consolidación contractual "
+        "acumulada tras los años de madurez competitiva como al **sesgo de supervivencia** en el tramo de 32 a 38 años, donde solo "
+        "continúan activos en la élite los futbolistas de mayor jerarquía y contratos más elevados."
+    )
+
+    return f"{texto_a}\n\n{texto_b}"
 
 
 def objetivo4():

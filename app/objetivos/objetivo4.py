@@ -351,7 +351,8 @@ def opciones_picos_comparados(picos):
 
 def interpretar(datos, picos):
     if datos.empty or not picos:
-        return "No hay suficientes datos para interpretar este objetivo."
+        msg = "No hay suficientes datos para interpretar este objetivo."
+        return msg, msg
 
     posiciones_orden = [
         "Delanteros (ATT)",
@@ -425,7 +426,7 @@ def interpretar(datos, picos):
         )
 
     texto_a = (
-        "**Gráfico a) Evolución de habilidad promedio y salario anual por posición y grupo etario:** "
+        "**Interpretación:** "
         "Al examinar la progresión conjunta en cada panel de posición a través de los cuatro tramos etarios, se aprecia cómo "
         "cada rol táctico incrementa su rendimiento y remuneración desde la etapa formativa hasta su techo profesional: "
         + "; ".join(trayectorias_pos)
@@ -433,14 +434,14 @@ def interpretar(datos, picos):
     )
 
     texto_b = (
-        "**Gráfico b) Comparativa de picos máximos de habilidad y salario anual por posición:** "
+        "**Interpretación:** "
         + comparativa_picos
         + "Esta concentración de los picos deportivos y financieros en las etapas avanzadas responde tanto a la consolidación contractual "
         "acumulada tras los años de madurez competitiva como al **sesgo de supervivencia** en el tramo de 32 a 38 años, donde solo "
         "continúan activos en la élite los futbolistas de mayor jerarquía y contratos más elevados."
     )
 
-    return f"{texto_a}\n\n{texto_b}"
+    return texto_a, texto_b
 
 
 def objetivo4():
@@ -448,12 +449,11 @@ def objetivo4():
 
     st.markdown("**a) Relación entre habilidad promedio y salario anual por posición y grupo etario**")
     chart_a = st.container()
+    texto_a_slot = st.container()
 
     st.markdown("**b) Comparativa de picos máximos de habilidad y salario anual por posición**")
     chart_b = st.container()
-
-    st.subheader("Interpretación")
-    texto_slot = st.container()
+    texto_b_slot = st.container()
 
     st.subheader("Datos utilizados")
     st.markdown(
@@ -488,14 +488,15 @@ def objetivo4():
         return
 
     picos = calcular_picos(datos)
+    texto_a, texto_b = interpretar(datos, picos)
 
     with chart_a:
         st.echarts_chart(opciones_small_multiples(datos), height=540)
+    texto_a_slot.markdown(texto_a)
 
     with chart_b:
         st.echarts_chart(opciones_picos_comparados(picos), height=440)
-
-    texto_slot.markdown(interpretar(datos, picos))
+    texto_b_slot.markdown(texto_b)
 
     table_slot.dataframe(
         datos,

@@ -69,16 +69,16 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Medidas"
+                    "Entity": "DIM_PLAYER"
                   }
                 },
-                "Property": "% Veteranos Correcto"
+                "Property": "PRIMARY_CATEGORY"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -320,7 +320,7 @@
             "width": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "8D"
                 }
               }
             }

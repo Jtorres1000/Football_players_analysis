@@ -4,10 +4,10 @@
   "position": {
     "x": 610,
     "y": 297.5,
-    "z": 4005,
+    "z": 5000,
     "height": 722.5,
     "width": 605,
-    "tabOrder": 4005
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "waterfallChart",
@@ -192,7 +192,7 @@
             "width": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "8D"
                 }
               }
             },
@@ -204,6 +204,13 @@
                       "Value": "'#521057'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
@@ -263,37 +270,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6dbf203509d61554ebe7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Salario Promedio"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1bded590068bbb0ba1ad",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM_SEASON"
-              }
-            },
-            "Property": "SEASON_LABEL"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

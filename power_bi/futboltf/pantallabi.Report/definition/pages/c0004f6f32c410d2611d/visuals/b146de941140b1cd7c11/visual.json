@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "b146de941140b1cd7c11",
   "position": {
-    "x": 50,
-    "y": 297.5,
-    "z": 4004,
+    "x": 29.629629629629626,
+    "y": 301.85185185185185,
+    "z": 4000,
     "height": 720,
     "width": 555,
-    "tabOrder": 4004
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -193,7 +193,7 @@
             "width": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "8D"
                 }
               }
             },
@@ -264,51 +264,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8c6ce523c45d2651b742",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM_AGE_BRACKET"
-              }
-            },
-            "Property": "AGE_GROUP"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "6eb11e2b29a510e4b200",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Salario Promedio"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0840ad7fc9c79de93bee",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Puntaje Promedio"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

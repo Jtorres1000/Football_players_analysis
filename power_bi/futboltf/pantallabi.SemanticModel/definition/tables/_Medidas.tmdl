@@ -113,6 +113,37 @@ table _Medidas
 			```
 		lineageTag: 7282d6cc-d0d8-44a8-9d52-e778feb6e9d2
 
+	measure Corr_ptos_Salario = ```
+			
+			VAR M = VALUES('FACT_PLAYER_SEASON'[PLAYER_KEY]) 
+			Var n = COUNTROWS(M) 
+			Var sx = Sumx(M, CALCULATE(AVERAGE('FACT_PLAYER_SEASON'[ABILITY_SCORE]))) 
+			VAR sy = SUMX(M, CALCULATE(AVERAGE('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR]))) 
+			VAR sumxy = SUMX(M, CALCULATE(AVERAGE('FACT_PLAYER_SEASON'[ABILITY_SCORE]) * AVERAGE(FACT_PLAYER_SEASON[ANNUAL_WAGE_EUR]))) 
+			VAR sumx2 = SUMX(M, CALCULATE(AVERAGE(FACT_PLAYER_SEASON[ABILITY_SCORE])^2)) 
+			VAR sumy2 =SUMX(M, CALCULATE(AVERAGE('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR])^2))  
+			
+			VAR numerador =(n * sumxy) - (sx * sy) 
+			VAR denmx = (n*sumx2) - (sx * sx) 
+			VAR denmy =(n * sumy2) - (sy * sy) 
+			var denominador = SQRT(denmx * denmy)  RETURN DIVIDE(numerador,denominador)
+			```
+		lineageTag: 77170b9e-4fbf-49e4-a8e8-075af948d07a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Qsalarios = VAR Q1 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR], 0.25) VAR Q2 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR], 0.50) VAR Q3 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ANNUAL_WAGE_EUR], 0.75) VAR Val = '_Medidas'[Salario Promedio] RETURN  SWITCH( TRUE(), Val <= q1, "Menores " & FORMAT(Q1, "#,0") & " €", Val <= Q2, FORMAT(Q1, "#,0") & " - " & FORMAT(Q2, "#,0") & " €", Val <= Q3, FORMAT(Q2, "#,0") & " - " & FORMAT(Q3, "#,0") & " €")
+		lineageTag: 66fb0442-006a-4272-baee-92046cb3622f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qpuntajes = VAR Q1 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ABILITY_SCORE], 0.25) VAR Q2 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ABILITY_SCORE], 0.50) VAR Q3 = PERCENTILE.INC('FACT_PLAYER_SEASON'[ABILITY_SCORE], 0.75) VAR Val = '_Medidas'[Puntaje Promedio] RETURN SWITCH(TRUE(), VAL <= Q1, "Menores a " & FORMAT (Q1, "#,0"), Val <= Q2, FORMAT(Q1, "#,0") & "-" & FORMAT(Q2, "#,0"), Val <= Q3, FORMAT(Q2, "#,0") & "-" & FORMAT(Q3, "#,0"), "Mayores a " & FORMAT(Q3, "#,0"))
+		lineageTag: fda12ccf-6729-4489-92f4-ef36b22ccace
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition _Medidas = m
 		mode: import
 		source =

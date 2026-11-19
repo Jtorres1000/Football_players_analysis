@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "fc5e53a25b20ba6edd06",
+  "position": {
+    "x": 618,
+    "y": 708,
+    "z": 3000,
+    "height": 98,
+    "width": 206,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Relación",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#00bf65"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "salarial según su",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#00bf65"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "rendimiento",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "color": "#b3b3b3"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

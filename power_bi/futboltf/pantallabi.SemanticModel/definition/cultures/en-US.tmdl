@@ -431,6 +431,26 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.714
 			          }
+			        },
+			        {
+			          "Jugadores": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Jugadores con menor puntaje promedio": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ],
 			      "NameType": "Name"
@@ -1110,16 +1130,6 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "Grupos": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -3311,103 +3321,445 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "participantes_proyecto": {
+			    "fact_player_season.qsalario": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Participantes_Proyecto"
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Qsalarios"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "participantes proyecto": {
+			          "qsalario": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fact_player_season.qpuntaje": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FACT_PLAYER_SEASON",
+			          "ConceptualProperty": "Qpuntajes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "qpuntaje": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "_medida": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.qsalario": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Qsalarios"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "qsalario": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.qpuntaje": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Qpuntajes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "qpuntaje": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.total_jugadores": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Total Jugadores"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total jugadores": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "participante proyecto": {
+			          "aggregate jugadore": {
 			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.78
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
 			          }
 			        },
 			        {
-			          "Participantes_Proyecto": {
+			          "overall jugadore": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.puntaje_promedio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Puntaje Promedio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "puntaje promedio": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.jugadores_veteranos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Jugadores Veteranos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "jugadores veteranos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.jugadores_veteranos1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "% Jugadores Veteranos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% jugadores veteranos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "percentage jugadore veterano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "pct jugadore veterano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.salario_promedio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Salario Promedio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "salario promedio": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.var_puntaje": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Var Puntaje"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var puntaje": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.texto_KPI_puntaje": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Texto KPI Puntaje"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "texto KPI puntaje": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.puntaje_pico": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Puntaje Pico"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "puntaje pico": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.puntaje_veterano": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Puntaje Veterano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "puntaje veterano": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.caída_de_rendimiento": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Caída de Rendimiento"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "caída de rendimiento": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.caída_de_rendimiento1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "% Caída de Rendimiento"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% caída de rendimiento": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "percentage caída de rendimiento": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "pct caída de rendimiento": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.veteranos_correcto": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "% Veteranos Correcto"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% veteranos correcto": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "percentage veterano correcto": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "pct veterano correcto": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.salario_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Salario Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "salario anterior": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.KPI_salario_final": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "KPI Salario Final"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "KPI salario final": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "kpi salario decider": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.458
+			          }
+			        }
+			      ]
+			    },
+			    "entity__medida.corr_ptos_salario": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Corr_ptos_Salario"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "corr ptos salario": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Corr_ptos_Salario": {
 			            "Type": "Noun",
 			            "State": "Generated",
 			            "Weight": 0.99
 			          }
-			        }
-			      ]
-			    },
-			    "participantes_proyecto.nombre": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Participantes_Proyecto",
-			          "ConceptualProperty": "Nombre"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
+			        },
 			        {
-			          "nombre": {
-			            "State": "Generated"
+			          "Correlación Puntuaje vs. Salario": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
-			        }
-			      ]
-			    },
-			    "participantes_proyecto.rol": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Participantes_Proyecto",
-			          "ConceptualProperty": "Rol"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
+			        },
 			        {
-			          "rol": {
-			            "State": "Generated"
+			          "Puntaje de Habilidad y  el Salario Anual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "participantes_proyecto_has_nombre": {
-			      "Binding": {
-			        "ConceptualEntity": "Participantes_Proyecto"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "participantes_proyecto": {
-			          "Target": {
-			            "Entity": "participantes_proyecto"
-			          }
-			        },
-			        "participantes_proyecto.nombre": {
-			          "Target": {
-			            "Entity": "participantes_proyecto.nombre"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "participantes_proyecto"
-			            },
-			            "Object": {
-			              "Role": "participantes_proyecto.nombre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "participantes_proyectos_have_nombres"
-			        }
-			      ]
-			    },
-			    "fact_player_season_has_proporcion_grupos": {
+			    "fact_player_season_has_entity__medida_KPI_salario_final": {
 			      "Binding": {
 			        "ConceptualEntity": "FACT_PLAYER_SEASON"
 			      },
@@ -3418,9 +3770,9 @@ cultureInfo en-US
 			            "Entity": "fact_player_season"
 			          }
 			        },
-			        "fact_player_season.proporcion_grupos": {
+			        "entity__medida.KPI_salario_final": {
 			          "Target": {
-			            "Entity": "fact_player_season.proporcion_grupos"
+			            "Entity": "entity__medida.KPI_salario_final"
 			          }
 			        }
 			      },
@@ -3431,16 +3783,16 @@ cultureInfo en-US
 			              "Role": "fact_player_season"
 			            },
 			            "Object": {
-			              "Role": "fact_player_season.proporcion_grupos"
+			              "Role": "entity__medida.KPI_salario_final"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "fact_player_seasons_have_proporcion_grupos"
+			          "ID": "fact_player_seasons_have_KPI_salario_final"
 			        }
 			      ]
 			    },
-			    "fact_player_season_has_jugadores_veteranos": {
+			    "fact_player_season_has_entity__medida_salario_anterior": {
 			      "Binding": {
 			        "ConceptualEntity": "FACT_PLAYER_SEASON"
 			      },
@@ -3451,9 +3803,9 @@ cultureInfo en-US
 			            "Entity": "fact_player_season"
 			          }
 			        },
-			        "fact_player_season.jugadores_veteranos": {
+			        "entity__medida.salario_anterior": {
 			          "Target": {
-			            "Entity": "fact_player_season.jugadores_veteranos"
+			            "Entity": "entity__medida.salario_anterior"
 			          }
 			        }
 			      },
@@ -3464,7 +3816,337 @@ cultureInfo en-US
 			              "Role": "fact_player_season"
 			            },
 			            "Object": {
-			              "Role": "fact_player_season.jugadores_veteranos"
+			              "Role": "entity__medida.salario_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_salario_anterior"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_veteranos_correcto": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.veteranos_correcto": {
+			          "Target": {
+			            "Entity": "entity__medida.veteranos_correcto"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.veteranos_correcto"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have__veteranos_correcto"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_caída_de_rendimiento1": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.caída_de_rendimiento1": {
+			          "Target": {
+			            "Entity": "entity__medida.caída_de_rendimiento1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.caída_de_rendimiento1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have__caída_de_rendimiento"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_caída_de_rendimiento": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.caída_de_rendimiento": {
+			          "Target": {
+			            "Entity": "entity__medida.caída_de_rendimiento"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.caída_de_rendimiento"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_caída_de_rendimiento"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_puntaje_veterano": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.puntaje_veterano": {
+			          "Target": {
+			            "Entity": "entity__medida.puntaje_veterano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.puntaje_veterano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_puntaje_veterano"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_puntaje_pico": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.puntaje_pico": {
+			          "Target": {
+			            "Entity": "entity__medida.puntaje_pico"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.puntaje_pico"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_puntaje_pico"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_texto_KPI_puntaje": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.texto_KPI_puntaje": {
+			          "Target": {
+			            "Entity": "entity__medida.texto_KPI_puntaje"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.texto_KPI_puntaje"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_texto_KPI_puntaje"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_var_puntaje": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.var_puntaje": {
+			          "Target": {
+			            "Entity": "entity__medida.var_puntaje"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.var_puntaje"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_var_puntaje"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_salario_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.salario_promedio": {
+			          "Target": {
+			            "Entity": "entity__medida.salario_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.salario_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_salario_promedio"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_jugadores_veteranos1": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.jugadores_veteranos1": {
+			          "Target": {
+			            "Entity": "entity__medida.jugadores_veteranos1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.jugadores_veteranos1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have__jugadores_veteranos"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_entity__medida_jugadores_veteranos": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "entity__medida.jugadores_veteranos": {
+			          "Target": {
+			            "Entity": "entity__medida.jugadores_veteranos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.jugadores_veteranos"
 			            }
 			          },
 			          "State": "Generated",
@@ -3473,7 +4155,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "fact_player_season_has_puntaje_promedio": {
+			    "fact_player_season_has_entity__medida_puntaje_promedio": {
 			      "Binding": {
 			        "ConceptualEntity": "FACT_PLAYER_SEASON"
 			      },
@@ -3484,9 +4166,9 @@ cultureInfo en-US
 			            "Entity": "fact_player_season"
 			          }
 			        },
-			        "fact_player_season.puntaje_promedio": {
+			        "entity__medida.puntaje_promedio": {
 			          "Target": {
-			            "Entity": "fact_player_season.puntaje_promedio"
+			            "Entity": "entity__medida.puntaje_promedio"
 			          }
 			        }
 			      },
@@ -3497,7 +4179,7 @@ cultureInfo en-US
 			              "Role": "fact_player_season"
 			            },
 			            "Object": {
-			              "Role": "fact_player_season.puntaje_promedio"
+			              "Role": "entity__medida.puntaje_promedio"
 			            }
 			          },
 			          "State": "Generated",
@@ -3506,7 +4188,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "fact_player_season_has_salario_anual_promedio": {
+			    "fact_player_season_has_entity__medida_total_jugadores": {
 			      "Binding": {
 			        "ConceptualEntity": "FACT_PLAYER_SEASON"
 			      },
@@ -3517,9 +4199,9 @@ cultureInfo en-US
 			            "Entity": "fact_player_season"
 			          }
 			        },
-			        "fact_player_season.salario_anual_promedio": {
+			        "entity__medida.total_jugadores": {
 			          "Target": {
-			            "Entity": "fact_player_season.salario_anual_promedio"
+			            "Entity": "entity__medida.total_jugadores"
 			          }
 			        }
 			      },
@@ -3530,40 +4212,7 @@ cultureInfo en-US
 			              "Role": "fact_player_season"
 			            },
 			            "Object": {
-			              "Role": "fact_player_season.salario_anual_promedio"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fact_player_seasons_have_salario_anual_promedio"
-			        }
-			      ]
-			    },
-			    "fact_player_season_has_total_jugadores": {
-			      "Binding": {
-			        "ConceptualEntity": "FACT_PLAYER_SEASON"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fact_player_season": {
-			          "Target": {
-			            "Entity": "fact_player_season"
-			          }
-			        },
-			        "fact_player_season.total_jugadores": {
-			          "Target": {
-			            "Entity": "fact_player_season.total_jugadores"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fact_player_season"
-			            },
-			            "Object": {
-			              "Role": "fact_player_season.total_jugadores"
+			              "Role": "entity__medida.total_jugadores"
 			            }
 			          },
 			          "State": "Generated",
@@ -3572,7 +4221,73 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "fact_player_season_has_proporcion_veteranos": {
+			    "entity__medida_has_qpuntaje": {
+			      "Binding": {
+			        "ConceptualEntity": "_Medidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "entity__medida": {
+			          "Target": {
+			            "Entity": "entity__medida"
+			          }
+			        },
+			        "entity__medida.qpuntaje": {
+			          "Target": {
+			            "Entity": "entity__medida.qpuntaje"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "entity__medida"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.qpuntaje"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Phrasing_medidas_have_qpuntajes"
+			        }
+			      ]
+			    },
+			    "entity__medida_has_qsalario": {
+			      "Binding": {
+			        "ConceptualEntity": "_Medidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "entity__medida": {
+			          "Target": {
+			            "Entity": "entity__medida"
+			          }
+			        },
+			        "entity__medida.qsalario": {
+			          "Target": {
+			            "Entity": "entity__medida.qsalario"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "entity__medida"
+			            },
+			            "Object": {
+			              "Role": "entity__medida.qsalario"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Phrasing_medidas_have_qsalarios"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_qpuntaje": {
 			      "Binding": {
 			        "ConceptualEntity": "FACT_PLAYER_SEASON"
 			      },
@@ -3583,9 +4298,9 @@ cultureInfo en-US
 			            "Entity": "fact_player_season"
 			          }
 			        },
-			        "fact_player_season.proporcion_veteranos": {
+			        "fact_player_season.qpuntaje": {
 			          "Target": {
-			            "Entity": "fact_player_season.proporcion_veteranos"
+			            "Entity": "fact_player_season.qpuntaje"
 			          }
 			        }
 			      },
@@ -3596,12 +4311,45 @@ cultureInfo en-US
 			              "Role": "fact_player_season"
 			            },
 			            "Object": {
-			              "Role": "fact_player_season.proporcion_veteranos"
+			              "Role": "fact_player_season.qpuntaje"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "fact_player_seasons_have_proporcion_veteranos"
+			          "ID": "fact_player_seasons_have_qpuntajes"
+			        }
+			      ]
+			    },
+			    "fact_player_season_has_qsalario": {
+			      "Binding": {
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_player_season": {
+			          "Target": {
+			            "Entity": "fact_player_season"
+			          }
+			        },
+			        "fact_player_season.qsalario": {
+			          "Target": {
+			            "Entity": "fact_player_season.qsalario"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_player_season"
+			            },
+			            "Object": {
+			              "Role": "fact_player_season.qsalario"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_player_seasons_have_qsalarios"
 			        }
 			      ]
 			    },
@@ -4463,20 +5211,20 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "participantes_proyecto_has_rol": {
+			    "fact_player_season_has_entity__medida_corr_ptos_salario": {
 			      "Binding": {
-			        "ConceptualEntity": "Participantes_Proyecto"
+			        "ConceptualEntity": "FACT_PLAYER_SEASON"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "participantes_proyecto": {
+			        "fact_player_season": {
 			          "Target": {
-			            "Entity": "participantes_proyecto"
+			            "Entity": "fact_player_season"
 			          }
 			        },
-			        "participantes_proyecto.rol": {
+			        "entity__medida.corr_ptos_salario": {
 			          "Target": {
-			            "Entity": "participantes_proyecto.rol"
+			            "Entity": "entity__medida.corr_ptos_salario"
 			          }
 			        }
 			      },
@@ -4484,15 +5232,15 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "participantes_proyecto"
+			              "Role": "fact_player_season"
 			            },
 			            "Object": {
-			              "Role": "participantes_proyecto.rol"
+			              "Role": "entity__medida.corr_ptos_salario"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "participantes_proyectos_have_rols"
+			          "ID": "fact_player_seasons_have_corr_ptos_salario"
 			        }
 			      ]
 			    },

@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["DIM_PLAYER","DIM_AGE_BRACKET","DIM_SEASON","FACT_PLAYER_SEASON","Participantes_Proyecto"]
+annotation PBI_QueryOrder = ["DIM_PLAYER","DIM_AGE_BRACKET","DIM_SEASON","FACT_PLAYER_SEASON","Participantes_Proyecto","_Medidas"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -18,6 +18,7 @@ ref table DIM_AGE_BRACKET
 ref table DIM_SEASON
 ref table FACT_PLAYER_SEASON
 ref table Participantes_Proyecto
+ref table _Medidas
 
 ref cultureInfo en-US
 

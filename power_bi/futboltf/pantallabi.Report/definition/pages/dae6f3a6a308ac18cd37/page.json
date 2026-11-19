@@ -14,7 +14,7 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'Presentación El fútbol Ilustrativa Blanco (1).jpg'"
+                    "Value": "'Portada académica de análisis futbolístico (1).png'"
                   }
                 }
               },
@@ -23,7 +23,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "Presentaci_n_El_f_tbol_Ilustra561519680596918.jpg"
+                    "ItemName": "Portada_acad_mica_de_an_lisis_2603798353802591.png"
                   }
                 }
               },
@@ -39,7 +39,31 @@
           "transparency": {
             "expr": {
               "Literal": {
-                "Value": "4D"
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
               }
             }
           }

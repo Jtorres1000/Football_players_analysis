@@ -431,6 +431,26 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.714
 			          }
+			        },
+			        {
+			          "Jugadores": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Jugadores con menor puntaje promedio": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ],
 			      "NameType": "Name"
@@ -3301,67 +3321,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "participantes_proyecto": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Participantes_Proyecto"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "participantes proyecto": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "participante proyecto": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.78
-			          }
-			        },
-			        {
-			          "Participantes_Proyecto": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        }
-			      ]
-			    },
-			    "participantes_proyecto.nombre": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Participantes_Proyecto",
-			          "ConceptualProperty": "Nombre"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "nombre": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "participantes_proyecto.rol": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Participantes_Proyecto",
-			          "ConceptualProperty": "Rol"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "rol": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
 			    "fact_player_season.qsalario": {
 			      "Definition": {
 			        "Binding": {
@@ -3390,16 +3349,6 @@ cultureInfo en-US
 			        {
 			          "qpuntaje": {
 			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "Puntajes de Habilidad": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -4401,72 +4350,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "fact_player_seasons_have_qsalarios"
-			        }
-			      ]
-			    },
-			    "participantes_proyecto_has_rol": {
-			      "Binding": {
-			        "ConceptualEntity": "Participantes_Proyecto"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "participantes_proyecto": {
-			          "Target": {
-			            "Entity": "participantes_proyecto"
-			          }
-			        },
-			        "participantes_proyecto.rol": {
-			          "Target": {
-			            "Entity": "participantes_proyecto.rol"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "participantes_proyecto"
-			            },
-			            "Object": {
-			              "Role": "participantes_proyecto.rol"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "participantes_proyectos_have_rols"
-			        }
-			      ]
-			    },
-			    "participantes_proyecto_has_nombre": {
-			      "Binding": {
-			        "ConceptualEntity": "Participantes_Proyecto"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "participantes_proyecto": {
-			          "Target": {
-			            "Entity": "participantes_proyecto"
-			          }
-			        },
-			        "participantes_proyecto.nombre": {
-			          "Target": {
-			            "Entity": "participantes_proyecto.nombre"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "participantes_proyecto"
-			            },
-			            "Object": {
-			              "Role": "participantes_proyecto.nombre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "participantes_proyectos_have_nombres"
 			        }
 			      ]
 			    },

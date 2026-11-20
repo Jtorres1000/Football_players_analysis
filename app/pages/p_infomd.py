@@ -93,49 +93,55 @@ JUSTIFICATION_PARAGRAPHS = [
 ]
 
 CONCLUSION_INTRO = (
-    "Este trabajo analizó el ciclo de vida profesional de 27.343 futbolistas entre 2022 y 2026, "
-    "construyendo para ello un flujo de datos completo (SQLite → Parquet/Backblaze B2 → Snowflake → dbt → Power BI/Streamlit)."
+    "El análisis del periodo 2022-2026 permite responder a cada objetivo específico a partir de los datos del estudio:"
 )
 
 CONCLUSION_POINTS = [
     (
-        "El ciclo de rendimiento tiene una forma clara y parecida en todas las posiciones: los jugadores "
-        "mejoran rápido hasta los 20 años, se estancan entre los 20 y los 26, maduran entre los 27 y los 31 "
-        "y llegan a su máximo cerca de los 31 años. Después empieza un declive que se acelera a partir de los 32."
+        "El puntaje de habilidad promedio crece con la edad en todas las temporadas; en 2025/26 pasa de 378,9 puntos "
+        "en el grupo de 15 a 21 años a 445,9 en el de 32 a 38 años. Entre temporadas, la media de los tramos jóvenes "
+        "sube levemente y la de los grupos mayores baja a medida que ingresan más jugadores a esas edades."
     ),
     (
-        "La posición determina sobre todo cuánto dura la carrera, no tanto la forma de la curva. Los porteros "
-        "tienen la mayor longevidad (más veteranos, pico a los 33 años y la menor caída desde el pico) y los "
-        "delanteros la menor. Los defensas son los que mejor conservan su habilidad en la etapa veterana."
+        "En longevidad, los porteros lideran en permanencia con un 12,1 % de sus registros entre los 32 y 38 años, "
+        "frente a un rango de 4,8 % a 5,7 % en el resto de posiciones. A nivel individual, todos los puestos mejoran "
+        "hasta los 26 años, empiezan a caer unos 6 puntos anuales entre los 27 y 31 años y pierden entre 19,9 puntos "
+        "en defensas y 23,7 en delanteros a partir de los 32 años."
     ),
     (
-        "El salario crece con la edad más que con el tiempo. Aumenta 2,3 veces entre el grupo más joven y el "
-        "veterano, y casi no cambia entre temporadas (+2,3 %). Los centrocampistas y defensas ganan más, y los "
-        "delanteros, contra lo que se suele pensar, ganan menos en promedio."
+        "El salario anual promedio sube con la edad en todas las posiciones hasta más que duplicarse en el tramo "
+        "veterano. Los centrocampistas y defensas registran los sueldos medios más altos, llegando a 2,56 y 2,41 "
+        "millones de euros entre los 32 y 38 años, seguidos por los porteros con 2,24 millones y los delanteros "
+        "con 1,71 millones."
     ),
     (
-        "El mercado sí paga el rendimiento (r = 0,79 en el total, fuerte en todas las combinaciones de posición "
-        "y edad), pero lo paga tarde. Los picos de habilidad y de salario coinciden en el grupo de 32-38 años, "
-        "pero el salario máximo llega entre 1 y 4 años después del máximo deportivo. Ese desfase se explica por "
-        "el sesgo de supervivencia, la inercia de los contratos y el peso de la reputación."
+        "Los promedios máximos de habilidad y de salario coinciden en el grupo de 32 a 38 años para las cuatro "
+        "posiciones, encabezados por los centrocampistas con 470,8 puntos y 2,56 millones de euros. Sin embargo, "
+        "como a esa edad la variación individual ya es negativa, este techo grupal se explica por el sesgo de "
+        "supervivencia, pues solo continúan activos los futbolistas de mayor nivel y mejores contratos."
+    ),
+    (
+        "La correlación de Pearson entre habilidad y salario es positiva y alta en todos los grupos y posiciones, "
+        "variando entre 0,730 y 0,863. El vínculo es algo menor entre los 15 y 21 años por la uniformidad de los "
+        "contratos iniciales y supera el 0,80 en todos los puestos a partir de los 27 años."
     ),
 ]
 
 CONCLUSION_ANSWER = (
-    "Respondiendo a la pregunta de investigación: el rendimiento sube con la edad hasta alrededor de los 31 años "
-    "y su evolución varía poco entre posiciones, salvo por la mayor longevidad de los porteros. La edad de mayor "
-    "rendimiento y la de mayor salario coinciden por grupo etario, pero no por edad exacta: el salario sigue "
-    "subiendo durante el declive. Para los clubes, esto implica una ineficiencia: firmar o renovar contratos "
-    "altos con jugadores de 32 años o más significa pagar más por un rendimiento que ya está bajando, sobre todo "
-    "en centrocampistas y defensas. Lo más eficiente es invertir en el grupo de 27-31 años y, en el caso de los "
-    "porteros, alargar ese periodo hasta los 33 años."
+    "En respuesta a la pregunta de investigación, el futbolista mejora su rendimiento individual hasta el tramo "
+    "de 22 a 26 años y comienza a declinar desde los 27 años a un ritmo parecido en todos los puestos, salvo por "
+    "la mayor duración de carrera de los porteros. Aunque los promedios de habilidad y salario alcanzan su máximo "
+    "en el grupo de 32 a 38 años con una correlación fuerte, esto ocurre porque a esa edad solo permanecen activos "
+    "jugadores consagrados. Para los clubes, otorgar contratos altos después de los 32 años implica pagar el "
+    "máximo del mercado cuando el rendimiento individual ya cae cerca de 20 puntos por temporada, por lo que es "
+    "más eficiente concentrar la inversión entre los 22 y los 31 años."
 )
 
 LIMITATIONS_ITEMS = [
-    "Las temporadas 2022/23 a 2024/25 son datos generados y solo 2025/26 corresponde a datos reales. Las tendencias entre temporadas deben leerse con cuidado.",
-    "El salario sale del contrato asignado a cada temporada. El 57 % de los jugadores tiene el mismo salario en todas sus temporadas, así que el \"crecimiento salarial\" muestra sobre todo diferencias entre grupos de jugadores, no aumentos individuales.",
-    "El sesgo de supervivencia sube los promedios del grupo de 32-38 años, y los delanteros veteranos son una muestra pequeña (324 registros).",
-    "La correlación de Pearson mide asociación lineal, no causalidad.",
+    "Las temporadas 2022/23 a 2024/25 son datos generados y solo 2025/26 contiene registros reales, por lo que en los primeros años aparecen muchos menos jugadores de 32 a 38 años.",
+    "La variación anual de habilidad del segundo objetivo excluye la primera temporada de cada jugador al no tener un año previo de comparación.",
+    "El sesgo de supervivencia eleva los promedios del grupo de 32 a 38 años, donde además hay muestras pequeñas como los 324 registros de delanteros veteranos.",
+    "La correlación de Pearson confirma una asociación lineal fuerte entre habilidad y salario, pero no demuestra causalidad.",
 ]
 
 

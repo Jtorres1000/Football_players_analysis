@@ -8,7 +8,7 @@ def p_exploratorio():
         title="Análisis Exploratorio",
         subtitle="Rendimiento, longevidad y salario de los futbolistas según grupo etario y posición, periodo 2022-2026", 
     )
-    tab1, tab2, tab3, tab4, tab5= st.tabs(["Objetivo 1", "Objetivo 2", "Objetivo 3","objetivo 4","Objetivo 5"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Objetivo 1", "Objetivo 2", "Objetivo 3", "Objetivo 4", "Objetivo 5"])
     
     with tab1:
         objetivo1()

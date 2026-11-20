@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 
 from utils import query_filtered_data
 
@@ -10,28 +9,41 @@ COLORES_POSICION = {
     "Porteros (GK)": "#ffb1c4",
 }
 
+POSICIONES_ORDEN = [
+    "Delanteros (ATT)",
+    "Centrocampistas (MID)",
+    "Defensas (DEF)",
+    "Porteros (GK)",
+]
 
-def formatear_eur(valor):
-    if pd.isna(valor) or valor == 0:
-        return "€0"
-    signo = "-" if valor < 0 else ""
-    v = abs(valor)
-    if v >= 1_000_000:
-        return f"{signo}€{v / 1_000_000:.2f}M"
-    if v >= 1_000:
-        return f"{signo}€{v / 1_000:.0f}k"
-    return f"{signo}€{v:,.0f}"
+GRUPOS_ORDEN = ["15-21", "22-26", "27-31", "32-38"]
+
+INTERPRETACION_A = (
+    "**Interpretación:** Al examinar la progresión conjunta en cada panel de posición a través de los cuatro tramos etarios, "
+    "se aprecia cómo cada rol táctico incrementa su rendimiento y remuneración desde la etapa formativa hasta su techo profesional: "
+    "en **Delanteros (ATT)**, la progresión parte en **15-21 años** (352.0 pts y €817k) y asciende de forma sostenida hasta converger en **32-38 años** "
+    "con su máximo tanto de habilidad (**421.1 pts**) como de salario (**€1.71M**); "
+    "en **Centrocampistas (MID)**, la progresión parte en **15-21 años** (380.0 pts y €1.06M) y asciende de forma sostenida hasta converger en **32-38 años** "
+    "con su máximo tanto de habilidad (**470.8 pts**) como de salario (**€2.56M**); "
+    "en **Defensas (DEF)**, la progresión parte en **15-21 años** (378.9 pts y €1.09M) y asciende de forma sostenida hasta converger en **32-38 años** "
+    "con su máximo tanto de habilidad (**462.6 pts**) como de salario (**€2.41M**); "
+    "en **Porteros (GK)**, la progresión parte en **15-21 años** (336.2 pts y €784k) y asciende de forma sostenida hasta converger en **32-38 años** "
+    "con su máximo tanto de habilidad (**450.9 pts**) como de salario (**€2.24M**)."
+)
+
+INTERPRETACION_B = (
+    "**Interpretación:** Al contrastar los picos máximos entre posiciones, se confirma una convergencia total en el rango de **32-38 años**: "
+    "**Centrocampistas (MID)** lidera el techo de habilidad con **470.8 pts** (superando por 49.7 pts el pico de Delanteros (ATT) con 421.1 pts), "
+    "mientras que **Centrocampistas (MID)** encabeza el pico salarial con **€2.56M** (una diferencia de €847k frente al tope de Delanteros (ATT) con €1.71M). "
+    "Esta concentración de los picos deportivos y financieros en las etapas avanzadas responde tanto a la consolidación contractual acumulada tras los años "
+    "de madurez competitiva como al **sesgo de supervivencia** en el tramo de 32 a 38 años, donde solo continúan activos en la élite los futbolistas "
+    "de mayor jerarquía y contratos más elevados."
+)
 
 
 def calcular_picos(datos):
     picos = {}
-    posiciones_orden = [
-        "Delanteros (ATT)",
-        "Centrocampistas (MID)",
-        "Defensas (DEF)",
-        "Porteros (GK)",
-    ]
-    posiciones = [p for p in posiciones_orden if p in datos["POSICION"].values] or sorted(datos["POSICION"].unique())
+    posiciones = [p for p in POSICIONES_ORDEN if p in datos["POSICION"].values] or sorted(datos["POSICION"].unique())
 
     for pos in posiciones:
         filas = datos[datos["POSICION"] == pos]
@@ -50,16 +62,8 @@ def calcular_picos(datos):
 
 
 def opciones_small_multiples(datos):
-    grupos_orden = ["15-21", "22-26", "27-31", "32-38"]
-    grupos = [g for g in grupos_orden if g in datos["GRUPO_ETARIO"].values] or sorted(datos["GRUPO_ETARIO"].unique())
-
-    posiciones_orden = [
-        "Delanteros (ATT)",
-        "Centrocampistas (MID)",
-        "Defensas (DEF)",
-        "Porteros (GK)",
-    ]
-    posiciones = [p for p in posiciones_orden if p in datos["POSICION"].values] or sorted(datos["POSICION"].unique())
+    grupos = [g for g in GRUPOS_ORDEN if g in datos["GRUPO_ETARIO"].values] or sorted(datos["GRUPO_ETARIO"].unique())
+    posiciones = [p for p in POSICIONES_ORDEN if p in datos["POSICION"].values] or sorted(datos["POSICION"].unique())
 
     grids = []
     x_axes = []
@@ -67,7 +71,7 @@ def opciones_small_multiples(datos):
     series = []
     titulos = [
         {
-            "text": "Small Multiples: Evolución de Habilidad vs. Salario por Posición",
+            "text": "Evolución de Habilidad vs. Salario por Posición",
             "textStyle": {"color": "#fbfaff", "fontSize": 14, "fontWeight": 600},
             "left": "center",
             "top": 0,
@@ -225,12 +229,20 @@ def opciones_picos_comparados(picos):
 
     return {
         "backgroundColor": "transparent",
-        "title": {
-            "text": "Mixed Line and Bar: Pico Salarial vs. Pico de Habilidad por Posición",
-            "textStyle": {"color": "#fbfaff", "fontSize": 14, "fontWeight": 600},
-            "left": "center",
-            "top": 0,
-        },
+        "title": [
+            {
+                "text": "Pico Salarial vs. Pico de Habilidad por Posición",
+                "textStyle": {"color": "#fbfaff", "fontSize": 14, "fontWeight": 600},
+                "left": "center",
+                "top": 0,
+            },
+            {
+                "text": "Posición y grupo etario del pico",
+                "textStyle": {"color": "#c6b5cb", "fontSize": 12, "fontWeight": 400},
+                "left": "center",
+                "bottom": 6,
+            },
+        ],
         "tooltip": {
             "trigger": "axis",
             "axisPointer": {
@@ -260,16 +272,13 @@ def opciones_picos_comparados(picos):
             "top": 88,
             "left": "7%",
             "right": "7%",
-            "bottom": 55,
+            "bottom": 45,
             "containLabel": True,
         },
         "xAxis": [
-            {
+            {   
                 "type": "category",
                 "data": etiquetas_x,
-                "name": "Posición y grupo etario del pico",
-                "nameLocation": "middle",
-                "nameGap": 42,
                 "axisLine": {"lineStyle": {"color": "rgba(255, 255, 255, 0.2)"}},
                 "axisLabel": {
                     "color": "#fbfaff",
@@ -349,20 +358,11 @@ def opciones_picos_comparados(picos):
     }
 
 
-def interpretar(datos, picos):
-    if datos.empty or not picos:
-        return "No hay suficientes datos para interpretar este objetivo."
-
-    return (
-        "Al examinar la evolución conjunta a través de los cuatro grupos de edad, se puede apreciar el progreso en el rendimiento y la compensación: "
-        "en el grupo de 15-21 años, se establece la base de formación con una habilidad media de 375.2 puntos y un salario inicial de €1.04M; "
-        "en el rango de edad de 22-26 años, se produce una consolidación deportiva, alcanzando 399.4 puntos y aumentando el ingreso medio a €1.16M; "
-        "en la etapa de 27-31 años, se consolida la madurez competitiva y contractual con 445.4 puntos de rendimiento medio y una remuneración de €1.79M; "
-        "por último, en el rango de 32-38 años, los registros llegan a 461.9 puntos de habilidad y €2.41M de salario anual, debido a un sesgo de supervivencia, "
-        "ya que a esta edad, pues a esta edad solo continúan activos los jugadores de fútbol con más jerarquía y con contratos más altos. "
-        "Cuando se comparan los picos por posición, se observa que todos alcanzan su puntaje máximo de habilidad y su salario más alto en el rango de 32 a 38 años, "
-        "siendo los Centrocampistas (MID) los que sobresalen en habilidad (470.8 pts) y también en remuneración (€2.56M)."
-    )
+def interpretar(datos):
+    if datos.empty:
+        msg = "No hay suficientes datos para interpretar este objetivo."
+        return msg, msg
+    return INTERPRETACION_A, INTERPRETACION_B
 
 
 def objetivo4():
@@ -370,12 +370,11 @@ def objetivo4():
 
     st.markdown("**a) Relación entre habilidad promedio y salario anual por posición y grupo etario**")
     chart_a = st.container()
+    texto_a_slot = st.container()
 
     st.markdown("**b) Comparativa de picos máximos de habilidad y salario anual por posición**")
     chart_b = st.container()
-
-    st.subheader("Interpretación")
-    texto_slot = st.container()
+    texto_b_slot = st.container()
 
     st.subheader("Datos utilizados")
     st.markdown(
@@ -385,7 +384,7 @@ def objetivo4():
     )
     table_slot = st.container()
 
-    datos = query_filtered_data("""
+    consulta_obj4 = """
         SELECT
             CASE PRIMARY_CATEGORY
                 WHEN 'ATTACKER' THEN 'Delanteros (ATT)'
@@ -402,11 +401,17 @@ def objetivo4():
         WHERE ABILITY_SCORE IS NOT NULL AND ANNUAL_WAGE_EUR IS NOT NULL
         GROUP BY PRIMARY_CATEGORY, AGE_GROUP
         ORDER BY POSICION, GRUPO_ETARIO
-    """)
+    """
+
+    datos = query_filtered_data(consulta_obj4)
+    texto_a, texto_b = interpretar(datos)
+    texto_a_slot.markdown(texto_a)
+    texto_b_slot.markdown(texto_b)
 
     if datos.empty:
         chart_a.info("No se encontraron registros para la combinación de filtros seleccionada en la barra lateral.")
         chart_b.info("No se encontraron registros para la combinación de filtros seleccionada en la barra lateral.")
+        table_slot.info("No se encontraron registros para la combinación de filtros seleccionada en la barra lateral.")
         return
 
     picos = calcular_picos(datos)
@@ -416,8 +421,6 @@ def objetivo4():
 
     with chart_b:
         st.echarts_chart(opciones_picos_comparados(picos), height=440)
-
-    texto_slot.markdown(interpretar(datos, picos))
 
     table_slot.dataframe(
         datos,

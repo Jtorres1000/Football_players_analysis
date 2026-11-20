@@ -5,3 +5,7 @@ __pycache__/
 /logs
 app/.streamlit/secrets.toml
 *.duckdb
+.venv/
+venv/
+env/
+.vscode/

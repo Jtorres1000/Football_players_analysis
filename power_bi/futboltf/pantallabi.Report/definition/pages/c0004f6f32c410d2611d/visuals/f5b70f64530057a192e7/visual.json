@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "f5b70f64530057a192e7",
   "position": {
-    "x": 1240,
-    "y": 50,
-    "z": 4008,
-    "height": 970,
-    "width": 657.5,
-    "tabOrder": 4008
+    "x": 1248.6660557664616,
+    "y": 63.33813326351617,
+    "z": 8000,
+    "height": 463.27320329886112,
+    "width": 637.000654535934,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "DIM_PLAYER.NAME",
-              "nativeQueryRef": "NAME",
-              "active": true
+              "nativeQueryRef": "Jugadores",
+              "active": true,
+              "displayName": "Jugadores"
             }
           ]
         },
@@ -55,13 +56,13 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Medidas"
+                    "Entity": "DIM_PLAYER"
                   }
                 },
-                "Property": "Puntaje Promedio"
+                "Property": "NAME"
               }
             },
             "direction": "Ascending"
@@ -72,64 +73,7 @@
     "objects": {
       "columnFormatting": [
         {
-          "properties": {
-            "dataBars": {
-              "positiveColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'#04F5FF'"
-                      }
-                    }
-                  }
-                }
-              },
-              "negativeColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'minColor'"
-                      }
-                    }
-                  }
-                }
-              },
-              "axisColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'foreground'"
-                      }
-                    }
-                  }
-                }
-              },
-              "reverseDirection": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "hideText": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "totalMatchingOption": {
-                "expr": {
-                  "Literal": {
-                    "Value": "1L"
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Medidas.Puntaje Promedio"
           }
@@ -237,6 +181,19 @@
             }
           }
         }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -294,7 +251,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Evolución Salarial Anual'"
+                  "Value": "'Jugadores con mayor Puntaje Promedio'"
                 }
               }
             },
@@ -320,6 +277,13 @@
               "expr": {
                 "Literal": {
                   "Value": "22D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -406,7 +370,7 @@
                         }
                       }
                     ],
-                    "Top": 100
+                    "Top": 10
                   }
                 }
               },
@@ -444,20 +408,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "3c26684a7ce7350eea26",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Puntaje Promedio"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

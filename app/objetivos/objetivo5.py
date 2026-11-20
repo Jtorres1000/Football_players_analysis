@@ -455,9 +455,6 @@ def objetivo5():
         )
 
         st.echarts_chart(opciones_small_multiples_dispersion(muestra, datos), height=560)
-    with texto_a_slot:
-        st.markdown(texto_a)
-
 
     with chart_b:
         st.echarts_chart(opciones_curvas_correlacion(datos), height=420)

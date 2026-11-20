@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from utils import query_filtered_data
+from utils import query_filtered_data, query_base_data
 
 COLORES_POSICION = {
     "Delanteros (ATT)": "#ff2882",
@@ -463,7 +463,7 @@ def objetivo4():
     )
     table_slot = st.container()
 
-    datos = query_filtered_data("""
+    consulta_obj4 = """
         SELECT
             CASE PRIMARY_CATEGORY
                 WHEN 'ATTACKER' THEN 'Delanteros (ATT)'
@@ -476,11 +476,19 @@ def objetivo4():
             ROUND(AVG(ABILITY_SCORE), 1) AS HABILIDAD_PROMEDIO,
             ROUND(AVG(ANNUAL_WAGE_EUR), 0) AS SALARIO_PROMEDIO,
             COUNT(*) AS JUGADORES
-        FROM df_filtrado
+        FROM {tabla}
         WHERE ABILITY_SCORE IS NOT NULL AND ANNUAL_WAGE_EUR IS NOT NULL
         GROUP BY PRIMARY_CATEGORY, AGE_GROUP
         ORDER BY POSICION, GRUPO_ETARIO
-    """)
+    """
+
+    datos_base = query_base_data(consulta_obj4.format(tabla="df_base"))
+    picos_base = calcular_picos(datos_base)
+    texto_a, texto_b = interpretar(datos_base, picos_base)
+    texto_a_slot.markdown(texto_a)
+    texto_b_slot.markdown(texto_b)
+
+    datos = query_filtered_data(consulta_obj4.format(tabla="df_filtrado"))
 
     if datos.empty:
         chart_a.info("No se encontraron registros para la combinación de filtros seleccionada en la barra lateral.")
@@ -488,15 +496,12 @@ def objetivo4():
         return
 
     picos = calcular_picos(datos)
-    texto_a, texto_b = interpretar(datos, picos)
 
     with chart_a:
         st.echarts_chart(opciones_small_multiples(datos), height=540)
-    texto_a_slot.markdown(texto_a)
 
     with chart_b:
         st.echarts_chart(opciones_picos_comparados(picos), height=440)
-    texto_b_slot.markdown(texto_b)
 
     table_slot.dataframe(
         datos,

@@ -156,3 +156,86 @@ Las relaciones del diagrama configuran un esquema en estrella con relaciones de 
 - [📁 **football_analytics_dbt/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/football_analytics_dbt): Proyecto de ingeniería de analítica con *dbt Core*. Contiene los modelos SQL modulares organizados en capas (*staging* y *marts*), macros, tests de calidad de datos y configuraciones para transformar datos dentro del Data Warehouse.
 - [📁 **power_bi/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/power_bi): Espacio reservado para los tableros de control, plantillas y reportes interactivos de *Power BI* enfocados en la inteligencia de negocios y presentación ejecutiva de las métricas.
 - [📁 **scripts/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/scripts): Scripts utilitarios en Python para tareas de automatización, ingesta y transformación de datos, como la conversión de tablas SQLite a archivos Parquet de alto rendimiento mediante *DuckDB* ([`raw_parquets.py`](https://github.com/Jtorres1000/Football_players_analysis/blob/main/scripts/raw_parquets.py)).
+
+### Ejecutar el proyecto en local
+
+#### Requisitos previos
+* **Python 3.10 o superior** y **Git**.
+* Cuenta activa en **Snowflake**.
+* Cuenta activa en **Backblaze B2** (con un bucket creado y su *Application Key*).
+* *(Opcional)* **API Key de Google Gemini**, únicamente si deseas habilitar el agente de IA en la vista **Comparativa Radar**.
+* *(Opcional)* **Power BI Desktop**, si deseas abrir y actualizar el tablero local (`power_bi/futboltf/pantallabi.pbip`).
+
+---
+
+#### 1. Clonar el repositorio
+```bash
+git clone https://github.com/Jtorres1000/Football_players_analysis.git
+cd Football_players_analysis
+```
+
+#### 2. Crear un entorno virtual e instalar dependencias
+Se recomienda usar un entorno virtual con uv o venv para aislar las dependencias del proyecto, incluye Streamlit, DuckDB, dbt-core y dbt-snowflake:
+
+```bash
+pip install -r app/requirements.txt
+```
+
+#### 3. Descargar la base de datos origen (SQLite)
+Descarga el conjunto de datos desde Kaggle:
+* [SQL Practice: Football Players (Kaggle)](https://www.kaggle.com/datasets/tomersolo/sql-practice-football-players)
+
+Coloca el archivo descargado en la ruta `data/raw/sqlpractice.sqlite` dentro de tu copia local del repositorio (si el archivo tiene otro nombre, ajusta `ruta_db` en los scripts de los pasos 5 y 6).
+
+#### 4. Configurar las credenciales en Streamlit y Backblaze B2
+1. Crea un bucket en tu cuenta de **Backblaze B2** y genera una **Application Key** con permisos de lectura y escritura sobre ese bucket.
+2. Copia el archivo de ejemplo `app/.streamlit/secrets_example.toml` como `app/.streamlit/secrets.toml` *(este archivo está en `.gitignore` y nunca debe subirse al repositorio)* y completa las secciones:
+   * **`[connections.snowflake]`**: credenciales de tu cuenta de Snowflake apuntando a `database = "TF_COMPU_II"` y `schema = "PROD_ANALYTICS"`.
+   * **`[connections.backblaze]`**: credenciales de tu bucket (`B2_KEY_ID`, `B2_KEY_NAME`, `B2_APPLICATION_KEY`, `B2_BUCKET_NAME`, `B2_ENDPOINT`, `B2_REGION`). Se usan tanto para subir las tablas OLTP en formato Parquet como para construir la base local `data/football_local.duckdb` que alimenta el **Cuestionario SQL**.
+   * **`[connections.gemini]` *(opcional)***: agrega únicamente tu `GEMINI_API_KEY` si deseas usar el agente de scouting con IA en la página **Comparativa Radar**; el prompt del agente ya se encuentra integrado en `app/utils/google_api.py`. El resto de la aplicación funciona sin esta clave.
+
+#### 5. Subir las tablas OLTP en formato Parquet a Backblaze B2
+1. Abre `scripts/raw_parquets_backblaze.py` y actualiza la variable `BASE_DIR` con la ruta absoluta de tu copia local del repositorio.
+2. Ejecuta el script **desde la carpeta `app/`** para que `st.secrets` pueda leer `app/.streamlit/secrets.toml`:
+   ```bash
+   cd app
+   python ../scripts/raw_parquets_backblaze.py
+   cd ..
+   ```
+   Esto exportará las 17 tablas de `data/raw/sqlpractice.sqlite` como archivos `.parquet` directamente a tu bucket en Backblaze B2.
+
+#### 6. Generar los Parquet locales e ingestarlos en Snowflake
+1. Abre `scripts/raw_parquets.py`, actualiza la variable `BASE_DIR` con la ruta absoluta de tu copia local del repositorio y ejecútalo:
+   ```bash
+   python scripts/raw_parquets.py
+   ```
+   Esto generará los 17 archivos `*_raw.parquet` en `data/raw/parquets/`.
+
+2. En **Snowflake** (vía Snowsight):
+   * Crea la base de datos **`TF_COMPU_II`** y los esquemas **`FOOTBALL_ANALYSIS`** (capa cruda) y **`PROD_ANALYTICS`** (capa analítica final).
+     > **Importante:** Conserva exactamente los nombres `TF_COMPU_II` y `FOOTBALL_ANALYSIS`, ya que el archivo `football_analytics_dbt/models/football_data/staging/sources.yml` los referencia de forma directa.
+   * Crea un *Stage* interno (por ejemplo `RAW_PARQUETS_STG`) dentro de `TF_COMPU_II.FOOTBALL_ANALYSIS`, sube allí los archivos `*_raw.parquet` desde Snowsight y ejecuta el proceso/procedimiento de carga correspondiente (p. ej. `PROCESS_RAW_PARQUET_FILES()`) para crear y poblar las 17 tablas `*_RAW`:
+     `AGENTS_RAW`, `CLUBS_RAW`, `CONTRACTS_RAW`, `DIVISIONS_RAW`, `INJURIES_RAW`, `NATIONS_RAW`, `PLAYER_POSITIONS_RAW`, `PLAYER_SEASONS_RAW`, `PLAYER_STATS_ATTACKING_RAW`, `PLAYER_STATS_DEFENDING_RAW`, `PLAYER_STATS_GENERAL_RAW`, `PLAYER_STATS_GOALKEEPING_RAW`, `PLAYER_STATS_PASSING_RAW`, `PLAYERS_RAW`, `POSITIONS_RAW`, `SEASONS_RAW` y `TRANSFERS_RAW`.
+
+#### 7. Configurar dbt Core y construir el modelo dimensional
+1. Configura tu archivo `~/.dbt/profiles.yml` con el perfil `football_analytics_dbt` conectado a tu cuenta de Snowflake, usando `database: TF_COMPU_II` y asegurando que el target de producción apunte al esquema **`PROD_ANALYTICS`** (manteniendo estos mismos nombres para coincidir con el proyecto y `app/.streamlit/secrets.toml`).
+2. Desde la carpeta `football_analytics_dbt/`, instala los paquetes definidos en `packages.yml`, valida la conexión y materializa las vistas de *staging*, las tablas dimensionales (*marts*: `dim_player`, `dim_season`, `dim_age_bracket`, `dim_club`, `fact_player_season`), los *seeds* y las pruebas de calidad:
+   ```bash
+   cd football_analytics_dbt
+   dbt deps
+   dbt debug
+   dbt build --target prod   # usa el target de producción que apunta a PROD_ANALYTICS
+   cd ..
+   ```
+   > Verifica que `database`, `schema` (`PROD_ANALYTICS`), `warehouse` y `role` en tu perfil de dbt coincidan con los valores de `[connections.snowflake]` en `app/.streamlit/secrets.toml`.
+
+#### 8. Ejecutar la aplicación Streamlit
+Desde la carpeta `app/`:
+```bash
+cd app
+streamlit run app.py
+```
+La aplicación quedará disponible por defecto en `http://localhost:8501`. Al iniciarse, descargará los Parquet desde Backblaze B2 para construir automáticamente `data/football_local.duckdb` (si aún no existe) y consumirá el esquema estrella desde `TF_COMPU_II.PROD_ANALYTICS` en Snowflake.
+
+#### 9. Conectar el tablero de Power BI (opcional)
+Si deseas replicar también el reporte en power BI, abre `power_bi/futboltf/pantallabi.pbip` en **Power BI Desktop** y actualiza las credenciales de origen de datos de Snowflake para apuntar a `TF_COMPU_II.PROD_ANALYTICS` en tu propia cuenta.

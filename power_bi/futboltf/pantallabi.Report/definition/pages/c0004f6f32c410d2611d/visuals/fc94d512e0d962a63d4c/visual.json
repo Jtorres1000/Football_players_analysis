@@ -408,20 +408,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "4df5f0b60ce59ba5609b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Puntaje Promedio"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

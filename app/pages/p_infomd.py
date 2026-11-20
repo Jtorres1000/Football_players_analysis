@@ -92,6 +92,52 @@ JUSTIFICATION_PARAGRAPHS = [
     ),
 ]
 
+CONCLUSION_INTRO = (
+    "Este trabajo analizó el ciclo de vida profesional de 27.343 futbolistas entre 2022 y 2026, "
+    "construyendo para ello un flujo de datos completo (SQLite → Parquet/Backblaze B2 → Snowflake → dbt → Power BI/Streamlit)."
+)
+
+CONCLUSION_POINTS = [
+    (
+        "El ciclo de rendimiento tiene una forma clara y parecida en todas las posiciones: los jugadores "
+        "mejoran rápido hasta los 20 años, se estancan entre los 20 y los 26, maduran entre los 27 y los 31 "
+        "y llegan a su máximo cerca de los 31 años. Después empieza un declive que se acelera a partir de los 32."
+    ),
+    (
+        "La posición determina sobre todo cuánto dura la carrera, no tanto la forma de la curva. Los porteros "
+        "tienen la mayor longevidad (más veteranos, pico a los 33 años y la menor caída desde el pico) y los "
+        "delanteros la menor. Los defensas son los que mejor conservan su habilidad en la etapa veterana."
+    ),
+    (
+        "El salario crece con la edad más que con el tiempo. Aumenta 2,3 veces entre el grupo más joven y el "
+        "veterano, y casi no cambia entre temporadas (+2,3 %). Los centrocampistas y defensas ganan más, y los "
+        "delanteros, contra lo que se suele pensar, ganan menos en promedio."
+    ),
+    (
+        "El mercado sí paga el rendimiento (r = 0,79 en el total, fuerte en todas las combinaciones de posición "
+        "y edad), pero lo paga tarde. Los picos de habilidad y de salario coinciden en el grupo de 32-38 años, "
+        "pero el salario máximo llega entre 1 y 4 años después del máximo deportivo. Ese desfase se explica por "
+        "el sesgo de supervivencia, la inercia de los contratos y el peso de la reputación."
+    ),
+]
+
+CONCLUSION_ANSWER = (
+    "Respondiendo a la pregunta de investigación: el rendimiento sube con la edad hasta alrededor de los 31 años "
+    "y su evolución varía poco entre posiciones, salvo por la mayor longevidad de los porteros. La edad de mayor "
+    "rendimiento y la de mayor salario coinciden por grupo etario, pero no por edad exacta: el salario sigue "
+    "subiendo durante el declive. Para los clubes, esto implica una ineficiencia: firmar o renovar contratos "
+    "altos con jugadores de 32 años o más significa pagar más por un rendimiento que ya está bajando, sobre todo "
+    "en centrocampistas y defensas. Lo más eficiente es invertir en el grupo de 27-31 años y, en el caso de los "
+    "porteros, alargar ese periodo hasta los 33 años."
+)
+
+LIMITATIONS_ITEMS = [
+    "Las temporadas 2022/23 a 2024/25 son datos generados y solo 2025/26 corresponde a datos reales. Las tendencias entre temporadas deben leerse con cuidado.",
+    "El salario sale del contrato asignado a cada temporada. El 57 % de los jugadores tiene el mismo salario en todas sus temporadas, así que el \"crecimiento salarial\" muestra sobre todo diferencias entre grupos de jugadores, no aumentos individuales.",
+    "El sesgo de supervivencia sube los promedios del grupo de 32-38 años, y los delanteros veteranos son una muestra pequeña (324 registros).",
+    "La correlación de Pearson mide asociación lineal, no causalidad.",
+]
+
 
 def _format_numbered_list(items: list[str]) -> str:
     """Construye una lista numerada en Markdown para preguntas u objetivos."""
@@ -131,6 +177,16 @@ def _render_justificacion() -> None:
     st.markdown("\n\n".join(JUSTIFICATION_PARAGRAPHS))
 
 
+def _render_conclusion() -> None:
+    """Renderiza la conclusión general y las limitaciones del estudio."""
+    st.subheader("Conclusión General")
+    st.markdown(CONCLUSION_INTRO)
+    st.markdown("\n".join(f"- {point}" for point in CONCLUSION_POINTS))
+    st.markdown(CONCLUSION_ANSWER)
+    st.markdown("#### Limitaciones")
+    st.markdown("\n".join(f"- {item}" for item in LIMITATIONS_ITEMS))
+
+
 def p_infomd():
 
     banner(
@@ -147,3 +203,5 @@ def p_infomd():
     _render_objetivos_especificos()
     st.divider()
     _render_justificacion()
+    st.divider()
+    _render_conclusion()

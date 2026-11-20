@@ -225,12 +225,20 @@ def opciones_picos_comparados(picos):
 
     return {
         "backgroundColor": "transparent",
-        "title": {
-            "text": "Pico Salarial vs. Pico de Habilidad por Posición",
-            "textStyle": {"color": "#fbfaff", "fontSize": 14, "fontWeight": 600},
-            "left": "center",
-            "top": 0,
-        },
+        "title": [
+            {
+                "text": "Pico Salarial vs. Pico de Habilidad por Posición",
+                "textStyle": {"color": "#fbfaff", "fontSize": 14, "fontWeight": 600},
+                "left": "center",
+                "top": 0,
+            },
+            {
+                "text": "Posición y grupo etario del pico",
+                "textStyle": {"color": "#c6b5cb", "fontSize": 12, "fontWeight": 400},
+                "left": "center",
+                "bottom": 6,
+            },
+        ],
         "tooltip": {
             "trigger": "axis",
             "axisPointer": {
@@ -260,16 +268,13 @@ def opciones_picos_comparados(picos):
             "top": 88,
             "left": "7%",
             "right": "7%",
-            "bottom": 55,
+            "bottom": 45,
             "containLabel": True,
         },
         "xAxis": [
-            {
+            {   
                 "type": "category",
                 "data": etiquetas_x,
-                "name": "Posición y grupo etario del pico",
-                "nameLocation": "middle",
-                "nameGap": 42,
                 "axisLine": {"lineStyle": {"color": "rgba(255, 255, 255, 0.2)"}},
                 "axisLabel": {
                     "color": "#fbfaff",

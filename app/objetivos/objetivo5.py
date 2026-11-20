@@ -370,7 +370,7 @@ def interpretar(datos):
 def objetivo5():
     st.subheader("Objetivo 5: Grado de correlación entre puntaje de habilidad y salario anual por grupo etario y posición, periodo 2022-2026")
 
-    st.markdown("**a) Dispersión entre puntaje de habilidad y salario anual por posición y grupo etario (Small Multiples)**")
+    st.markdown("**a) Dispersión entre puntaje de habilidad y salario anual por posición y grupo etario**")
     chart_a = st.container()
     texto_a_slot = st.container()
 
@@ -442,8 +442,17 @@ def objetivo5():
     texto_a, texto_b = interpretar(datos)
 
     with chart_a:
+        st.caption(
+            "Nota: Para mantener la legibilidad visual del gráfico, los puntos graficados corresponden a "
+            "una nube representativa de hasta 65 registros por cada combinación de posición y grupo etario, "
+            "y no a la totalidad de los datos filtrados. Los valores del coeficiente de correlación (r) "
+            "mostrados sí se calculan sobre el conjunto completo de registros."
+        )
+
         st.echarts_chart(opciones_small_multiples_dispersion(muestra, datos), height=560)
-    texto_a_slot.markdown(texto_a)
+    with texto_a_slot:
+        st.markdown(texto_a)
+
 
     with chart_b:
         st.echarts_chart(opciones_curvas_correlacion(datos), height=420)

@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from utils import query_filtered_data, query_base_data
+from utils import query_filtered_data
 
 COLORES_POSICION = {
     "Delanteros (ATT)": "#ff2882",
@@ -17,6 +17,36 @@ COLORES_GRUPO = {
     "32-38": "#ff2882",
 }
 
+POSICIONES_ORDEN = [
+    "Delanteros (ATT)",
+    "Centrocampistas (MID)",
+    "Defensas (DEF)",
+    "Porteros (GK)",
+]
+
+GRUPOS_ORDEN = ["15-21", "22-26", "27-31", "32-38"]
+
+INTERPRETACION_A = (
+    "**Interpretación:** Al examinar las cuatro nubes de dispersión posicionales coloreadas por tramo etario, "
+    "se evidencia una pendiente positiva en la que los mayores puntajes de habilidad se asocian con remuneraciones superiores, "
+    "aunque con distinta concentración según el rol: "
+    "en **Delanteros (ATT)** se observa una correlación media de **r = 0.776** (fuerte), alcanzando su mayor ajuste lineal en el grupo de **32-38 años** (**r = 0.863**) y la mayor dispersión en **15-21 años** (**r = 0.73**); "
+    "en **Centrocampistas (MID)** se observa una correlación media de **r = 0.784** (fuerte), alcanzando su mayor ajuste lineal en el grupo de **27-31 años** (**r = 0.837**) y la mayor dispersión en **15-21 años** (**r = 0.742**); "
+    "en **Defensas (DEF)** se observa una correlación media de **r = 0.788** (fuerte), alcanzando su mayor ajuste lineal en el grupo de **27-31 años** (**r = 0.842**) y la mayor dispersión en **15-21 años** (**r = 0.741**); "
+    "en **Porteros (GK)** se observa una correlación media de **r = 0.789** (fuerte), alcanzando su mayor ajuste lineal en el grupo de **27-31 años** (**r = 0.828**) y la mayor dispersión en **15-21 años** (**r = 0.742**)."
+)
+
+INTERPRETACION_B = (
+    "**Interpretación:** Al contrastar el comportamiento del coeficiente de Pearson a lo largo de las cuatro etapas del ciclo de vida deportivo, "
+    "se observa cómo varía el impacto financiero directo del rendimiento en cancha: "
+    "en el grupo formativo de **15-21 años** la correlación promedio se sitúa en **r = 0.741** (relación fuerte); "
+    "en el tramo de consolidación de **22-26 años** la correlación promedio se sitúa en **r = 0.774** (relación fuerte); "
+    "en la etapa de madurez de **27-31 años** la correlación promedio se sitúa en **r = 0.836** (relación fuerte); "
+    "en el segmento veterano de **32-38 años** la correlación promedio se sitúa en **r = 0.828** (relación fuerte). "
+    "Esto demuestra que el nivel de habilidad explica de forma consistente el crecimiento salarial, mientras que las variaciones "
+    "entre tramos responden a los contratos de entrada en juveniles y a la retención por estatus y sesgo de supervivencia en veteranos."
+)
+
 
 def formatear_eur(valor):
     if pd.isna(valor) or valor == 0:
@@ -30,28 +60,9 @@ def formatear_eur(valor):
     return f"{signo}€{v:,.0f}"
 
 
-def clasificar_correlacion(r):
-    ar = abs(r)
-    if ar >= 0.7:
-        return "fuerte"
-    if ar >= 0.4:
-        return "moderada"
-    if ar >= 0.2:
-        return "débil"
-    return "muy baja"
-
-
 def opciones_small_multiples_dispersion(muestra, datos_corr):
-    grupos_orden = ["15-21", "22-26", "27-31", "32-38"]
-    grupos = [g for g in grupos_orden if g in muestra["GRUPO_ETARIO"].values] or sorted(muestra["GRUPO_ETARIO"].unique())
-
-    posiciones_orden = [
-        "Delanteros (ATT)",
-        "Centrocampistas (MID)",
-        "Defensas (DEF)",
-        "Porteros (GK)",
-    ]
-    posiciones = [p for p in posiciones_orden if p in muestra["POSICION"].values] or sorted(muestra["POSICION"].unique())
+    grupos = [g for g in GRUPOS_ORDEN if g in muestra["GRUPO_ETARIO"].values] or sorted(muestra["GRUPO_ETARIO"].unique())
+    posiciones = [p for p in POSICIONES_ORDEN if p in muestra["POSICION"].values] or sorted(muestra["POSICION"].unique())
 
     grids = []
     x_axes = []
@@ -180,16 +191,8 @@ def opciones_small_multiples_dispersion(muestra, datos_corr):
 
 
 def opciones_curvas_correlacion(datos):
-    grupos_orden = ["15-21", "22-26", "27-31", "32-38"]
-    grupos = [g for g in grupos_orden if g in datos["GRUPO_ETARIO"].values] or sorted(datos["GRUPO_ETARIO"].unique())
-
-    posiciones_orden = [
-        "Delanteros (ATT)",
-        "Centrocampistas (MID)",
-        "Defensas (DEF)",
-        "Porteros (GK)",
-    ]
-    posiciones = [p for p in posiciones_orden if p in datos["POSICION"].values] or sorted(datos["POSICION"].unique())
+    grupos = [g for g in GRUPOS_ORDEN if g in datos["GRUPO_ETARIO"].values] or sorted(datos["GRUPO_ETARIO"].unique())
+    posiciones = [p for p in POSICIONES_ORDEN if p in datos["POSICION"].values] or sorted(datos["POSICION"].unique())
 
     series = []
     for p in posiciones:
@@ -290,81 +293,7 @@ def interpretar(datos):
     if datos.empty:
         msg = "No hay suficientes datos para interpretar este objetivo."
         return msg, msg
-
-    grupos_orden = ["15-21", "22-26", "27-31", "32-38"]
-    posiciones_orden = [
-        "Delanteros (ATT)",
-        "Centrocampistas (MID)",
-        "Defensas (DEF)",
-        "Porteros (GK)",
-    ]
-
-    resumen_pos = {}
-    for p in posiciones_orden:
-        sub = datos[datos["POSICION"] == p]
-        if not sub.empty and sub["JUGADORES"].sum() > 0:
-            total_j = sub["JUGADORES"].sum()
-            r_p = round((sub["CORRELACION"] * sub["JUGADORES"]).sum() / total_j, 3)
-            fila_max = sub.loc[sub["CORRELACION"].idxmax()]
-            fila_min = sub.loc[sub["CORRELACION"].idxmin()]
-            resumen_pos[p] = {
-                "r_medio": r_p,
-                "g_max": fila_max["GRUPO_ETARIO"],
-                "r_max": float(fila_max["CORRELACION"]),
-                "g_min": fila_min["GRUPO_ETARIO"],
-                "r_min": float(fila_min["CORRELACION"]),
-            }
-
-    resumen_grupos = {}
-    for g in grupos_orden:
-        sub = datos[datos["GRUPO_ETARIO"] == g]
-        if not sub.empty and sub["JUGADORES"].sum() > 0:
-            total_j = sub["JUGADORES"].sum()
-            r_g = round((sub["CORRELACION"] * sub["JUGADORES"]).sum() / total_j, 3)
-            resumen_grupos[g] = r_g
-
-    descripciones_pos = []
-    for p in posiciones_orden:
-        if p in resumen_pos:
-            info = resumen_pos[p]
-            descripciones_pos.append(
-                f"en **{p}** se observa una correlación media de **r = {info['r_medio']}** ({clasificar_correlacion(info['r_medio'])}), "
-                f"alcanzando su mayor ajuste lineal en el grupo de **{info['g_max']} años** (**r = {info['r_max']}**) y la mayor dispersión "
-                f"en **{info['g_min']} años** (**r = {info['r_min']}**)"
-            )
-
-    descripciones_grupos = []
-    etiquetas_etapa = {
-        "15-21": "el grupo formativo de **15-21 años**",
-        "22-26": "el tramo de consolidación de **22-26 años**",
-        "27-31": "la etapa de madurez de **27-31 años**",
-        "32-38": "el segmento veterano de **32-38 años**",
-    }
-    for g in grupos_orden:
-        if g in resumen_grupos:
-            r_val = resumen_grupos[g]
-            descripciones_grupos.append(
-                f"en {etiquetas_etapa.get(g, g)} la correlación promedio se sitúa en **r = {r_val}** (relación {clasificar_correlacion(r_val)})"
-            )
-
-    texto_a = (
-        "**Interpretación:** "
-        "Al examinar las cuatro nubes de dispersión posicionales coloreadas por tramo etario, se evidencia una pendiente positiva "
-        "en la que los mayores puntajes de habilidad se asocian con remuneraciones superiores, aunque con distinta concentración según el rol: "
-        + "; ".join(descripciones_pos)
-        + "."
-    )
-
-    texto_b = (
-        "**Interpretación:** "
-        "Al contrastar el comportamiento del coeficiente de Pearson a lo largo de las cuatro etapas del ciclo de vida deportivo, "
-        "se observa cómo varía el impacto financiero directo del rendimiento en cancha: "
-        + "; ".join(descripciones_grupos)
-        + ". Esto demuestra que el nivel de habilidad explica de forma consistente el crecimiento salarial, mientras que las variaciones "
-        "entre tramos responden a los contratos de entrada en juveniles y a la retención por estatus y sesgo de supervivencia en veteranos."
-    )
-
-    return texto_a, texto_b
+    return INTERPRETACION_A, INTERPRETACION_B
 
 
 def objetivo5():
@@ -400,22 +329,21 @@ def objetivo5():
             ROUND(AVG(ABILITY_SCORE), 1) AS HABILIDAD_PROMEDIO,
             ROUND(AVG(ANNUAL_WAGE_EUR), 0) AS SALARIO_PROMEDIO,
             COUNT(*) AS JUGADORES
-        FROM {tabla}
+        FROM df_filtrado
         WHERE ABILITY_SCORE IS NOT NULL AND ANNUAL_WAGE_EUR IS NOT NULL
         GROUP BY PRIMARY_CATEGORY, AGE_GROUP
         ORDER BY POSICION, GRUPO_ETARIO
     """
 
-    datos_base = query_base_data(consulta_obj5.format(tabla="df_base"))
-    texto_a, texto_b = interpretar(datos_base)
+    datos = query_filtered_data(consulta_obj5)
+    texto_a, texto_b = interpretar(datos)
     texto_a_slot.markdown(texto_a)
     texto_b_slot.markdown(texto_b)
-
-    datos = query_filtered_data(consulta_obj5.format(tabla="df_filtrado"))
 
     if datos.empty:
         chart_a.info("No se encontraron registros para la combinación de filtros seleccionada en la barra lateral.")
         chart_b.info("No se encontraron registros para la combinación de filtros seleccionada en la barra lateral.")
+        table_slot.info("No se encontraron registros para la combinación de filtros seleccionada en la barra lateral.")
         return
 
     muestra = query_filtered_data("""

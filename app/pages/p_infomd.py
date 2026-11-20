@@ -92,6 +92,58 @@ JUSTIFICATION_PARAGRAPHS = [
     ),
 ]
 
+CONCLUSION_INTRO = (
+    "El análisis del periodo 2022-2026 permite responder a cada objetivo específico a partir de los datos del estudio:"
+)
+
+CONCLUSION_POINTS = [
+    (
+        "El puntaje de habilidad promedio crece con la edad en todas las temporadas; en 2025/26 pasa de 378,9 puntos "
+        "en el grupo de 15 a 21 años a 445,9 en el de 32 a 38 años. Entre temporadas, la media de los tramos jóvenes "
+        "sube levemente y la de los grupos mayores baja a medida que ingresan más jugadores a esas edades."
+    ),
+    (
+        "En longevidad, los porteros lideran en permanencia con un 12,1 % de sus registros entre los 32 y 38 años, "
+        "frente a un rango de 4,8 % a 5,7 % en el resto de posiciones. A nivel individual, todos los puestos mejoran "
+        "hasta los 26 años, empiezan a caer unos 6 puntos anuales entre los 27 y 31 años y pierden entre 19,9 puntos "
+        "en defensas y 23,7 en delanteros a partir de los 32 años."
+    ),
+    (
+        "El salario anual promedio sube con la edad en todas las posiciones hasta más que duplicarse en el tramo "
+        "veterano. Los centrocampistas y defensas registran los sueldos medios más altos, llegando a 2,56 y 2,41 "
+        "millones de euros entre los 32 y 38 años, seguidos por los porteros con 2,24 millones y los delanteros "
+        "con 1,71 millones."
+    ),
+    (
+        "Los promedios máximos de habilidad y de salario coinciden en el grupo de 32 a 38 años para las cuatro "
+        "posiciones, encabezados por los centrocampistas con 470,8 puntos y 2,56 millones de euros. Sin embargo, "
+        "como a esa edad la variación individual ya es negativa, este techo grupal se explica por el sesgo de "
+        "supervivencia, pues solo continúan activos los futbolistas de mayor nivel y mejores contratos."
+    ),
+    (
+        "La correlación de Pearson entre habilidad y salario es positiva y alta en todos los grupos y posiciones, "
+        "variando entre 0,730 y 0,863. El vínculo es algo menor entre los 15 y 21 años por la uniformidad de los "
+        "contratos iniciales y supera el 0,80 en todos los puestos a partir de los 27 años."
+    ),
+]
+
+CONCLUSION_ANSWER = (
+    "En respuesta a la pregunta de investigación, el futbolista mejora su rendimiento individual hasta el tramo "
+    "de 22 a 26 años y comienza a declinar desde los 27 años a un ritmo parecido en todos los puestos, salvo por "
+    "la mayor duración de carrera de los porteros. Aunque los promedios de habilidad y salario alcanzan su máximo "
+    "en el grupo de 32 a 38 años con una correlación fuerte, esto ocurre porque a esa edad solo permanecen activos "
+    "jugadores consagrados. Para los clubes, otorgar contratos altos después de los 32 años implica pagar el "
+    "máximo del mercado cuando el rendimiento individual ya cae cerca de 20 puntos por temporada, por lo que es "
+    "más eficiente concentrar la inversión entre los 22 y los 31 años."
+)
+
+LIMITATIONS_ITEMS = [
+    "Las temporadas 2022/23 a 2024/25 son datos generados y solo 2025/26 contiene registros reales, por lo que en los primeros años aparecen muchos menos jugadores de 32 a 38 años.",
+    "La variación anual de habilidad del segundo objetivo excluye la primera temporada de cada jugador al no tener un año previo de comparación.",
+    "El sesgo de supervivencia eleva los promedios del grupo de 32 a 38 años, donde además hay muestras pequeñas como los 324 registros de delanteros veteranos.",
+    "La correlación de Pearson confirma una asociación lineal fuerte entre habilidad y salario, pero no demuestra causalidad.",
+]
+
 
 def _format_numbered_list(items: list[str]) -> str:
     """Construye una lista numerada en Markdown para preguntas u objetivos."""
@@ -131,6 +183,16 @@ def _render_justificacion() -> None:
     st.markdown("\n\n".join(JUSTIFICATION_PARAGRAPHS))
 
 
+def _render_conclusion() -> None:
+    """Renderiza la conclusión general y las limitaciones del estudio."""
+    st.subheader("Conclusión General")
+    st.markdown(CONCLUSION_INTRO)
+    st.markdown("\n".join(f"- {point}" for point in CONCLUSION_POINTS))
+    st.markdown(CONCLUSION_ANSWER)
+    st.markdown("#### Limitaciones")
+    st.markdown("\n".join(f"- {item}" for item in LIMITATIONS_ITEMS))
+
+
 def p_infomd():
 
     banner(
@@ -147,3 +209,5 @@ def p_infomd():
     _render_objetivos_especificos()
     st.divider()
     _render_justificacion()
+    st.divider()
+    _render_conclusion()

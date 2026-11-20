@@ -156,3 +156,37 @@ Las relaciones del diagrama configuran un esquema en estrella con relaciones de 
 - [📁 **football_analytics_dbt/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/football_analytics_dbt): Proyecto de ingeniería de analítica con *dbt Core*. Contiene los modelos SQL modulares organizados en capas (*staging* y *marts*), macros, tests de calidad de datos y configuraciones para transformar datos dentro del Data Warehouse.
 - [📁 **power_bi/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/power_bi): Espacio reservado para los tableros de control, plantillas y reportes interactivos de *Power BI* enfocados en la inteligencia de negocios y presentación ejecutiva de las métricas.
 - [📁 **scripts/**](https://github.com/Jtorres1000/Football_players_analysis/tree/main/scripts): Scripts utilitarios en Python para tareas de automatización, ingesta y transformación de datos, como la conversión de tablas SQLite a archivos Parquet de alto rendimiento mediante *DuckDB* ([`raw_parquets.py`](https://github.com/Jtorres1000/Football_players_analysis/blob/main/scripts/raw_parquets.py)).
+
+## Instalación y ejecución
+
+### Ver la aplicación en línea
+La app está publicada en: https://football-players-analysis.streamlit.app/
+
+### Ejecutarla en local
+
+**Requisitos:** Al menos Python 3.10 y Git.
+
+1. Clonar el repositorio:
+   ```
+   git clone https://github.com/Jtorres1000/Football_players_analysis.git
+   cd Football_players_analysis
+   ```
+
+2. Instalar las dependencias:
+   ```
+   pip install -r app/requirements.txt
+   ```
+
+3. Configurar las credenciales: copiar `app/.streamlit/secrets_example.toml` como `app/.streamlit/secrets.toml` y completar los valores de las tres conexiones:
+   - `[connections.snowflake]`: acceso al modelo dimensional (schema de producción `PROD_ANALYTICS`).
+   - `[connections.backblaze]`: acceso a los archivos parquet con los que se construye la base DuckDB local del cuestionario SQL.
+   - `[connections.gemini]`: clave del agente de IA de la comparativa radar.
+
+   El archivo `secrets.toml` está incluido en `.gitignore` y nunca debe subirse al repositorio.
+
+4. Ejecutar la aplicación desde la carpeta `app`:
+   ```
+   cd app
+   streamlit run app.py
+   ```
+   La app se abre en `http://localhost:8501`.

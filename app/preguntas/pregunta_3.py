@@ -59,7 +59,7 @@ metricas_temporada AS (
         COUNT(*) AS cantidad_traspasos,
         AVG(
             CASE
-                WHEN fila_asc IN ((total_traspasos + 1) / 2, (total_traspasos + 2) / 2)
+                WHEN fila_asc IN ((total_traspasos + 1) // 2, (total_traspasos + 2) // 2)
                 THEN transfer_fee_eur
             END
         ) AS monto_mediano,
